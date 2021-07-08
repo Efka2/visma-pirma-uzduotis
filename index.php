@@ -32,7 +32,6 @@ foreach ($data as $pattern){
     $position = strpos( $wordWithDots, $pattern_without_number);
 
     if($position !== false){
-        echo $pattern ."\n";
         $numberArray = populateNumbersArray($numberArray,$pattern,$position);
     }
 }
@@ -40,7 +39,8 @@ function populateNumbersArray(array $numberArray, string $pattern, int $position
 {
     $patternChars = str_split($pattern);
     foreach ($patternChars as $char){
-        if(is_numeric($char) && $char >= $numberArray[$position]){
+        if($position == count($numberArray)) continue;
+        if(is_numeric($char) && $char > $numberArray[$position]){
             $numberArray[$position] = $char;
         }
         else $position++;
@@ -48,19 +48,15 @@ function populateNumbersArray(array $numberArray, string $pattern, int $position
     return $numberArray;
 }
 
-print_r($numberArray);
 function remakeWord($numberArray, $word): string{
+    $k = -1;
     foreach ($numberArray as $key => $value){
         if($value % 2 !== 0){
-            //todo fix this klaida cia kazkur
-            echo "$key + $value \n";
-            $wordx = substr_replace($word, '-', $key-1, 0);
-//            print_r(str_split($wordx));
-//            break;
+            $word = substr_replace($word, '-', $key+$k, 0);
+            $k++;
         }
     }
-    return $wordx;
+    return $word;
 }
 $finalWord = remakeWord($numberArray,$word);
 echo $finalWord ."\n";
-//echo "$wordWithDots";
