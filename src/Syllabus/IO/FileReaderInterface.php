@@ -1,7 +1,9 @@
 <?php
-namespace Evaldas\Syllabus\IO;
+namespace Syllabus\IO;
+
+use SplFileObject;
 
 interface FileReaderInterface{
     //reads from the file and puts data into array
-    public function readFromFile(string $filePath) : array;
+    public function readFromFile(SplFileObject $fileObject) : array;
 }

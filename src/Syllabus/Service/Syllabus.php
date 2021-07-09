@@ -1,41 +1,27 @@
 <?php
 
-namespace Evaldas\Syllabus\Service;
+namespace Syllabus\Service;
 
-class Syllabus
+require_once ('SyllabusHelper.php');
+
+class Syllabus extends SyllabusHelper
 {
-    private array $numbers = [0,1,2,3,4,5,6,7,8,9];
-    private array $wordArray;
-    public array $numberArray;
-    private string $wordWithDots;
-
-    public string $word;
-
     public function __construct(string $word)
     {
-        $this->word = $word;
-        $this->wordArray = $this->setWordArray($word);
-        $this->numberArray = $this->setNumberArray($this->wordArray);
-        $this->wordWithDots = '.' . $word . '.';
+        parent::__construct($word);
     }
 
-    private function setWordArray(string $word) : array
-    {
-        return $wordArray = str_split($word);
+    public function syllabify($patternArray):string{
+        $this->findPatternsInWord($patternArray);
+        $finalWord = $this->syllabifyWord();
+        return $finalWord;
     }
 
-    private function setNumberArray(array $wordArray){
-        for($i = 0; $i< count($wordArray)  ; $i++){
-            $numberArray[$i] = 0;
-        }
-        return $numberArray;
-    }
-
-    public function findPatternsInWord(array $patternArray) : array
+    private function findPatternsInWord(array $patternArray) : array
     {
         foreach ($patternArray as $pattern){
 
-            $pattern_without_number = str_replace($this->numbers,'', $pattern);
+            $pattern_without_number = str_replace(self::NUMBER_ARRAY,'', $pattern);
             $position = strpos( $this->wordWithDots, $pattern_without_number);
 
             if($position !== false){
@@ -60,11 +46,11 @@ class Syllabus
     }
 
     public function syllabifyWord(): string{
-        $k = -1;
+        $offset = -1;
         foreach ($this->numberArray as $key => $value){
             if($value % 2 !== 0){
-                $this->word = substr_replace($this->word, '-', $key+$k, 0);
-                $k++;
+                $this->word = substr_replace($this->word, '-', $key+$offset, 0);
+                $offset++;
             }
         }
         return $this->word;

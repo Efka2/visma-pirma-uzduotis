@@ -1,24 +1,17 @@
 <?php
-namespace Evaldas\Syllabus\IO;
+namespace Syllabus\IO;
 
-//require 'src\Syllabus\IO\FileReaderInterface.php';
-
+require_once('FileReaderInterface.php');
 use SplFileObject;
 
-class Reader {
+class Reader implements FileReaderInterface {
 
-    private SplFileObject $fileObject;
-    public function __construct(SplFileObject $fileObject)
-    {
-        $this->fileObject =$fileObject;
-    }
-
-    public function readFromFile() : array
+    public function readFromFile(SplFileObject $fileObject) : array
     {
         $data = array();
 
-        while (!$this->fileObject->eof()) {
-            $data[] = trim($this->fileObject->fgets());
+        while (!$fileObject->eof()) {
+            $data[] = trim($fileObject->fgets());
         }
 
         $file = null;
