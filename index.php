@@ -1,12 +1,21 @@
 <?php
 
-include_once ('read.php');
-include_once ('print.php');
-//include_once ('syllabify.php');
+    require ('src/Syllabus/IO/Reader.php');
+    require ('src/Syllabus/Service/Syllabus.php');
+    require ('src/Syllabus/IO/FileReaderInterface.php');
+    use Evaldas\Syllabus\IO\Reader;
+    use Evaldas\Syllabus\Service\Syllabus;
 
+    //bootstrap
 $filePath = "https://gist.githubusercontent.com/cosmologicon/1e7291714094d71a0e25678316141586/raw/006f7e9093dc7ad72b12ff9f1da649822e56d39d/tex-hyphenation-patterns.txt";
+$fileReader = new SplFileObject($filePath);
+$reader = new Reader($fileReader);
+$patternArray = $reader->readFromFile();
 
-$data = readFromFile($filePath);
+//spl_autoload_register(function ($name){
+//    include "$name".'.php';
+//});
+
 
 if( $argc == 2 )
 {
@@ -18,45 +27,8 @@ else {
     exit();
 }
 
-$numbers = [0,1,2,3,4,5,6,7,8,9];
-$wordArray = str_split($word);
-$numberArray = array();
+    $syllabus = new Syllabus($word);
+    $x = $syllabus->findPatternsInWord($patternArray);
+    $finalWord = $syllabus->syllabifyWord();
+    print $finalWord . "\n";
 
-for($i = 0; $i< count($wordArray)  ; $i++){
-        $numberArray[$i] = 0;
-}
-
-foreach ($data as $pattern){
-
-    $pattern_without_number = str_replace($numbers,'',$pattern);
-    $position = strpos( $wordWithDots, $pattern_without_number);
-
-    if($position !== false){
-        $numberArray = populateNumbersArray($numberArray,$pattern,$position);
-    }
-}
-function populateNumbersArray(array $numberArray, string $pattern, int $position): array
-{
-    $patternChars = str_split($pattern);
-    foreach ($patternChars as $char){
-        if($position == count($numberArray)) continue;
-        if(is_numeric($char) && $char > $numberArray[$position]){
-            $numberArray[$position] = $char;
-        }
-        else $position++;
-    }
-    return $numberArray;
-}
-
-function remakeWord($numberArray, $word): string{
-    $k = -1;
-    foreach ($numberArray as $key => $value){
-        if($value % 2 !== 0){
-            $word = substr_replace($word, '-', $key+$k, 0);
-            $k++;
-        }
-    }
-    return $word;
-}
-$finalWord = remakeWord($numberArray,$word);
-echo $finalWord ."\n";
