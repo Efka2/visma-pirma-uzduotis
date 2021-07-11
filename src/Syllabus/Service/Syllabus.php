@@ -27,17 +27,21 @@ class Syllabus extends SyllabusHelper
         return $this->word;
     }
 
-    private function findPatternsInWord(Collection $patterns) : void
+    public function findPatternsInWord(Collection $patterns) : Collection
     {
+        $foundPatterns = new Collection();
+
         foreach ($patterns->getAll() as $pattern){
 
-            $pattern_without_number = str_replace(self::NUMBER_ARRAY,'', $pattern);
+            $pattern_without_number = str_replace(self::$numbers,'', $pattern);
             $position = strpos( $this->wordWithDots, $pattern_without_number);
 
             if($position !== false){
+                $foundPatterns->add($pattern);
                 $this->numberArray = $this->populateNumbersArray($this->numberArray,$pattern,$position);
             }
         }
+        return $foundPatterns;
     }
 
     private function populateNumbersArray(array $numberArray, string $pattern, int $position): array

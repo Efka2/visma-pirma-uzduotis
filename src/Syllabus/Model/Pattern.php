@@ -13,6 +13,7 @@ class Pattern
         $this->patternString = $patternString;
     }
 
+    //todo ar reikia jei turiu overritines __tostring()?
     public function getPatternString(): string
     {
         return $this->patternString;
@@ -26,7 +27,7 @@ class Pattern
     public function getPatternStringWithoutNumbers() : string
     {
         //todo move number array to different place
-        return str_replace(SyllabusHelper::NUMBER_ARRAY,'', $this->patternString);
+        return str_replace(SyllabusHelper::$numbers,'', $this->patternString);
     }
 
     public function getPatternStringWithoutDotsAndNumbers() : string

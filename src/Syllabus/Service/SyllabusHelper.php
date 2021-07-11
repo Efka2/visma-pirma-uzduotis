@@ -6,7 +6,8 @@ namespace Syllabus\Service;
 //todo rename this class
 class SyllabusHelper
 {
-    public const NUMBER_ARRAY = [0,1,2,3,4,5,6,7,8,9];
+    public static array $numbers = [0,1,2,3,4,5,6,7,8,9];
+    //todo replace
     protected array $wordArray;
     protected string $wordWithDots;
     protected string $word;
@@ -45,7 +46,7 @@ class SyllabusHelper
         return $wordArray = str_split($word);
     }
 
-    protected function setNumberArray(array $wordArray){
+    private function setNumberArray(array $wordArray){
         for($i = 0; $i< count($wordArray); $i++){
             $numberArray[$i] = 0;
         }

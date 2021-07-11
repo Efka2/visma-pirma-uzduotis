@@ -1,6 +1,7 @@
 <?php
 namespace Syllabus\Core;
 
+use Syllabus\IO\FileReaderInterface;
 use Syllabus\IO\Output;
 use Syllabus\IO\Reader;
 use Syllabus\Service\Syllabus;
@@ -8,19 +9,18 @@ use SplFileObject;
 
 class Application{
 
-    //readeris grazins patternCollection
-    // modelis - pattern
-    // result model
     public function run()
     {
-        $filePath = "https://gist.githubusercontent.com/cosmologicon/1e7291714094d71a0e25678316141586/raw/006f7e9093dc7ad72b12ff9f1da649822e56d39d/tex-hyphenation-patterns.txt";
-        $fileReader = new SplFileObject($filePath);
+        $fileReader = new SplFileObject(FileReaderInterface::DEFAULT_PATTERN_LINK);
         $reader = new Reader();
-        $patternArray = $reader->readFromFile($fileReader);
+        $patternArray = $reader->readFromFileToCollection($fileReader);
 
+        $timeStart = new \DateTime();
         $syllabus = new Syllabus('mistranslate');
-
         $finalWord = $syllabus->syllabify($patternArray);
-        echo $finalWord;
+        $diff = $timeStart->diff(new \DateTime());
+
+        Output::printAnswerToTerminal('mistransalate', $syllabus->findPatternsInWord($patternArray), $finalWord, $diff);
+
     }
 }

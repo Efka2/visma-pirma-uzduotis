@@ -7,7 +7,7 @@ use Syllabus\Model\Pattern;
 
 class Reader implements FileReaderInterface {
 
-    public function readFromFile(SplFileObject $fileObject) : Collection
+    public function readFromFileToCollection(SplFileObject $fileObject) : Collection
     {
         $data = new Collection();
 
