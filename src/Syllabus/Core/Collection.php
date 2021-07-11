@@ -4,17 +4,20 @@
 namespace Syllabus\Core;
 
 
-class Collection implements \Iterator
+use Syllabus\Model\Pattern;
+
+class Collection
 {
-    private array $items = array();
+    protected array $items = array();
 
-    public function add(object $item, $key = null) : void
+    public function __construct()
     {
-        if($key === null) $this->items[] = $item;
 
-        else{
-            $this->items[$key] = $item;
-        }
+    }
+
+    public function add(Pattern $item) : void
+    {
+        $this->items[] = $item;
     }
 
     public function remove($key) : void
@@ -42,27 +45,8 @@ class Collection implements \Iterator
         return count($this->items);
     }
 
-    public function current()
+    public function getAll() : array
     {
-    }
-
-    public function next()
-    {
-        // TODO: Implement next() method.
-    }
-
-    public function key()
-    {
-        // TODO: Implement key() method.
-    }
-
-    public function valid()
-    {
-        // TODO: Implement valid() method.
-    }
-
-    public function rewind()
-    {
-        // TODO: Implement rewind() method.
+        return $this->items;
     }
 }

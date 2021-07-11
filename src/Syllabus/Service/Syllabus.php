@@ -4,8 +4,7 @@ namespace Syllabus\Service;
 
 use Syllabus\Core\Collection;
 
-require_once ('src/Syllabus/Core/Collection.php');
-require_once ('SyllabusHelper.php');
+require ('src/requires.php');
 
 class Syllabus extends SyllabusHelper
 {
@@ -16,8 +15,7 @@ class Syllabus extends SyllabusHelper
 
     public function syllabify($patternArray):string{
         $this->findPatternsInWord($patternArray);
-        $finalWord = $this->addDashesToWord();
-        return $finalWord;
+        return $this->addDashesToWord();
     }
 
     public function addDashesToWord(): string{
@@ -31,18 +29,18 @@ class Syllabus extends SyllabusHelper
         return $this->word;
     }
 
-    private function findPatternsInWord(array $patternArray) : array
+    private function findPatternsInWord(Collection $patterns) : void
     {
-        foreach ($patternArray as $pattern){
+        foreach ($patterns->getAll() as $pattern){
 
             $pattern_without_number = str_replace(self::NUMBER_ARRAY,'', $pattern);
             $position = strpos( $this->wordWithDots, $pattern_without_number);
 
             if($position !== false){
+                print "$pattern\n";
                 $this->numberArray = $this->populateNumbersArray($this->numberArray,$pattern,$position);
             }
         }
-        return $this->numberArray;
     }
 
     private function populateNumbersArray(array $numberArray, string $pattern, int $position): array

@@ -1,9 +1,7 @@
 <?php
 namespace Syllabus\IO;
 
-require_once('FileReaderInterface.php');
-require_once('src/Syllabus/Model/Pattern.php');
-require_once('src/Syllabus/Core/Collection.php');
+require_once ('src/requires.php');
 
 use SplFileObject;
 use Syllabus\Core\Collection;
@@ -11,13 +9,13 @@ use Syllabus\Model\Pattern;
 
 class Reader implements FileReaderInterface {
 
-    public function readFromFile(SplFileObject $fileObject) : array
+    public function readFromFile(SplFileObject $fileObject) : Collection
     {
-        $data = array();
+        $data = new Collection();
 
         while (!$fileObject->eof()) {
             $pattern = new Pattern(trim($fileObject->fgets()));
-            $data[] = $pattern;
+            $data->add($pattern);
         }
 
         $file = null;
