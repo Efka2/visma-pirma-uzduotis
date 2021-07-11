@@ -1,8 +1,6 @@
 <?php
 
-    require_once ('src/Syllabus/IO/Reader.php');
-    require_once ('src/Syllabus/Service/Syllabus.php');
-    require_once ('src/Syllabus/Core/Application.php');
+    require_once('src/autoload.php');
 
     use Syllabus\Core\Application;
 

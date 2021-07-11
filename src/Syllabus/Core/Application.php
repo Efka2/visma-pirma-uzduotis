@@ -13,8 +13,6 @@ class Application{
     // result model
     public function run()
     {
-        spl_autoload_register();
-
         $filePath = "https://gist.githubusercontent.com/cosmologicon/1e7291714094d71a0e25678316141586/raw/006f7e9093dc7ad72b12ff9f1da649822e56d39d/tex-hyphenation-patterns.txt";
         $fileReader = new SplFileObject($filePath);
         $reader = new Reader();

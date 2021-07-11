@@ -35,7 +35,6 @@ class Syllabus extends SyllabusHelper
             $position = strpos( $this->wordWithDots, $pattern_without_number);
 
             if($position !== false){
-                print "$pattern\n";
                 $this->numberArray = $this->populateNumbersArray($this->numberArray,$pattern,$position);
             }
         }
