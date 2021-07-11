@@ -2,6 +2,9 @@
 
 namespace Syllabus\Service;
 
+use Syllabus\Core\Collection;
+
+require_once ('src/Syllabus/Core/Collection.php');
 require_once ('SyllabusHelper.php');
 
 class Syllabus extends SyllabusHelper
@@ -13,8 +16,19 @@ class Syllabus extends SyllabusHelper
 
     public function syllabify($patternArray):string{
         $this->findPatternsInWord($patternArray);
-        $finalWord = $this->syllabifyWord();
+        $finalWord = $this->addDashesToWord();
         return $finalWord;
+    }
+
+    public function addDashesToWord(): string{
+        $offset = -1;
+        foreach ($this->numberArray as $key => $value){
+            if($value % 2 !== 0){
+                $this->word = substr_replace($this->word, '-', $key+$offset, 0);
+                $offset++;
+            }
+        }
+        return $this->word;
     }
 
     private function findPatternsInWord(array $patternArray) : array
@@ -43,16 +57,5 @@ class Syllabus extends SyllabusHelper
             else $position++;
         }
         return $numberArray;
-    }
-
-    public function syllabifyWord(): string{
-        $offset = -1;
-        foreach ($this->numberArray as $key => $value){
-            if($value % 2 !== 0){
-                $this->word = substr_replace($this->word, '-', $key+$offset, 0);
-                $offset++;
-            }
-        }
-        return $this->word;
     }
 }

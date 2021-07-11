@@ -12,6 +12,9 @@ require_once ('src/Syllabus/Core/Application.php');
 
 class Application{
 
+    //readeris grazins patternCollection
+    // modelis - pattern
+    // result model
     public function run()
     {
         $filePath = "https://gist.githubusercontent.com/cosmologicon/1e7291714094d71a0e25678316141586/raw/006f7e9093dc7ad72b12ff9f1da649822e56d39d/tex-hyphenation-patterns.txt";

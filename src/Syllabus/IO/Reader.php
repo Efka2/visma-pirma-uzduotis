@@ -2,7 +2,12 @@
 namespace Syllabus\IO;
 
 require_once('FileReaderInterface.php');
+require_once('src/Syllabus/Model/Pattern.php');
+require_once('src/Syllabus/Core/Collection.php');
+
 use SplFileObject;
+use Syllabus\Core\Collection;
+use Syllabus\Model\Pattern;
 
 class Reader implements FileReaderInterface {
 
@@ -11,7 +16,8 @@ class Reader implements FileReaderInterface {
         $data = array();
 
         while (!$fileObject->eof()) {
-            $data[] = trim($fileObject->fgets());
+            $pattern = new Pattern(trim($fileObject->fgets()));
+            $data[] = $pattern;
         }
 
         $file = null;

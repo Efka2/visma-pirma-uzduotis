@@ -20,18 +20,6 @@ class SyllabusHelper
         $this->wordWithDots = '.' . $word . '.';
     }
 
-    protected function setWordArray(string $word) : array
-    {
-        return $wordArray = str_split($word);
-    }
-
-    protected function setNumberArray(array $wordArray){
-        for($i = 0; $i< count($wordArray); $i++){
-            $numberArray[$i] = 0;
-        }
-        return $numberArray;
-    }
-
     public function getWordArray(): array
     {
         return $this->wordArray;
@@ -50,6 +38,18 @@ class SyllabusHelper
     public function getNumberArray() : array
     {
         return $this->numberArray;
+    }
+
+    protected function setWordArray(string $word) : array
+    {
+        return $wordArray = str_split($word);
+    }
+
+    protected function setNumberArray(array $wordArray){
+        for($i = 0; $i< count($wordArray); $i++){
+            $numberArray[$i] = 0;
+        }
+        return $numberArray;
     }
 
 }
