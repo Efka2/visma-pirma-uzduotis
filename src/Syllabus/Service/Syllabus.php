@@ -4,8 +4,6 @@ namespace Syllabus\Service;
 
 use Syllabus\Core\Collection;
 
-require ('src/requires.php');
-
 class Syllabus extends SyllabusHelper
 {
     public function __construct(string $word)

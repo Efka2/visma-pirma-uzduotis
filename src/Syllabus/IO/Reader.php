@@ -1,8 +1,6 @@
 <?php
 namespace Syllabus\IO;
 
-require_once ('src/requires.php');
-
 use SplFileObject;
 use Syllabus\Core\Collection;
 use Syllabus\Model\Pattern;
