@@ -2,7 +2,7 @@
 
 namespace Syllabus\Service;
 
-use Syllabus\Core\Collection;
+use Syllabus\Core\PatternCollection;
 
 class Syllabus extends SyllabusHelper
 {
@@ -28,14 +28,14 @@ class Syllabus extends SyllabusHelper
         return $word;
     }
 
-    public function findPatternsInWord(Collection $patterns) : Collection
+    public function findPatternsInWord(PatternCollection $patterns) : PatternCollection
     {
-        $foundPatterns = new Collection();
+        $foundPatterns = new PatternCollection();
 
         foreach ($patterns->getAll() as $pattern){
 
-            $pattern_without_number = str_replace(self::$numbers,'', $pattern);
-            $position = strpos( $this->wordWithDots, $pattern_without_number);
+            $patternWithoutNumbers = $pattern->getPatternStringWithoutNumbers();
+            $position = strpos( $this->wordWithDots, $patternWithoutNumbers);
 
             if($position !== false){
                 $foundPatterns->add($pattern);

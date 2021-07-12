@@ -2,14 +2,14 @@
 namespace Syllabus\IO;
 
 use SplFileObject;
-use Syllabus\Core\Collection;
+use Syllabus\Core\PatternCollection;
 use Syllabus\Model\Pattern;
 
 class Reader implements FileReaderInterface {
 
-    public function readFromFileToCollection(SplFileObject $fileObject) : Collection
+    public function readFromFileToCollection(SplFileObject $fileObject) : PatternCollection
     {
-        $data = new Collection();
+        $data = new PatternCollection();
 
         while (!$fileObject->eof()) {
             $pattern = new Pattern(trim($fileObject->fgets()));

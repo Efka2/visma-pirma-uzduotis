@@ -1,7 +1,7 @@
 <?php
 namespace Syllabus\IO;
 
-use Syllabus\Core\Collection;
+use Syllabus\Core\PatternCollection;
 use Syllabus\Model\Result;
 
 class Output{

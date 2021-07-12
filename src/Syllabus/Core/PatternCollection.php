@@ -6,14 +6,12 @@ namespace Syllabus\Core;
 
 use Syllabus\Model\Pattern;
 
-class Collection
+class PatternCollection
 {
-    protected array $items = array();
-
-    public function __construct()
-    {
-
-    }
+    /**
+     * @var Pattern[]
+     */
+    protected $items = array();
 
     public function add(Pattern $item) : void
     {
@@ -31,7 +29,7 @@ class Collection
         }
     }
 
-    public function get($key) :? object
+    public function get($key) :? Pattern
     {
         if(!isset($this->items[$key])){
             echo "No such item in collection with key $key. NULL is returned.\n";

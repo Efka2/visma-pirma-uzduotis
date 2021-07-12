@@ -13,11 +13,6 @@ class Pattern
         $this->patternString = $patternString;
     }
 
-    //todo ar reikia jei turiu overritines __tostring()?
-    public function getPatternString(): string
-    {
-        return $this->patternString;
-    }
     //todo trait?
     public function getPatterStringWithoutDots() : string
     {

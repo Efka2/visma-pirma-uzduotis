@@ -3,19 +3,19 @@
 
 namespace Syllabus\Model;
 
-use Syllabus\Core\Collection;
+use Syllabus\Core\PatternCollection;
 
 class Result
 {
 //    private array $resultArray = array();
-    private Collection $foundPatterns;
+    private PatternCollection $foundPatterns;
     private string $syllabifiedWord;
     private string $word;
 
     private \DateInterval $time;
 
 
-    public function __construct(string $word, string $syllabifiedWord,Collection $foundPatterns, \DateInterval $time)
+    public function __construct(string $word, string $syllabifiedWord, PatternCollection $foundPatterns, \DateInterval $time)
     {
         $this->word = $word;
         $this->syllabifiedWord = $syllabifiedWord;
@@ -30,7 +30,7 @@ class Result
     }
 
 
-    public function getFoundPatterns(): Collection
+    public function getFoundPatterns(): PatternCollection
     {
         return $this->foundPatterns;
     }
