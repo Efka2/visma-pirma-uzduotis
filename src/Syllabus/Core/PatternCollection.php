@@ -6,28 +6,12 @@ namespace Syllabus\Core;
 
 use Syllabus\Model\Pattern;
 
-class PatternCollection
+class PatternCollection extends AbstractCollection
 {
     /**
      * @var Pattern[]
      */
     protected $items = array();
-
-    public function add(Pattern $item) : void
-    {
-        $this->items[] = $item;
-    }
-
-    public function remove($key) : void
-    {
-        if (isset($this->items[$key])){
-            unset($this->items[$key]);
-        }
-        else{
-            //todo throw exception?
-            echo "Key $key does'/\t exist in array.\n";
-        }
-    }
 
     public function get($key) :? Pattern
     {
@@ -43,6 +27,9 @@ class PatternCollection
         return count($this->items);
     }
 
+    /**
+     * @return Pattern[]
+     */
     public function getAll() : array
     {
         return $this->items;
