@@ -31,6 +31,7 @@ class Reader implements FileReaderInterface
             echo "Please enter a word: ";
             $line = trim(readline());
         }
+        
         return $line;
     }
 }

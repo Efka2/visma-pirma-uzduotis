@@ -10,20 +10,21 @@ class PatternCollection extends Collection
      * @var Pattern[]
      */
     protected $items = array();
-
+    
     public function get($key): ?Pattern
     {
         if (!isset($this->items[$key])) {
             return null;
         }
+        
         return $this->items[$key];
     }
-
+    
     public function length(): int
     {
         return count($this->items);
     }
-
+    
     /**
      * @return Pattern[]
      */
