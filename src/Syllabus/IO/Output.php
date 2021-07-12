@@ -6,7 +6,7 @@ use Syllabus\Model\Result;
 
 class Output{
 
-    public static function printAnswerToTerminal(Result $result)
+    public static function printAnswerToTerminal(Result $result): void
     {
         $word = $result->getWord();
         $patterns = $result->getFoundPatterns();
@@ -17,7 +17,7 @@ class Output{
 
         echo "\nFound patterns:\n";
 
-        foreach ($patterns->getAll() as $pattern){
+        foreach ($patterns->getAll() as $pattern) {
             echo "$pattern\n";
         }
 

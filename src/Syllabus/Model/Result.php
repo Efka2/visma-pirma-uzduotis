@@ -1,6 +1,5 @@
 <?php
 
-
 namespace Syllabus\Model;
 
 use Syllabus\Core\PatternCollection;
@@ -10,9 +9,7 @@ class Result
     private PatternCollection $foundPatterns;
     private string $syllabifiedWord;
     private string $word;
-
     private \DateInterval $time;
-
 
     public function __construct(string $word, string $syllabifiedWord, PatternCollection $foundPatterns, \DateInterval $time)
     {
@@ -21,7 +18,6 @@ class Result
         $this->foundPatterns = $foundPatterns;
         $this->time = $time;
     }
-
 
     public function getWord(): string
     {
@@ -39,9 +35,9 @@ class Result
     {
         return $this->syllabifiedWord;
     }
+
     public function getTime(): \DateInterval
     {
         return $this->time;
     }
-
 }

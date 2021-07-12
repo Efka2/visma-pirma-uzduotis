@@ -1,13 +1,14 @@
 <?php
+
 namespace Syllabus\IO;
 
 use SplFileObject;
 use Syllabus\Core\PatternCollection;
 use Syllabus\Model\Pattern;
 
-class Reader implements FileReaderInterface {
-
-    public function readFromFileToCollection(SplFileObject $fileObject) : PatternCollection
+class Reader implements FileReaderInterface
+{
+    public function readFromFileToCollection(SplFileObject $fileObject): PatternCollection
     {
         $data = new PatternCollection();
 
@@ -26,11 +27,10 @@ class Reader implements FileReaderInterface {
         echo "Enter the word you want to syllabify: ";
         $line = trim(readline());
 
-        while(strlen($line) === 0){
+        while (strlen($line) === 0) {
             echo "Please enter a word: ";
             $line = trim(readline());
         }
-
         return $line;
     }
 }

@@ -1,8 +1,6 @@
 <?php
 
-
 namespace Syllabus\Core;
-
 
 use Syllabus\Model\Pattern;
 
@@ -13,16 +11,15 @@ class PatternCollection extends Collection
      */
     protected $items = array();
 
-    public function get($key) :? Pattern
+    public function get($key): ?Pattern
     {
-        if(!isset($this->items[$key])){
-            echo "No such item in collection with key $key. NULL is returned.\n";
+        if (!isset($this->items[$key])) {
             return null;
         }
         return $this->items[$key];
     }
 
-    public function length() : int
+    public function length(): int
     {
         return count($this->items);
     }
@@ -30,7 +27,7 @@ class PatternCollection extends Collection
     /**
      * @return Pattern[]
      */
-    public function getAll() : array
+    public function getAll(): array
     {
         return $this->items;
     }

@@ -1,14 +1,10 @@
 <?php
 
-
 namespace Syllabus\Service;
-
-//todo rename this class
 
 class SyllabusHelper
 {
     public static array $numbers = [0,1,2,3,4,5,6,7,8,9];
-    //todo replace
     protected string $word;
     protected array $wordArray;
     protected string $wordWithDots;
@@ -37,18 +33,18 @@ class SyllabusHelper
         return $this->word;
     }
 
-    public function getNumberArray() : array
+    public function getNumberArray(): array
     {
         return $this->numberArray;
     }
 
-    protected function setWordArray(string $word) : array
+    protected function setWordArray(string $word): array
     {
         return $wordArray = str_split($word);
     }
 
     private function setNumberArray(array $wordArray){
-        for($i = 0; $i< count($wordArray); $i++){
+        for ($i = 0; $i < count($wordArray); $i++) {
             $numberArray[$i] = 0;
         }
         return $numberArray;
