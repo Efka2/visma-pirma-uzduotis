@@ -4,6 +4,7 @@ namespace Syllabus\Core;
 use Syllabus\IO\FileReaderInterface;
 use Syllabus\IO\Output;
 use Syllabus\IO\Reader;
+use Syllabus\Model\Result;
 use Syllabus\Service\Syllabus;
 use SplFileObject;
 
@@ -19,11 +20,12 @@ class Application{
         $timeStart = new \DateTime();
 
         $syllabus = new Syllabus($word);
-        $finalWord = $syllabus->syllabify($patternArray);
+        $syllabifiedWord = $syllabus->syllabify($patternArray);
 
         $diff = $timeStart->diff(new \DateTime());
+        $result = new Result($word,$syllabifiedWord,$syllabus->findPatternsInWord($patternArray),$diff);
 
-        Output::printAnswerToTerminal($word, $syllabus->findPatternsInWord($patternArray), $finalWord, $diff);
+        Output::printAnswerToTerminal($result);
 
     }
 }

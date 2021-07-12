@@ -2,11 +2,17 @@
 namespace Syllabus\IO;
 
 use Syllabus\Core\Collection;
+use Syllabus\Model\Result;
 
 class Output{
 
-    public static function printAnswerToTerminal(string $word, Collection $patterns, string $syllabifiedWord, \DateInterval $time)
+    public static function printAnswerToTerminal(Result $result)
     {
+        $word = $result->getWord();
+        $patterns = $result->getFoundPatterns();
+        $syllabifiedWord = $result->getSyllabifiedWord();
+        $time = $result->getTime();
+
         echo "\nWord - $word\n";
 
         echo "\nFound patterns:\n";

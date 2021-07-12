@@ -26,7 +26,7 @@ class Reader implements FileReaderInterface {
         echo "Enter the word you want to syllabify: ";
         $line = trim(readline());
 
-        if(strlen($line) === 0){
+        while(strlen($line) === 0){
             echo "Please enter a word: ";
             $line = trim(readline());
         }
