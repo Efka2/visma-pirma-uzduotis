@@ -25,13 +25,6 @@ class Pattern
         return str_replace(SyllabusHelper::$numbers,'', $this->patternString);
     }
 
-    public function getPatternStringWithoutDotsAndNumbers() : string
-    {
-        $this->patternString = $this->getPatternStringWithoutNumbers();
-        $this->patternString = $this->getPatterStringWithoutDots();
-        return $this->patternString;
-    }
-
     public function __toString()
     {
         return $this->patternString;

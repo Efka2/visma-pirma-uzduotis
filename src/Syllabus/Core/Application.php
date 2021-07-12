@@ -14,18 +14,17 @@ class Application{
     {
         $fileReader = new SplFileObject(FileReaderInterface::DEFAULT_PATTERN_LINK);
         $reader = new Reader();
-        $patternArray = $reader->readFromFileToCollection($fileReader);
+        $allPatterns = $reader->readFromFileToCollection($fileReader);
         $word = $reader->readFromTerminal();
 
         $timeStart = new \DateTime();
 
         $syllabus = new Syllabus($word);
-        $syllabifiedWord = $syllabus->syllabify($patternArray);
+        $syllabifiedWord = $syllabus->syllabify($allPatterns);
 
         $diff = $timeStart->diff(new \DateTime());
-        $result = new Result($word,$syllabifiedWord,$syllabus->findPatternsInWord($patternArray),$diff);
+        $result = new Result($word,$syllabifiedWord,$syllabus->findPatternsInWord($allPatterns),$diff);
 
         Output::printAnswerToTerminal($result);
-
     }
 }

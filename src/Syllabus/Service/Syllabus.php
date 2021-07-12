@@ -6,26 +6,9 @@ use Syllabus\Core\PatternCollection;
 
 class Syllabus extends SyllabusHelper
 {
-    public function __construct(string $word)
-    {
-        parent::__construct($word);
-    }
-
     public function syllabify($patternArray):string{
         $this->findPatternsInWord($patternArray);
         return $this->addDashesBetweenSyllables();
-    }
-
-    public function addDashesBetweenSyllables(): string{
-        $offset = -1;
-        $word = $this->word;
-        foreach ($this->numberArray as $key => $value){
-            if($value % 2 !== 0){
-                $word = substr_replace($word, '-', $key+$offset, 0);
-                $offset++;
-            }
-        }
-        return $word;
     }
 
     public function findPatternsInWord(PatternCollection $patterns) : PatternCollection
@@ -43,6 +26,18 @@ class Syllabus extends SyllabusHelper
             }
         }
         return $foundPatterns;
+    }
+
+    private function addDashesBetweenSyllables(): string{
+        $offset = -1;
+        $word = $this->word;
+        foreach ($this->numberArray as $key => $value){
+            if($value % 2 !== 0){
+                $word = substr_replace($word, '-', $key+$offset, 0);
+                $offset++;
+            }
+        }
+        return $word;
     }
 
     private function populateNumbersArray(array $numberArray, string $pattern, int $position): array
