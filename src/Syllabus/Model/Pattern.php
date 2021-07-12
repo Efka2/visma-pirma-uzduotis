@@ -18,7 +18,7 @@ class Pattern
     {
         return $this->patternString;
     }
-
+    //todo trait?
     public function getPatterStringWithoutDots() : string
     {
         return str_replace('.','', $this->patternString);

@@ -7,21 +7,20 @@ namespace Syllabus\Model;
 class Word
 {
     private string $word;
-    private array $wordArray = array();
-
+    private array $characters = array();
 
     public function __construct(string $word)
     {
         $this->word = $word;
-        $this->wordArray = $this->splitWordArray($this->word);
+        $this->characters = $this->splitWordIntoArray($this->word);
     }
 
-    public function getWordArray(): array
+    public function getCharacters(): array
     {
-        return $this->wordArray;
+        return $this->characters;
     }
 
-    private function splitWordArray(string $word) : array
+    private function splitWordIntoArray(string $word) : array
     {
         return $wordArray = str_split($word);
     }

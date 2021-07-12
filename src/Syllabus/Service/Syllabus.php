@@ -13,18 +13,19 @@ class Syllabus extends SyllabusHelper
 
     public function syllabify($patternArray):string{
         $this->findPatternsInWord($patternArray);
-        return $this->addDashesToWord();
+        return $this->addDashesBetweenSyllables();
     }
 
-    public function addDashesToWord(): string{
+    public function addDashesBetweenSyllables(): string{
         $offset = -1;
+        $word = $this->word;
         foreach ($this->numberArray as $key => $value){
             if($value % 2 !== 0){
-                $this->word = substr_replace($this->word, '-', $key+$offset, 0);
+                $word = substr_replace($word, '-', $key+$offset, 0);
                 $offset++;
             }
         }
-        return $this->word;
+        return $word;
     }
 
     public function findPatternsInWord(Collection $patterns) : Collection

@@ -20,4 +20,17 @@ class Reader implements FileReaderInterface {
 
         return $data;
     }
+
+    public function readFromTerminal(): string
+    {
+        echo "Enter the word you want to syllabify: ";
+        $line = trim(readline());
+
+        if(strlen($line) === 0){
+            echo "Please enter a word: ";
+            $line = trim(readline());
+        }
+
+        return $line;
+    }
 }

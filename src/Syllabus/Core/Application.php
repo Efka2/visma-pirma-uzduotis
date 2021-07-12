@@ -14,13 +14,16 @@ class Application{
         $fileReader = new SplFileObject(FileReaderInterface::DEFAULT_PATTERN_LINK);
         $reader = new Reader();
         $patternArray = $reader->readFromFileToCollection($fileReader);
+        $word = $reader->readFromTerminal();
 
         $timeStart = new \DateTime();
-        $syllabus = new Syllabus('mistranslate');
+
+        $syllabus = new Syllabus($word);
         $finalWord = $syllabus->syllabify($patternArray);
+
         $diff = $timeStart->diff(new \DateTime());
 
-        Output::printAnswerToTerminal('mistransalate', $syllabus->findPatternsInWord($patternArray), $finalWord, $diff);
+        Output::printAnswerToTerminal($word, $syllabus->findPatternsInWord($patternArray), $finalWord, $diff);
 
     }
 }

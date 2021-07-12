@@ -4,16 +4,17 @@
 namespace Syllabus\Service;
 
 //todo rename this class
+
 class SyllabusHelper
 {
     public static array $numbers = [0,1,2,3,4,5,6,7,8,9];
     //todo replace
+    protected string $word;
     protected array $wordArray;
     protected string $wordWithDots;
-    protected string $word;
     protected array $numberArray;
 
-    public function __construct($word)
+    public function __construct(string $word)
     {
         $this->word = $word;
         $this->wordArray = $this->setWordArray($word);
