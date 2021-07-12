@@ -6,7 +6,7 @@ namespace Syllabus\Core;
 
 use Syllabus\Model\Pattern;
 
-class PatternCollection extends AbstractCollection
+class PatternCollection extends Collection
 {
     /**
      * @var Pattern[]

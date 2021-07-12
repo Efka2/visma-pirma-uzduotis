@@ -4,7 +4,7 @@
 namespace Syllabus\Core;
 
 
-abstract class AbstractCollection implements CollectionInterface
+class Collection implements CollectionInterface
 {
     protected $items;
 
