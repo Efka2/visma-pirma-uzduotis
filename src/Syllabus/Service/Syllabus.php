@@ -19,7 +19,7 @@ class Syllabus extends SyllabusHelper
         
         foreach ($patterns->getAll() as $pattern) {
             $patternWithoutNumbers = $pattern->getPatternStringWithoutNumbers();
-            $position = strpos($this->wordWithDots, $patternWithoutNumbers);
+            $position = strpos($this->getWordWithDots(), $patternWithoutNumbers);
             
             if ($position !== false) {
                 $foundPatterns->add($pattern);
@@ -32,40 +32,5 @@ class Syllabus extends SyllabusHelper
         }
         
         return $foundPatterns;
-    }
-    
-    private function populateNumbersArray(
-        array $numberArray,
-        string $pattern,
-        int $position
-    ): array {
-        $patternChars = str_split($pattern);
-        
-        foreach ($patternChars as $char) {
-            if ($position == count($numberArray)) {
-                continue;
-            }
-            if (is_numeric($char) && $char > $numberArray[$position]) {
-                $numberArray[$position] = $char;
-            } else {
-                $position++;
-            }
-        }
-        
-        return $numberArray;
-    }
-    
-    private function addDashesBetweenSyllables(): string
-    {
-        $offset = -1;
-        $word = $this->word;
-        foreach ($this->numberArray as $key => $value) {
-            if ($value % 2 !== 0) {
-                $word = substr_replace($word, '-', $key + $offset, 0);
-                $offset++;
-            }
-        }
-        
-        return $word;
     }
 }

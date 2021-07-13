@@ -3,15 +3,14 @@
 namespace Syllabus\Core;
 
 use DateTime;
-use Syllabus\IO\FileOutput;
 use Syllabus\IO\FileReaderInterface;
 use Syllabus\IO\Output;
 use Syllabus\IO\TerminalOutput;
 use Syllabus\IO\Reader;
 use Syllabus\log\LoggerInterface;
 use Syllabus\Model\Result;
-use Syllabus\Service\Syllabus;
 use SplFileObject;
+use Syllabus\Service\Syllabus;
 
 class Application
 {
@@ -33,7 +32,20 @@ class Application
         
         $this->logger->info("File $fileName is read");
         
-        $word = $reader->readFromTerminal();
+        $selection = $reader->readSelection();
+        
+        if ($selection == reader::WORD) {
+            $word = $reader->readWord();
+        } else {
+            $sentence = $reader->readSentence();
+            $sentenceArray = preg_split("/[^\w]*([\s]+[^\w]*)/", $sentence);
+            foreach ($sentenceArray as $word){
+                $syllabus = new Syllabus($word);
+                $syllabifiedWord = $syllabus->syllabify($allPatterns);
+                echo $syllabifiedWord."\n";
+            }
+        }
+        
         
         $timeStart = new DateTime();
         
@@ -46,7 +58,6 @@ class Application
         );
         
         $diff = $timeStart->diff(new DateTime());
-        
         $this->logger->info("Time taken to syllabify: $diff->f microseconds");
         
         $result = new Result(
@@ -55,8 +66,20 @@ class Application
             $syllabus->findPatternsInWord($allPatterns),
             $diff
         );
-
-        $output = new Output(new FileOutput($result, 'src/Syllabus/log/output.txt'));
+        
+        $output = new Output(new TerminalOutput($result));
         $output->output();
+    }
+    
+    public function readPatternsFromFile(): array
+    {
+        $fileName = FileReaderInterface::DEFAULT_PATTERN_LINK;
+        $fileReader = new SplFileObject(
+            $fileName
+        );
+        $reader = new Reader();
+        $allPatterns = $reader->readFromFileToCollection($fileReader);
+        
+        return array($fileName, $reader, $allPatterns);
     }
 }
