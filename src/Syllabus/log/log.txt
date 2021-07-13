@@ -29,3 +29,13 @@ ll4o
 2ld
 1va
 [2021-07-13 09:27:48] Time taken to syllabify: 0.01457 microseconds
+[2021-07-13 09:40:03] File https://gist.githubusercontent.com/cosmologicon/1e7291714094d71a0e25678316141586/raw/006f7e9093dc7ad72b12ff9f1da649822e56d39d/tex-hyphenation-patterns.txt is read
+[2021-07-13 09:41:51] File https://gist.githubusercontent.com/cosmologicon/1e7291714094d71a0e25678316141586/raw/006f7e9093dc7ad72b12ff9f1da649822e56d39d/tex-hyphenation-patterns.txt is read
+[2021-07-13 09:42:42] File https://gist.githubusercontent.com/cosmologicon/1e7291714094d71a0e25678316141586/raw/006f7e9093dc7ad72b12ff9f1da649822e56d39d/tex-hyphenation-patterns.txt is read
+[2021-07-13 09:46:01] File https://gist.githubusercontent.com/cosmologicon/1e7291714094d71a0e25678316141586/raw/006f7e9093dc7ad72b12ff9f1da649822e56d39d/tex-hyphenation-patterns.txt is read
+[2021-07-13 09:46:08] Word evaldas had these patters:
+4as.
+1d2a
+2ld
+1va
+[2021-07-13 09:46:08] Time taken to syllabify: 0.026291 microseconds

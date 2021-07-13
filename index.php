@@ -1,6 +1,6 @@
 <?php
 
-    require_once('src/autoload.php');
+    require_once('autoload.php');
 
     use Syllabus\Core\Application;
     use Syllabus\Core\Logger;
