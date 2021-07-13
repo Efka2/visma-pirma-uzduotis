@@ -39,3 +39,30 @@ ll4o
 2ld
 1va
 [2021-07-13 09:46:08] Time taken to syllabify: 0.026291 microseconds
+[2021-07-13 09:57:23] File https://gist.githubusercontent.com/cosmologicon/1e7291714094d71a0e25678316141586/raw/006f7e9093dc7ad72b12ff9f1da649822e56d39d/tex-hyphenation-patterns.txt is read
+[2021-07-13 09:57:26] Word evaldas had these patters:
+4as.
+1d2a
+2ld
+1va
+[2021-07-13 09:57:26] Time taken to syllabify: 0.014458 microseconds
+[2021-07-13 10:02:54] File https://gist.githubusercontent.com/cosmologicon/1e7291714094d71a0e25678316141586/raw/006f7e9093dc7ad72b12ff9f1da649822e56d39d/tex-hyphenation-patterns.txt is read
+[2021-07-13 10:02:55] Word evaldas had these patters:
+4as.
+1d2a
+2ld
+1va
+[2021-07-13 10:02:55] Time taken to syllabify: 0.013348 microseconds
+[2021-07-13 10:03:45] File https://gist.githubusercontent.com/cosmologicon/1e7291714094d71a0e25678316141586/raw/006f7e9093dc7ad72b12ff9f1da649822e56d39d/tex-hyphenation-patterns.txt is read
+[2021-07-13 10:03:49] Word mistranslate had these patters:
+.mis1
+a2n
+m2is
+2n1s2
+n2sl
+s1l2
+s3lat
+st4r
+4te.
+1tra
+[2021-07-13 10:03:49] Time taken to syllabify: 0.006614 microseconds

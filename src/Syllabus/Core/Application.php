@@ -3,8 +3,10 @@
 namespace Syllabus\Core;
 
 use DateTime;
+use Syllabus\IO\FileOutput;
 use Syllabus\IO\FileReaderInterface;
 use Syllabus\IO\Output;
+use Syllabus\IO\TerminalOutput;
 use Syllabus\IO\Reader;
 use Syllabus\log\LoggerInterface;
 use Syllabus\Model\Result;
@@ -53,7 +55,8 @@ class Application
             $syllabus->findPatternsInWord($allPatterns),
             $diff
         );
-        
-        Output::printAnswerToTerminal($result);
+
+        $output = new Output(new FileOutput($result, 'src/Syllabus/log/output.txt'));
+        $output->output();
     }
 }
