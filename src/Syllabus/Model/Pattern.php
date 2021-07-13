@@ -22,7 +22,7 @@ class Pattern
     public function getPatternStringWithoutNumbers(): string
     {
         //todo move number array to different place
-        return str_replace(SyllabusHelper::$numbers, '', $this->patternString);
+        return str_replace(SyllabusHelper::NUMBERS, '', $this->patternString);
     }
     
     public function __toString(): string

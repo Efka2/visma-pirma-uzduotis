@@ -7,7 +7,7 @@ use Syllabus\Model\Pattern;
 class PatternCollection extends Collection
 {
     /**
-     * @var Pattern[]
+     * @Var Pattern[]
      */
     protected $items = array();
     
