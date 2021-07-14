@@ -32,20 +32,7 @@ class Application
         
         $this->logger->info("File $fileName is read");
         
-        $selection = $reader->readSelection();
-        
-        if ($selection == reader::WORD) {
-            $word = $reader->readWord();
-        } else {
-            $sentence = $reader->readSentence();
-            $sentenceArray = preg_split("/[^\w]*([\s]+[^\w]*)/", $sentence);
-            foreach ($sentenceArray as $word){
-                $syllabus = new Syllabus($word);
-                $syllabifiedWord = $syllabus->syllabify($allPatterns);
-                echo $syllabifiedWord."\n";
-            }
-        }
-        
+        $word = $reader->readWord();
         
         $timeStart = new DateTime();
         
