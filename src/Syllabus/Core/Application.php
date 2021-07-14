@@ -3,6 +3,7 @@
 namespace Syllabus\Core;
 
 use DateTime;
+use Syllabus\Database\Database;
 use Syllabus\IO\FileReaderInterface;
 use Syllabus\IO\Output;
 use Syllabus\IO\TerminalOutput;
@@ -23,6 +24,9 @@ class Application
     
     public function run(): void
     {
+        $db = new Database();
+        $db->connect();
+        
         $fileName = FileReaderInterface::DEFAULT_PATTERN_LINK;
         $fileReader = new SplFileObject(
             $fileName
@@ -31,6 +35,9 @@ class Application
         $allPatterns = $reader->readFromFileToCollection($fileReader);
         
         $this->logger->info("File $fileName is read");
+        
+        $selection = $reader->readSelection("Enter 1 or 2", [$reader::WORD, $reader::SENTENCE]);
+        echo $selection."\n";die();
         
         $word = $reader->readWord();
         

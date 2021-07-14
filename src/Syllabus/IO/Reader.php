@@ -25,28 +25,32 @@ class Reader implements FileReaderInterface
         return $data;
     }
     
-    public function readSelection(): string
+    //my abomination
+    public function readSelection(string $message, array $options): string
     {
-        echo "Do you want to syllabify a word (type 1) or a sentence (type 2)?";
-        $line = trim(readline());
-        
-        while (strlen($line) === 0
-            && ($line != self::WORD
-                || $line != self::SENTENCE)) {
-            echo "Do you want to syllabify a word or a sentence? ";
+        $i = 0;
+        while (true) {
+            echo "$message";
             $line = trim(readline());
+            
+            foreach ($options as $option) {
+                if ($line == $option) {
+                    return $line;
+                }
+            }
         }
-        
-        return $line;
     }
     
-    public function readWord(): string
+    public
+    function readWord(): string
     {
         echo "Enter word you want to syllabify: \n";
+        
         return trim(readline());
     }
     
-    public function readSentence()
+    public
+    function readSentence()
     {
         return file_get_contents('src/Syllabus/log/sentence.txt');
     }
