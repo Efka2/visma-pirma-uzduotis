@@ -21,11 +21,12 @@ class TerminalOutput implements OutputInterface
         $time = $this->result->getTime();
         
         echo "\nWord - $word\n";
-        
-        echo "\nFound patterns:\n";
-        
-        foreach ($patterns->getAll() as $pattern) {
-            echo "$pattern\n";
+    
+        if($patterns != null){
+            echo "\nFound patterns:\n";
+            foreach ($patterns->getAll() as $pattern) {
+                echo "$pattern\n";
+            }
         }
         
         echo "\nSyllabified word: $syllabifiedWord\n";

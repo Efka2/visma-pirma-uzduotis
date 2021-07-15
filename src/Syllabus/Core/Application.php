@@ -64,11 +64,19 @@ class Application
             $word = $wordController->get($word);
             $syllabifiedWord = $word->getSyllabifiedWord();
             $syllabus = new Syllabus($word->getWordString());
-            $foundPatters = $syllabus->findPatternsInWord($allPatterns);
+    
+            $foundPatters = new PatternCollection();
+            if($importSelection == Reader::IMPORT_FROM_DATABASE){
+                $foundPatters = $syllabus->findPatternsInWord($allPatterns);
+            }
         } else {
             $syllabus = new Syllabus($word);
             $syllabifiedWord = $syllabus->syllabify($allPatterns);
-            $foundPatters = $syllabus->findPatternsInWord($allPatterns);
+            
+            $foundPatters = new PatternCollection();
+            if($importSelection == Reader::IMPORT_FROM_DATABASE){
+                $foundPatters = $syllabus->findPatternsInWord($allPatterns);
+            }
     
             if ($wordImportSelection == Reader::ENTER_WORD_FROM_CLI
                 && $importSelection == Reader::IMPORT_FROM_DATABASE
