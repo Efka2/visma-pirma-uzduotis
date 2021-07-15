@@ -2,6 +2,7 @@
 
 namespace Syllabus\Controller;
 
+use Syllabus\Core\PatternCollection;
 use Syllabus\Database\Database;
 use Syllabus\Model\Pattern;
 use Syllabus\Model\Word;
@@ -16,14 +17,46 @@ class PatternWordController
         $this->database = $database;
     }
     
-    public function insert(Pattern $pattern, Word $word){
+    public function insert(PatternCollection $patterns, Word $word)
+    {
         $pdo = $this->database->connect();
         $table = self::$table;
-        $patternId = $pattern->getId();
-        $wordId = $word->getId();
-        
-        $sql = "INSERT INTO $table (patternID, wordID) VALUES (?,?);";
-        $stmt = $pdo->prepare($sql);
-        $stmt->execute([$patternId, $wordId]);
+        $wordString = $word->getWordString();
+        $syllabifiedWord = $word->getSyllabifiedWord();
+    
+        try {
+            $pdo->beginTransaction();
+            
+            $sqlInsertWord = "INSERT INTO Word
+                            (wordString, syllabifiedWord)
+                             VALUES (?, ?);";
+            
+            $stmt = $pdo->prepare($sqlInsertWord);
+            $stmt->execute([$wordString, $syllabifiedWord]);
+            
+            $stmt->closeCursor();
+            
+            $sqlSelectWordId = "SELECT id FROM Word WHERE wordString = '$word';";
+            $stmt2 = $pdo->query($sqlSelectWordId);
+            $wordId = $stmt2->fetch()[0];
+    
+            foreach ($patterns->getAll() as $pattern){
+                $patternId = $pattern->getId();
+                
+                $sqlInsertPatternWord = "INSERT INTO $table
+                                (patternID, wordID)
+                                VALUES (?, ?);";
+    
+                $stmt = $pdo->prepare($sqlInsertPatternWord);
+                $stmt->execute([$patternId, $wordId]);
+                $stmt->closeCursor();
+            }
+    
+            $pdo->commit();
+    
+        } catch (\PDOException $exception) {
+            $pdo->rollBack();
+            die($exception->getMessage());
+        }
     }
 }

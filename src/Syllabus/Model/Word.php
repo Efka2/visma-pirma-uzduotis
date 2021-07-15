@@ -16,7 +16,7 @@ class Word
         $pdo = $db->connect();
         $patternString = $this->wordString;
         
-        $sql = "SELECT id FROM Word where wordString = '$patternString'";
+        $sql = "SELECT id FROM Word where wordString = '$patternString';";
         $id = $pdo->query($sql)->fetch();
         
         return ($id['id']);

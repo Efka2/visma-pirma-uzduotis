@@ -168,3 +168,14 @@ st4r
 [2021-07-15 12:01:11] Time taken to syllabify: 4.3E-5 microseconds
 [2021-07-15 12:01:13] Read patterns from database
 [2021-07-15 12:01:15] Time taken to syllabify: 7.0E-6 microseconds
+[2021-07-15 12:42:09] Read patterns from database
+[2021-07-15 12:42:56] Read patterns from database
+[2021-07-15 12:44:48] Read patterns from database
+[2021-07-15 12:45:41] Read patterns from database
+[2021-07-15 12:47:52] Read patterns from database
+[2021-07-15 12:50:23] Read patterns from database
+[2021-07-15 12:52:09] Read patterns from database
+[2021-07-15 12:53:58] Read patterns from database
+[2021-07-15 12:54:00] Time taken to syllabify: 2.9E-5 microseconds
+[2021-07-15 12:54:31] Read patterns from database
+[2021-07-15 12:54:33] Time taken to syllabify: 3.1E-5 microseconds

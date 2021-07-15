@@ -147,14 +147,8 @@ class Application
         Word $word,
         PatternCollection $foundPatters
     ): void {
-        $wordController = new WordController($database);
-        $wordController->insert($word);
-        
-        $patternWordController = new PatternWordController($database);
-        
-        foreach ($foundPatters->getAll() as $pattern) {
-            $patternWordController->insert($pattern, $word);
-        }
+        $wordController = new PatternWordController($database);
+        $wordController->insert($foundPatters,$word);
     }
     
     private function checkIfWordWasSyllabified(

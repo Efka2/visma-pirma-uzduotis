@@ -53,9 +53,7 @@ class WordController
         $wordString = $word->getWordString();
         $syllabifiedWord = $word->getSyllabifiedWord();
         
-        
-        $sql
-            = "INSERT INTO $table (wordString, syllabifiedWord) VALUES (?, ?);";
+        $sql = "INSERT INTO $table (wordString, syllabifiedWord) VALUES (?, ?);";
         $stmt = $pdo->prepare($sql);
         $stmt->execute([$wordString, $syllabifiedWord]);
     }
