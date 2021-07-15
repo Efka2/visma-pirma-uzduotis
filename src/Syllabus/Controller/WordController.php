@@ -27,6 +27,10 @@ class WordController
             $words[] = $row['wordString'];
         }
         
+        if(empty($words)){
+            return null;
+        }
+        
         return $words;
     }
     

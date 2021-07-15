@@ -36,24 +36,28 @@ class Application
         $word = new Word();
         $printPatterns = false;
         $patternController = new PatternController($database);
-
-        if($patternController->isTableEmpty()){
-            echo "xui";die();
-        }
-        
+    
+    
         //todo numbers are hardcoded though :(
         $sourceSelection = $reader->readSelection(
             "Do you want to use patterns from database (1) or file (2)?
             (Type in the number in brackets): ",
             array(Reader::IMPORT_FROM_DATABASE, Reader::IMPORT_FROM_FILE)
         );
-        
+    
+    
         $wordImportSelection = $reader->readSelection(
             "Do you want to enter the word from CLI (3) or file (4): ",
             array(Reader::ENTER_WORD_FROM_CLI, Reader::ENTER_WORD_FROM_FILE)
         );
     
         $allPatterns = $this->getAllPatterns($sourceSelection, $database);
+    
+        if ($patternController->isTableEmpty()) {
+            foreach ($allPatterns->getAll() as $pattern){
+                $patternController->insert($pattern);
+            }
+        }
         
         if ($wordImportSelection == Reader::ENTER_WORD_FROM_CLI) {
             $wordFromCLI = $reader->readWordFromCLI();
@@ -100,12 +104,15 @@ class Application
     }
     
     //todo move these to reader class?
-    private function getAllPatterns(
-        string $selection,
-        $database
-    ): PatternCollection {
+    //todo another abomination with if else
+    private function getAllPatterns(string $selection, $database): PatternCollection {
         if ($selection == Reader::IMPORT_FROM_DATABASE) {
-            $allPatterns = $this->readFromDatabase($database);
+            $patternController = new PatternController($database);
+            if ($patternController->isTableEmpty()) {
+                $allPatterns = $this->readFromFile();
+            } else {
+                $allPatterns = $this->readFromDatabase($database);
+            }
         } else {
             $allPatterns = $this->readFromFile();
         }
