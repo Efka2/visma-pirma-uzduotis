@@ -58,28 +58,34 @@ class Application
         }
         
         $wordController = new WordController($database);
+        
         if ($this->checkIfWordWasSyllabified($wordController,$database, $word)) {
+            //todo makaronai, reikia pakeisti, kad syllabus nereikalautu word construkuryje
             $word = $wordController->get($word);
             $syllabifiedWord = $word->getSyllabifiedWord();
+            $syllabus = new Syllabus($word->getWordString());
+            $foundPatters = $syllabus->findPatternsInWord($allPatterns);
+        } else {
+            $syllabus = new Syllabus($word);
+            $syllabifiedWord = $syllabus->syllabify($allPatterns);
+            $foundPatters = $syllabus->findPatternsInWord($allPatterns);
+    
+            if ($wordImportSelection == Reader::ENTER_WORD_FROM_CLI
+                && $importSelection == Reader::IMPORT_FROM_DATABASE
+            ) {
+                $word->setSyllabifiedWord($syllabifiedWord);
+                $this->insertWordAndPatternsIntoDatabase(
+                    $database,
+                    $word,
+                    $foundPatters
+                );
+            }
         }
-        
+    
+    
         $timeStart = new DateTime();
-        
-        $syllabus = new Syllabus($word);
-        //$syllabifiedWord = $syllabus->syllabify($allPatterns);
-        $foundPatters = $syllabus->findPatternsInWord($allPatterns);
-        //
-        //if ($wordImportSelection == Reader::ENTER_WORD_FROM_CLI
-        //    && $importSelection == Reader::IMPORT_FROM_DATABASE
-        //) {
-        //    $word->setSyllabifiedWord($syllabifiedWord);
-        //    $this->insertWordAndPatternsIntoDatabase(
-        //        $database,
-        //        $word,
-        //        $foundPatters
-        //    );
-        //}
-        
+    
+    
         $diff = $timeStart->diff(new DateTime());
         $this->logger->info("Time taken to syllabify: $diff->f microseconds");
         
