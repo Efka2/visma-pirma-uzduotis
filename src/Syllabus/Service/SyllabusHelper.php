@@ -2,6 +2,8 @@
 
 namespace Syllabus\Service;
 
+use Syllabus\Model\Word;
+
 class SyllabusHelper
 {
     public const NUMBERS = [0, 1, 2, 3, 4, 5, 6, 7, 8, 9];
@@ -10,9 +12,9 @@ class SyllabusHelper
     private array $wordArray;
     private string $wordWithDots;
     
-    public function __construct(string $word)
+    protected function setWord(Word $word)
     {
-        $this->word = $word;
+        $this->word = $word->getWordString();
         $this->wordArray = $this->setWordArray($word);
         $this->numberArray = $this->setNumberArray($this->wordArray);
         $this->wordWithDots = '.'.$word.'.';

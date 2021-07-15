@@ -2,15 +2,23 @@
 
 namespace Syllabus\Service;
 
+use DateTime;
 use Syllabus\Core\PatternCollection;
+use Syllabus\Model\Word;
 
 class Syllabus extends SyllabusHelper
 {
-    public function syllabify($patternArray): string
+    public function syllabify(Word $word, $patternArray): string
     {
+        $this->setWord($word);
         $this->findPatternsInWord($patternArray);
-        
-        return $this->addDashesBetweenSyllables();
+        $syllabifiedWord = $this->addDashesBetweenSyllables();
+        return $syllabifiedWord;
+    }
+    
+    public function getWordSyllabusTime(): \DateInterval
+    {
+    
     }
     
     public function findPatternsInWord(PatternCollection $patterns
@@ -19,7 +27,11 @@ class Syllabus extends SyllabusHelper
         
         foreach ($patterns->getAll() as $pattern) {
             $patternWithoutNumbers = $pattern->getPatternStringWithoutNumbers();
-            $position = strpos($this->getWordWithDots(), $patternWithoutNumbers);
+            
+            $position = strpos(
+                $this->getWordWithDots(),
+                $patternWithoutNumbers
+            );
             
             if ($position !== false) {
                 $foundPatterns->add($pattern);

@@ -14,7 +14,7 @@ class Result
     public function __construct(
         string $word,
         string $syllabifiedWord,
-        PatternCollection $foundPatterns = null,
+        PatternCollection $foundPatterns ,
         \DateInterval $time
     ) {
         $this->word = $word;

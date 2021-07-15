@@ -179,3 +179,32 @@ st4r
 [2021-07-15 12:54:00] Time taken to syllabify: 2.9E-5 microseconds
 [2021-07-15 12:54:31] Read patterns from database
 [2021-07-15 12:54:33] Time taken to syllabify: 3.1E-5 microseconds
+[2021-07-15 13:53:11] Read patterns from database
+[2021-07-15 13:55:38] Read patterns from database
+[2021-07-15 14:32:10] Read patterns from database
+[2021-07-15 14:34:47] Read patterns from database
+[2021-07-15 14:35:19] Read patterns from database
+[2021-07-15 14:35:49] Read patterns from database
+[2021-07-15 14:37:14] Read patterns from database
+[2021-07-15 14:37:33] Read patterns from database
+[2021-07-15 14:46:33] Read patterns from database
+[2021-07-15 14:47:40] Read patterns from database
+[2021-07-15 14:47:42] Time taken to syllabify: 3.0E-5 microseconds
+[2021-07-15 14:47:48] Read patterns from database
+[2021-07-15 14:47:55] Time taken to syllabify: 3.1E-5 microseconds
+[2021-07-15 14:47:57] Read patterns from database
+[2021-07-15 14:48:01] Time taken to syllabify: 1.0E-5 microseconds
+[2021-07-15 14:49:34] Read patterns from database
+[2021-07-15 14:49:36] Time taken to syllabify: 3.1E-5 microseconds
+[2021-07-15 14:49:45] Read patterns from file https://gist.githubusercontent.com/cosmologicon/1e7291714094d71a0e25678316141586/raw/006f7e9093dc7ad72b12ff9f1da649822e56d39d/tex-hyphenation-patterns.txt
+[2021-07-15 14:49:47] Time taken to syllabify: 3.1E-5 microseconds
+[2021-07-15 14:50:06] Read patterns from database
+[2021-07-15 14:50:09] Read patterns from file https://gist.githubusercontent.com/cosmologicon/1e7291714094d71a0e25678316141586/raw/006f7e9093dc7ad72b12ff9f1da649822e56d39d/tex-hyphenation-patterns.txt
+[2021-07-15 14:50:12] Time taken to syllabify: 3.1E-5 microseconds
+[2021-07-15 14:55:05] Read patterns from database
+[2021-07-15 14:55:08] Time taken to syllabify: 0.00635 microseconds
+[2021-07-15 14:55:12] Read patterns from file https://gist.githubusercontent.com/cosmologicon/1e7291714094d71a0e25678316141586/raw/006f7e9093dc7ad72b12ff9f1da649822e56d39d/tex-hyphenation-patterns.txt
+[2021-07-15 14:55:15] Time taken to syllabify: 0.006302 microseconds
+[2021-07-15 15:01:30] Read patterns from database
+[2021-07-15 15:01:46] Read patterns from database
+[2021-07-15 15:02:30] Read patterns from database

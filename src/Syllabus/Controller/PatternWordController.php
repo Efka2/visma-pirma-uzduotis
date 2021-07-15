@@ -17,6 +17,28 @@ class PatternWordController
         $this->database = $database;
     }
     
+    public function getPatterns(Word $word): PatternCollection
+    {
+        $pdo = $this->database->connect();
+        $table = self::$table;
+        $patterns = new PatternCollection();
+        $wordId = $word->getId();
+        
+        $sql = "select patternString
+                from Pattern
+                inner join $table
+                on patternID = Pattern.id
+                where Pattern_Word.wordID = $wordId; ";
+        $stmt = $pdo->query($sql);
+    
+        while ($row = $stmt->fetch()) {
+            $pattern = new Pattern($row['patternString']);
+            $patterns->add($pattern);
+        }
+        
+        return $patterns;
+    }
+    
     public function insert(PatternCollection $patterns, Word $word)
     {
         $pdo = $this->database->connect();

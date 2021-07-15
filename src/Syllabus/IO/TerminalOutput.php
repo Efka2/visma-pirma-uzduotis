@@ -7,10 +7,12 @@ use Syllabus\Model\Result;
 class TerminalOutput implements OutputInterface
 {
     private Result $result;
+    private bool $printFoundPatters;
     
-    public function __construct(Result $result)
+    public function __construct(Result $result, bool $printFoundPatterns = false)
     {
         $this->result = $result;
+        $this->printFoundPatters = $printFoundPatterns;
     }
     
     public function output(): void
@@ -22,7 +24,7 @@ class TerminalOutput implements OutputInterface
         
         echo "\nWord - $word\n";
     
-        if($patterns != null){
+        if($this->printFoundPatters && $patterns != null){
             echo "\nFound patterns:\n";
             foreach ($patterns->getAll() as $pattern) {
                 echo "$pattern\n";

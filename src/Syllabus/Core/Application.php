@@ -29,24 +29,26 @@ class Application
     public function run(): void
     {
         $reader = new Reader();
+        $syllabus = new Syllabus();
+        $foundPatters = new PatternCollection();
+        $database = new Database();
+        $wordController = new WordController($database);
+        $word = new Word();
+        $printPatterns = false;
         
         //todo numbers are hardcoded though :(
-        $importSelection = $reader->readSelection(
+        $sourceSelection = $reader->readSelection(
             "Do you want to use patterns from database (1) or file (2)?
             (Type in the number in brackets): ",
             array(Reader::IMPORT_FROM_DATABASE, Reader::IMPORT_FROM_FILE)
         );
         
-        $database = new Database();
-        
-        $allPatterns = $this->getAllPatterns($importSelection, $database);
+        $allPatterns = $this->getAllPatterns($sourceSelection, $database);
         
         $wordImportSelection = $reader->readSelection(
             "Do you want to enter the word from CLI (3) or file (4): ",
             array(Reader::ENTER_WORD_FROM_CLI, Reader::ENTER_WORD_FROM_FILE)
         );
-        
-        $word = new Word();
         
         if ($wordImportSelection == Reader::ENTER_WORD_FROM_CLI) {
             $wordFromCLI = $reader->readWordFromCLI();
@@ -57,29 +59,19 @@ class Application
 //            $word = $reader->readWordFromFile($file);
         }
         
-        $wordController = new WordController($database);
+        $timeStart = new DateTime();
         
-        if ($this->checkIfWordWasSyllabified($wordController,$database, $word)) {
-            //todo makaronai, reikia pakeisti, kad syllabus nereikalautu word construkuryje
+        if ($this->isWordInDatabase($wordController, $database, $word)) {
             $word = $wordController->get($word);
             $syllabifiedWord = $word->getSyllabifiedWord();
-            $syllabus = new Syllabus($word->getWordString());
-    
-            $foundPatters = new PatternCollection();
-            if($importSelection == Reader::IMPORT_FROM_DATABASE){
-                $foundPatters = $syllabus->findPatternsInWord($allPatterns);
-            }
+            $patternWordController = new PatternWordController($database);
+            $foundPatters = $patternWordController->getPatterns($word);
         } else {
-            $syllabus = new Syllabus($word);
-            $syllabifiedWord = $syllabus->syllabify($allPatterns);
+            $syllabifiedWord = $syllabus->syllabify($word, $allPatterns);
+            $foundPatters = $syllabus->findPatternsInWord($allPatterns);
             
-            $foundPatters = new PatternCollection();
-            if($importSelection == Reader::IMPORT_FROM_DATABASE){
-                $foundPatters = $syllabus->findPatternsInWord($allPatterns);
-            }
-    
             if ($wordImportSelection == Reader::ENTER_WORD_FROM_CLI
-                && $importSelection == Reader::IMPORT_FROM_DATABASE
+                && $sourceSelection == Reader::IMPORT_FROM_DATABASE
             ) {
                 $word->setSyllabifiedWord($syllabifiedWord);
                 $this->insertWordAndPatternsIntoDatabase(
@@ -89,29 +81,24 @@ class Application
                 );
             }
         }
-    
-    
-        $timeStart = new DateTime();
-    
-    
+        
+        if ($sourceSelection == Reader::IMPORT_FROM_DATABASE) {
+            $printPatterns = true;
+        }
+        
         $diff = $timeStart->diff(new DateTime());
         $this->logger->info("Time taken to syllabify: $diff->f microseconds");
         
-        $result = new Result(
-            $word,
-            $syllabifiedWord,
-            $foundPatters,
-            $diff
-        );
+        $result = new Result($word, $syllabifiedWord, $foundPatters, $diff);
         
-        $output = new Output(new TerminalOutput($result));
+        $output = new Output(new TerminalOutput($result, $printPatterns));
         $output->output();
     }
     
     //todo move these to reader class?
     private function getAllPatterns(
         string $selection,
-        Database $database
+        $database
     ): PatternCollection {
         if ($selection == Reader::IMPORT_FROM_DATABASE) {
             $allPatterns = $this->readFromDatabase($database);
@@ -124,7 +111,7 @@ class Application
     
     private function readFromDatabase(Database $database): PatternCollection
     {
-        $controller = new PatternController($this->logger, $database);
+        $controller = new PatternController($database);
         $allPatterns = $controller->index();
         $this->logger->info("Read patterns from database");
         
@@ -133,8 +120,8 @@ class Application
     
     private function readFromFile(): PatternCollection
     {
-        $fileName = FileReaderInterface::DEFAULT_PATTERN_LINK;
         $reader = new Reader();
+        $fileName = FileReaderInterface::DEFAULT_PATTERN_LINK;
         $fileReader = new SplFileObject($fileName);
         $allPatterns = $reader->readFromFileToCollection($fileReader);
         $this->logger->info("Read patterns from file $fileName");
@@ -148,10 +135,10 @@ class Application
         PatternCollection $foundPatters
     ): void {
         $wordController = new PatternWordController($database);
-        $wordController->insert($foundPatters,$word);
+        $wordController->insert($foundPatters, $word);
     }
     
-    private function checkIfWordWasSyllabified(
+    private function isWordInDatabase(
         WordController $wordController,
         Database $database,
         Word $word

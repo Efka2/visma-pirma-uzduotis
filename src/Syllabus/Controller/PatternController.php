@@ -9,13 +9,11 @@ use Syllabus\Model\Pattern;
 
 class PatternController
 {
-    private LoggerInterface $logger;
     private Database $database;
     private string $table = "Pattern";
     
-    public function __construct(LoggerInterface $logger, Database $database)
+    public function __construct(Database $database)
     {
-        $this->logger = $logger;
         $this->database = $database;
     }
     
@@ -43,7 +41,16 @@ class PatternController
         $stmt->execute([$pattern]);
     }
     
-    public function remove()
+    public function isTableEmpty()
     {
+        $pdo = $this->database->connect();
+        $sql = "select * from $this->table limit 1;";
+        $stmt = $pdo->query($sql);
+        
+        if (empty($stmt->fetch())) {
+            return true;
+        }
+        
+        return false;
     }
 }
