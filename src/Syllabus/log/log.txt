@@ -1,43 +1,99 @@
-[2021-07-13 14:24:38] File https://gist.githubusercontent.com/cosmologicon/1e7291714094d71a0e25678316141586/raw/006f7e9093dc7ad72b12ff9f1da649822e56d39d/tex-hyphenation-patterns.txt is read
-[2021-07-13 14:24:41] Word system had these patters:
-.sy2
-s4y
-ys1t
-[2021-07-13 14:24:41] Time taken to syllabify: 0.006518 microseconds
-[2021-07-13 14:45:20] File https://gist.githubusercontent.com/cosmologicon/1e7291714094d71a0e25678316141586/raw/006f7e9093dc7ad72b12ff9f1da649822e56d39d/tex-hyphenation-patterns.txt is read
-[2021-07-13 14:46:03] File https://gist.githubusercontent.com/cosmologicon/1e7291714094d71a0e25678316141586/raw/006f7e9093dc7ad72b12ff9f1da649822e56d39d/tex-hyphenation-patterns.txt is read
-[2021-07-13 15:42:31] File https://gist.githubusercontent.com/cosmologicon/1e7291714094d71a0e25678316141586/raw/006f7e9093dc7ad72b12ff9f1da649822e56d39d/tex-hyphenation-patterns.txt is read
-[2021-07-13 15:42:50] File https://gist.githubusercontent.com/cosmologicon/1e7291714094d71a0e25678316141586/raw/006f7e9093dc7ad72b12ff9f1da649822e56d39d/tex-hyphenation-patterns.txt is read
-[2021-07-13 15:43:16] File https://gist.githubusercontent.com/cosmologicon/1e7291714094d71a0e25678316141586/raw/006f7e9093dc7ad72b12ff9f1da649822e56d39d/tex-hyphenation-patterns.txt is read
-[2021-07-13 15:44:05] File https://gist.githubusercontent.com/cosmologicon/1e7291714094d71a0e25678316141586/raw/006f7e9093dc7ad72b12ff9f1da649822e56d39d/tex-hyphenation-patterns.txt is read
-[2021-07-13 15:45:14] File https://gist.githubusercontent.com/cosmologicon/1e7291714094d71a0e25678316141586/raw/006f7e9093dc7ad72b12ff9f1da649822e56d39d/tex-hyphenation-patterns.txt is read
-[2021-07-13 15:47:26] File https://gist.githubusercontent.com/cosmologicon/1e7291714094d71a0e25678316141586/raw/006f7e9093dc7ad72b12ff9f1da649822e56d39d/tex-hyphenation-patterns.txt is read
-[2021-07-13 15:47:58] File https://gist.githubusercontent.com/cosmologicon/1e7291714094d71a0e25678316141586/raw/006f7e9093dc7ad72b12ff9f1da649822e56d39d/tex-hyphenation-patterns.txt is read
-[2021-07-13 15:48:01] Word system had these patters:
-.sy2
-s4y
-ys1t
-[2021-07-13 15:48:01] Time taken to syllabify: 0.01416 microseconds
-[2021-07-13 15:49:34] File https://gist.githubusercontent.com/cosmologicon/1e7291714094d71a0e25678316141586/raw/006f7e9093dc7ad72b12ff9f1da649822e56d39d/tex-hyphenation-patterns.txt is read
-[2021-07-13 15:49:40] Word 2 had these patters:
-[2021-07-13 15:49:40] Time taken to syllabify: 0.006928 microseconds
-[2021-07-13 15:50:10] File https://gist.githubusercontent.com/cosmologicon/1e7291714094d71a0e25678316141586/raw/006f7e9093dc7ad72b12ff9f1da649822e56d39d/tex-hyphenation-patterns.txt is read
-[2021-07-13 15:50:11] Word 1 had these patters:
-[2021-07-13 15:50:11] Time taken to syllabify: 0.007284 microseconds
-[2021-07-13 15:50:27] File https://gist.githubusercontent.com/cosmologicon/1e7291714094d71a0e25678316141586/raw/006f7e9093dc7ad72b12ff9f1da649822e56d39d/tex-hyphenation-patterns.txt is read
-[2021-07-13 15:50:28] Word 1 had these patters:
-[2021-07-13 15:50:28] Time taken to syllabify: 0.015425 microseconds
-[2021-07-13 15:52:55] File https://gist.githubusercontent.com/cosmologicon/1e7291714094d71a0e25678316141586/raw/006f7e9093dc7ad72b12ff9f1da649822e56d39d/tex-hyphenation-patterns.txt is read
-[2021-07-13 15:52:59] File https://gist.githubusercontent.com/cosmologicon/1e7291714094d71a0e25678316141586/raw/006f7e9093dc7ad72b12ff9f1da649822e56d39d/tex-hyphenation-patterns.txt is read
-[2021-07-13 15:53:23] File https://gist.githubusercontent.com/cosmologicon/1e7291714094d71a0e25678316141586/raw/006f7e9093dc7ad72b12ff9f1da649822e56d39d/tex-hyphenation-patterns.txt is read
-[2021-07-13 15:53:30] Word Evaldas had these patters:
+[2021-07-14 13:13:54] Successfully connected to database
+[2021-07-14 13:13:54] File https://gist.githubusercontent.com/cosmologicon/1e7291714094d71a0e25678316141586/raw/006f7e9093dc7ad72b12ff9f1da649822e56d39d/tex-hyphenation-patterns.txt is read
+[2021-07-14 13:14:03] Word clear had these patters:
+2a2r
+1c4l4
+le2a
+[2021-07-14 13:14:03] Time taken to syllabify: 0.013914 microseconds
+[2021-07-14 13:45:26] Successfully connected to database
+[2021-07-14 13:45:47] Successfully connected to database
+[2021-07-14 13:45:47] File https://gist.githubusercontent.com/cosmologicon/1e7291714094d71a0e25678316141586/raw/006f7e9093dc7ad72b12ff9f1da649822e56d39d/tex-hyphenation-patterns.txt is read
+[2021-07-14 13:45:55] Successfully connected to database
+[2021-07-14 13:45:55] File https://gist.githubusercontent.com/cosmologicon/1e7291714094d71a0e25678316141586/raw/006f7e9093dc7ad72b12ff9f1da649822e56d39d/tex-hyphenation-patterns.txt is read
+[2021-07-14 13:47:00] Successfully connected to database
+[2021-07-14 13:47:00] File https://gist.githubusercontent.com/cosmologicon/1e7291714094d71a0e25678316141586/raw/006f7e9093dc7ad72b12ff9f1da649822e56d39d/tex-hyphenation-patterns.txt is read
+[2021-07-14 13:48:55] Successfully connected to database
+[2021-07-14 13:48:56] File https://gist.githubusercontent.com/cosmologicon/1e7291714094d71a0e25678316141586/raw/006f7e9093dc7ad72b12ff9f1da649822e56d39d/tex-hyphenation-patterns.txt is read
+[2021-07-14 13:49:52] Successfully connected to database
+[2021-07-14 13:49:52] File https://gist.githubusercontent.com/cosmologicon/1e7291714094d71a0e25678316141586/raw/006f7e9093dc7ad72b12ff9f1da649822e56d39d/tex-hyphenation-patterns.txt is read
+[2021-07-14 13:50:20] Successfully connected to database
+[2021-07-14 13:50:21] File https://gist.githubusercontent.com/cosmologicon/1e7291714094d71a0e25678316141586/raw/006f7e9093dc7ad72b12ff9f1da649822e56d39d/tex-hyphenation-patterns.txt is read
+[2021-07-14 13:51:49] Successfully connected to database
+[2021-07-14 13:51:50] File https://gist.githubusercontent.com/cosmologicon/1e7291714094d71a0e25678316141586/raw/006f7e9093dc7ad72b12ff9f1da649822e56d39d/tex-hyphenation-patterns.txt is read
+[2021-07-14 13:52:39] Successfully connected to database
+[2021-07-14 13:52:39] File https://gist.githubusercontent.com/cosmologicon/1e7291714094d71a0e25678316141586/raw/006f7e9093dc7ad72b12ff9f1da649822e56d39d/tex-hyphenation-patterns.txt is read
+[2021-07-14 13:53:33] Successfully connected to database
+[2021-07-14 13:53:34] File https://gist.githubusercontent.com/cosmologicon/1e7291714094d71a0e25678316141586/raw/006f7e9093dc7ad72b12ff9f1da649822e56d39d/tex-hyphenation-patterns.txt is read
+[2021-07-14 13:55:26] Successfully connected to database
+[2021-07-14 13:55:26] File https://gist.githubusercontent.com/cosmologicon/1e7291714094d71a0e25678316141586/raw/006f7e9093dc7ad72b12ff9f1da649822e56d39d/tex-hyphenation-patterns.txt is read
+[2021-07-14 13:55:49] Successfully connected to database
+[2021-07-14 13:55:49] File https://gist.githubusercontent.com/cosmologicon/1e7291714094d71a0e25678316141586/raw/006f7e9093dc7ad72b12ff9f1da649822e56d39d/tex-hyphenation-patterns.txt is read
+[2021-07-14 13:57:01] Successfully connected to database
+[2021-07-14 13:57:01] File https://gist.githubusercontent.com/cosmologicon/1e7291714094d71a0e25678316141586/raw/006f7e9093dc7ad72b12ff9f1da649822e56d39d/tex-hyphenation-patterns.txt is read
+[2021-07-14 13:57:03] Word as had these patters:
+4as.
+[2021-07-14 13:57:03] Time taken to syllabify: 0.007176 microseconds
+[2021-07-14 13:57:19] Successfully connected to database
+[2021-07-14 13:57:19] File https://gist.githubusercontent.com/cosmologicon/1e7291714094d71a0e25678316141586/raw/006f7e9093dc7ad72b12ff9f1da649822e56d39d/tex-hyphenation-patterns.txt is read
+[2021-07-14 13:57:24] Word hello had these patters:
+.he2
+ello4
+l1l
+ll4o
+3lo.
+[2021-07-14 13:57:24] Time taken to syllabify: 0.007519 microseconds
+[2021-07-14 13:57:52] Successfully connected to database
+[2021-07-14 13:57:52] File https://gist.githubusercontent.com/cosmologicon/1e7291714094d71a0e25678316141586/raw/006f7e9093dc7ad72b12ff9f1da649822e56d39d/tex-hyphenation-patterns.txt is read
+[2021-07-14 13:58:16] Successfully connected to database
+[2021-07-14 13:58:32] Successfully connected to database
+[2021-07-14 13:58:33] File https://gist.githubusercontent.com/cosmologicon/1e7291714094d71a0e25678316141586/raw/006f7e9093dc7ad72b12ff9f1da649822e56d39d/tex-hyphenation-patterns.txt is read
+[2021-07-14 13:58:43] Successfully connected to database
+[2021-07-14 13:59:05] Successfully connected to database
+[2021-07-14 13:59:50] File https://gist.githubusercontent.com/cosmologicon/1e7291714094d71a0e25678316141586/raw/006f7e9093dc7ad72b12ff9f1da649822e56d39d/tex-hyphenation-patterns.txt is read
+[2021-07-14 14:12:30] Word clear had these patters:
+2a2r
+1c4l4
+le2a
+[2021-07-14 14:12:30] Time taken to syllabify: 0.00957 microseconds
+[2021-07-14 17:20:55] Successfully connected to database
+[2021-07-14 17:21:39] Successfully connected to database
+[2021-07-14 17:30:25] Successfully connected to database
+[2021-07-14 17:30:26] Read patterns from file https://gist.githubusercontent.com/cosmologicon/1e7291714094d71a0e25678316141586/raw/006f7e9093dc7ad72b12ff9f1da649822e56d39d/tex-hyphenation-patterns.txt
+[2021-07-14 17:30:30] Successfully connected to database
+[2021-07-14 17:30:30] Read patterns from database
+[2021-07-14 17:59:19] Read patterns from database
+[2021-07-14 17:59:23] Read patterns from file https://gist.githubusercontent.com/cosmologicon/1e7291714094d71a0e25678316141586/raw/006f7e9093dc7ad72b12ff9f1da649822e56d39d/tex-hyphenation-patterns.txt
+[2021-07-14 18:01:53] Read patterns from file https://gist.githubusercontent.com/cosmologicon/1e7291714094d71a0e25678316141586/raw/006f7e9093dc7ad72b12ff9f1da649822e56d39d/tex-hyphenation-patterns.txt
+[2021-07-14 18:01:58] Word Evaldas had these patters:
 4as.
 1d2a
 2ld
 1va
-[2021-07-13 15:53:30] Time taken to syllabify: 0.006899 microseconds
-[2021-07-13 15:53:45] File https://gist.githubusercontent.com/cosmologicon/1e7291714094d71a0e25678316141586/raw/006f7e9093dc7ad72b12ff9f1da649822e56d39d/tex-hyphenation-patterns.txt is read
-[2021-07-13 15:53:52] Word mistranslate had these patters:
+[2021-07-14 18:01:58] Time taken to syllabify: 0.014794 microseconds
+[2021-07-14 18:02:06] Read patterns from database
+[2021-07-14 18:06:00] Read patterns from database
+[2021-07-14 18:06:32] Read patterns from file https://gist.githubusercontent.com/cosmologicon/1e7291714094d71a0e25678316141586/raw/006f7e9093dc7ad72b12ff9f1da649822e56d39d/tex-hyphenation-patterns.txt
+[2021-07-14 18:06:33] Word virmantas had these patters:
+a2n
+4as.
+4ir
+1ma
+n1t
+r1m
+1ta
+[2021-07-14 18:06:33] Time taken to syllabify: 0.013988 microseconds
+[2021-07-14 18:07:26] Read patterns from database
+[2021-07-14 18:07:29] Word virmantas had these patters:
+a2n
+4as.
+4ir
+1ma
+n1t
+r1m
+1ta
+[2021-07-14 18:07:29] Time taken to syllabify: 0.014098 microseconds
+[2021-07-14 18:12:14] Read patterns from database
+[2021-07-14 18:12:18] Word mistranslate had these patters:
 .mis1
 a2n
 m2is
@@ -48,103 +104,43 @@ s3lat
 st4r
 4te.
 1tra
-[2021-07-13 15:53:52] Time taken to syllabify: 0.003057 microseconds
-[2021-07-13 15:53:59] File https://gist.githubusercontent.com/cosmologicon/1e7291714094d71a0e25678316141586/raw/006f7e9093dc7ad72b12ff9f1da649822e56d39d/tex-hyphenation-patterns.txt is read
-[2021-07-13 15:54:00] Word  had these patters:
-[2021-07-13 15:54:00] Time taken to syllabify: 0.013802 microseconds
-[2021-07-13 15:56:26] File https://gist.githubusercontent.com/cosmologicon/1e7291714094d71a0e25678316141586/raw/006f7e9093dc7ad72b12ff9f1da649822e56d39d/tex-hyphenation-patterns.txt is read
-[2021-07-13 15:56:38] File https://gist.githubusercontent.com/cosmologicon/1e7291714094d71a0e25678316141586/raw/006f7e9093dc7ad72b12ff9f1da649822e56d39d/tex-hyphenation-patterns.txt is read
-[2021-07-13 16:01:21] File https://gist.githubusercontent.com/cosmologicon/1e7291714094d71a0e25678316141586/raw/006f7e9093dc7ad72b12ff9f1da649822e56d39d/tex-hyphenation-patterns.txt is read
-[2021-07-13 16:03:29] File https://gist.githubusercontent.com/cosmologicon/1e7291714094d71a0e25678316141586/raw/006f7e9093dc7ad72b12ff9f1da649822e56d39d/tex-hyphenation-patterns.txt is read
-[2021-07-13 16:03:30] Word apprentice. had these patters:
-2ce.
-n1t
-nt2i
-4p1p
-pr2
-[2021-07-13 16:03:30] Time taken to syllabify: 0.00283 microseconds
-[2021-07-13 16:06:27] File https://gist.githubusercontent.com/cosmologicon/1e7291714094d71a0e25678316141586/raw/006f7e9093dc7ad72b12ff9f1da649822e56d39d/tex-hyphenation-patterns.txt is read
-[2021-07-13 16:06:28] Word apprentice. had these patters:
-2ce.
-n1t
-nt2i
-4p1p
-pr2
-[2021-07-13 16:06:28] Time taken to syllabify: 0.002673 microseconds
-[2021-07-13 16:06:35] File https://gist.githubusercontent.com/cosmologicon/1e7291714094d71a0e25678316141586/raw/006f7e9093dc7ad72b12ff9f1da649822e56d39d/tex-hyphenation-patterns.txt is read
-[2021-07-13 16:06:38] Word you had these patters:
-ou2
-y1o4
-[2021-07-13 16:06:38] Time taken to syllabify: 0.007216 microseconds
-[2021-07-13 16:10:52] File https://gist.githubusercontent.com/cosmologicon/1e7291714094d71a0e25678316141586/raw/006f7e9093dc7ad72b12ff9f1da649822e56d39d/tex-hyphenation-patterns.txt is read
-[2021-07-13 16:10:53] Word apprentice. had these patters:
-2ce.
-n1t
-nt2i
-4p1p
-pr2
-[2021-07-13 16:10:53] Time taken to syllabify: 0.002667 microseconds
-[2021-07-13 16:10:56] File https://gist.githubusercontent.com/cosmologicon/1e7291714094d71a0e25678316141586/raw/006f7e9093dc7ad72b12ff9f1da649822e56d39d/tex-hyphenation-patterns.txt is read
-[2021-07-13 16:11:02] Word did had these patters:
-3did
-2id
-[2021-07-13 16:11:02] Time taken to syllabify: 0.014141 microseconds
-[2021-07-13 16:17:06] File https://gist.githubusercontent.com/cosmologicon/1e7291714094d71a0e25678316141586/raw/006f7e9093dc7ad72b12ff9f1da649822e56d39d/tex-hyphenation-patterns.txt is read
-[2021-07-13 16:17:07] Word apprentice. had these patters:
-2ce.
-n1t
-nt2i
-4p1p
-pr2
-[2021-07-13 16:17:07] Time taken to syllabify: 0.002653 microseconds
-[2021-07-13 16:18:11] File https://gist.githubusercontent.com/cosmologicon/1e7291714094d71a0e25678316141586/raw/006f7e9093dc7ad72b12ff9f1da649822e56d39d/tex-hyphenation-patterns.txt is read
-[2021-07-13 16:18:12] Word rarity. had these patters:
-2a2r
-ar1i
-1ty
-[2021-07-13 16:18:12] Time taken to syllabify: 0.002723 microseconds
-[2021-07-14 11:36:14] File https://gist.githubusercontent.com/cosmologicon/1e7291714094d71a0e25678316141586/raw/006f7e9093dc7ad72b12ff9f1da649822e56d39d/tex-hyphenation-patterns.txt is read
-[2021-07-14 11:36:18] Word clear had these patters:
-2a2r
-1c4l4
-le2a
-[2021-07-14 11:36:18] Time taken to syllabify: 0.014467 microseconds
-[2021-07-14 12:24:11] File https://gist.githubusercontent.com/cosmologicon/1e7291714094d71a0e25678316141586/raw/006f7e9093dc7ad72b12ff9f1da649822e56d39d/tex-hyphenation-patterns.txt is read
-[2021-07-14 12:25:10] File https://gist.githubusercontent.com/cosmologicon/1e7291714094d71a0e25678316141586/raw/006f7e9093dc7ad72b12ff9f1da649822e56d39d/tex-hyphenation-patterns.txt is read
-[2021-07-14 12:25:43] File https://gist.githubusercontent.com/cosmologicon/1e7291714094d71a0e25678316141586/raw/006f7e9093dc7ad72b12ff9f1da649822e56d39d/tex-hyphenation-patterns.txt is read
-[2021-07-14 12:26:09] File https://gist.githubusercontent.com/cosmologicon/1e7291714094d71a0e25678316141586/raw/006f7e9093dc7ad72b12ff9f1da649822e56d39d/tex-hyphenation-patterns.txt is read
-[2021-07-14 12:29:48] File https://gist.githubusercontent.com/cosmologicon/1e7291714094d71a0e25678316141586/raw/006f7e9093dc7ad72b12ff9f1da649822e56d39d/tex-hyphenation-patterns.txt is read
-[2021-07-14 12:30:09] File https://gist.githubusercontent.com/cosmologicon/1e7291714094d71a0e25678316141586/raw/006f7e9093dc7ad72b12ff9f1da649822e56d39d/tex-hyphenation-patterns.txt is read
-[2021-07-14 12:31:20] File https://gist.githubusercontent.com/cosmologicon/1e7291714094d71a0e25678316141586/raw/006f7e9093dc7ad72b12ff9f1da649822e56d39d/tex-hyphenation-patterns.txt is read
-[2021-07-14 12:34:58] File https://gist.githubusercontent.com/cosmologicon/1e7291714094d71a0e25678316141586/raw/006f7e9093dc7ad72b12ff9f1da649822e56d39d/tex-hyphenation-patterns.txt is read
-[2021-07-14 12:35:35] File https://gist.githubusercontent.com/cosmologicon/1e7291714094d71a0e25678316141586/raw/006f7e9093dc7ad72b12ff9f1da649822e56d39d/tex-hyphenation-patterns.txt is read
-[2021-07-14 12:36:12] File https://gist.githubusercontent.com/cosmologicon/1e7291714094d71a0e25678316141586/raw/006f7e9093dc7ad72b12ff9f1da649822e56d39d/tex-hyphenation-patterns.txt is read
-[2021-07-14 12:36:23] File https://gist.githubusercontent.com/cosmologicon/1e7291714094d71a0e25678316141586/raw/006f7e9093dc7ad72b12ff9f1da649822e56d39d/tex-hyphenation-patterns.txt is read
-[2021-07-14 12:37:35] File https://gist.githubusercontent.com/cosmologicon/1e7291714094d71a0e25678316141586/raw/006f7e9093dc7ad72b12ff9f1da649822e56d39d/tex-hyphenation-patterns.txt is read
-[2021-07-14 12:37:54] File https://gist.githubusercontent.com/cosmologicon/1e7291714094d71a0e25678316141586/raw/006f7e9093dc7ad72b12ff9f1da649822e56d39d/tex-hyphenation-patterns.txt is read
-[2021-07-14 12:38:02] File https://gist.githubusercontent.com/cosmologicon/1e7291714094d71a0e25678316141586/raw/006f7e9093dc7ad72b12ff9f1da649822e56d39d/tex-hyphenation-patterns.txt is read
-[2021-07-14 12:38:28] File https://gist.githubusercontent.com/cosmologicon/1e7291714094d71a0e25678316141586/raw/006f7e9093dc7ad72b12ff9f1da649822e56d39d/tex-hyphenation-patterns.txt is read
-[2021-07-14 12:39:04] File https://gist.githubusercontent.com/cosmologicon/1e7291714094d71a0e25678316141586/raw/006f7e9093dc7ad72b12ff9f1da649822e56d39d/tex-hyphenation-patterns.txt is read
-[2021-07-14 12:39:36] File https://gist.githubusercontent.com/cosmologicon/1e7291714094d71a0e25678316141586/raw/006f7e9093dc7ad72b12ff9f1da649822e56d39d/tex-hyphenation-patterns.txt is read
-[2021-07-14 12:40:04] File https://gist.githubusercontent.com/cosmologicon/1e7291714094d71a0e25678316141586/raw/006f7e9093dc7ad72b12ff9f1da649822e56d39d/tex-hyphenation-patterns.txt is read
-[2021-07-14 12:40:11] File https://gist.githubusercontent.com/cosmologicon/1e7291714094d71a0e25678316141586/raw/006f7e9093dc7ad72b12ff9f1da649822e56d39d/tex-hyphenation-patterns.txt is read
-[2021-07-14 12:40:41] File https://gist.githubusercontent.com/cosmologicon/1e7291714094d71a0e25678316141586/raw/006f7e9093dc7ad72b12ff9f1da649822e56d39d/tex-hyphenation-patterns.txt is read
-[2021-07-14 12:40:47] File https://gist.githubusercontent.com/cosmologicon/1e7291714094d71a0e25678316141586/raw/006f7e9093dc7ad72b12ff9f1da649822e56d39d/tex-hyphenation-patterns.txt is read
-[2021-07-14 12:40:52] File https://gist.githubusercontent.com/cosmologicon/1e7291714094d71a0e25678316141586/raw/006f7e9093dc7ad72b12ff9f1da649822e56d39d/tex-hyphenation-patterns.txt is read
-[2021-07-14 12:40:55] File https://gist.githubusercontent.com/cosmologicon/1e7291714094d71a0e25678316141586/raw/006f7e9093dc7ad72b12ff9f1da649822e56d39d/tex-hyphenation-patterns.txt is read
-[2021-07-14 12:42:00] File https://gist.githubusercontent.com/cosmologicon/1e7291714094d71a0e25678316141586/raw/006f7e9093dc7ad72b12ff9f1da649822e56d39d/tex-hyphenation-patterns.txt is read
-[2021-07-14 12:42:11] File https://gist.githubusercontent.com/cosmologicon/1e7291714094d71a0e25678316141586/raw/006f7e9093dc7ad72b12ff9f1da649822e56d39d/tex-hyphenation-patterns.txt is read
-[2021-07-14 12:42:13] File https://gist.githubusercontent.com/cosmologicon/1e7291714094d71a0e25678316141586/raw/006f7e9093dc7ad72b12ff9f1da649822e56d39d/tex-hyphenation-patterns.txt is read
-[2021-07-14 12:42:17] File https://gist.githubusercontent.com/cosmologicon/1e7291714094d71a0e25678316141586/raw/006f7e9093dc7ad72b12ff9f1da649822e56d39d/tex-hyphenation-patterns.txt is read
-[2021-07-14 12:42:43] File https://gist.githubusercontent.com/cosmologicon/1e7291714094d71a0e25678316141586/raw/006f7e9093dc7ad72b12ff9f1da649822e56d39d/tex-hyphenation-patterns.txt is read
-[2021-07-14 12:43:17] File https://gist.githubusercontent.com/cosmologicon/1e7291714094d71a0e25678316141586/raw/006f7e9093dc7ad72b12ff9f1da649822e56d39d/tex-hyphenation-patterns.txt is read
-[2021-07-14 12:43:22] File https://gist.githubusercontent.com/cosmologicon/1e7291714094d71a0e25678316141586/raw/006f7e9093dc7ad72b12ff9f1da649822e56d39d/tex-hyphenation-patterns.txt is read
-[2021-07-14 12:43:24] File https://gist.githubusercontent.com/cosmologicon/1e7291714094d71a0e25678316141586/raw/006f7e9093dc7ad72b12ff9f1da649822e56d39d/tex-hyphenation-patterns.txt is read
-[2021-07-14 12:46:33] File https://gist.githubusercontent.com/cosmologicon/1e7291714094d71a0e25678316141586/raw/006f7e9093dc7ad72b12ff9f1da649822e56d39d/tex-hyphenation-patterns.txt is read
-[2021-07-14 12:48:47] File https://gist.githubusercontent.com/cosmologicon/1e7291714094d71a0e25678316141586/raw/006f7e9093dc7ad72b12ff9f1da649822e56d39d/tex-hyphenation-patterns.txt is read
-[2021-07-14 12:48:51] File https://gist.githubusercontent.com/cosmologicon/1e7291714094d71a0e25678316141586/raw/006f7e9093dc7ad72b12ff9f1da649822e56d39d/tex-hyphenation-patterns.txt is read
-[2021-07-14 12:48:54] File https://gist.githubusercontent.com/cosmologicon/1e7291714094d71a0e25678316141586/raw/006f7e9093dc7ad72b12ff9f1da649822e56d39d/tex-hyphenation-patterns.txt is read
-[2021-07-14 12:49:17] File https://gist.githubusercontent.com/cosmologicon/1e7291714094d71a0e25678316141586/raw/006f7e9093dc7ad72b12ff9f1da649822e56d39d/tex-hyphenation-patterns.txt is read
-[2021-07-14 12:49:25] File https://gist.githubusercontent.com/cosmologicon/1e7291714094d71a0e25678316141586/raw/006f7e9093dc7ad72b12ff9f1da649822e56d39d/tex-hyphenation-patterns.txt is read
-[2021-07-14 12:50:39] File https://gist.githubusercontent.com/cosmologicon/1e7291714094d71a0e25678316141586/raw/006f7e9093dc7ad72b12ff9f1da649822e56d39d/tex-hyphenation-patterns.txt is read
-[2021-07-14 12:51:02] File https://gist.githubusercontent.com/cosmologicon/1e7291714094d71a0e25678316141586/raw/006f7e9093dc7ad72b12ff9f1da649822e56d39d/tex-hyphenation-patterns.txt is read
+[2021-07-14 18:12:18] Time taken to syllabify: 0.015655 microseconds
+[2021-07-14 18:12:24] Read patterns from file https://gist.githubusercontent.com/cosmologicon/1e7291714094d71a0e25678316141586/raw/006f7e9093dc7ad72b12ff9f1da649822e56d39d/tex-hyphenation-patterns.txt
+[2021-07-14 18:12:28] Word mistranslate had these patters:
+.mis1
+a2n
+m2is
+2n1s2
+n2sl
+s1l2
+s3lat
+st4r
+4te.
+1tra
+[2021-07-14 18:12:28] Time taken to syllabify: 0.014476 microseconds
+[2021-07-14 18:38:33] Read patterns from database
+[2021-07-15 08:43:41] Read patterns from database
+[2021-07-15 08:44:09] Read patterns from database
+[2021-07-15 08:44:30] Read patterns from database
+[2021-07-15 08:45:19] Read patterns from database
+[2021-07-15 08:48:36] Read patterns from database
+[2021-07-15 08:48:42] Time taken to syllabify: 0.014079 microseconds
+[2021-07-15 08:55:27] Read patterns from database
+[2021-07-15 08:55:32] Time taken to syllabify: 0.016196 microseconds
+[2021-07-15 08:57:55] Read patterns from database
+[2021-07-15 08:58:00] Time taken to syllabify: 0.077045 microseconds
+[2021-07-15 09:00:30] Read patterns from database
+[2021-07-15 09:00:59] Read patterns from database
+[2021-07-15 09:01:04] Time taken to syllabify: 0.150093 microseconds
+[2021-07-15 09:10:13] Read patterns from database
+[2021-07-15 10:38:52] Read patterns from database
+[2021-07-15 10:39:38] Read patterns from database
+[2021-07-15 10:39:42] Time taken to syllabify: 0.156636 microseconds
+[2021-07-15 10:40:51] Read patterns from database
+[2021-07-15 10:41:05] Read patterns from database
+[2021-07-15 10:41:07] Time taken to syllabify: 0.06958 microseconds
+[2021-07-15 10:55:01] Read patterns from database
+[2021-07-15 10:55:04] Time taken to syllabify: 0.007055 microseconds
+[2021-07-15 10:55:39] Read patterns from database
+[2021-07-15 10:57:07] Read patterns from database
+[2021-07-15 10:57:09] Time taken to syllabify: 0.00145 microseconds
