@@ -40,7 +40,7 @@ class PatternController
         $stmt->execute([$pattern]);
     }
     
-    public function isTableEmpty()
+    public function isTableEmpty(): bool
     {
         $pdo = $this->database->connect();
         $sql = "select * from $this->table limit 1;";

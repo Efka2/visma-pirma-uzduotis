@@ -35,7 +35,12 @@ class Application
         $wordController = new WordController($database);
         $word = new Word();
         $printPatterns = false;
+        $patternController = new PatternController($database);
 
+        if($patternController->isTableEmpty()){
+            echo "xui";die();
+        }
+        
         //todo numbers are hardcoded though :(
         $sourceSelection = $reader->readSelection(
             "Do you want to use patterns from database (1) or file (2)?
