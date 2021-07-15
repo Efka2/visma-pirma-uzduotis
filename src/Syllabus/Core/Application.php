@@ -35,7 +35,7 @@ class Application
         $wordController = new WordController($database);
         $word = new Word();
         $printPatterns = false;
-        
+
         //todo numbers are hardcoded though :(
         $sourceSelection = $reader->readSelection(
             "Do you want to use patterns from database (1) or file (2)?
@@ -43,25 +43,24 @@ class Application
             array(Reader::IMPORT_FROM_DATABASE, Reader::IMPORT_FROM_FILE)
         );
         
-        $allPatterns = $this->getAllPatterns($sourceSelection, $database);
-        
         $wordImportSelection = $reader->readSelection(
             "Do you want to enter the word from CLI (3) or file (4): ",
             array(Reader::ENTER_WORD_FROM_CLI, Reader::ENTER_WORD_FROM_FILE)
         );
+    
+        $allPatterns = $this->getAllPatterns($sourceSelection, $database);
         
         if ($wordImportSelection == Reader::ENTER_WORD_FROM_CLI) {
             $wordFromCLI = $reader->readWordFromCLI();
             $word->setWordString($wordFromCLI);
         } else {
-            //todo enter from file
-            exit();
-//            $word = $reader->readWordFromFile($file);
+            $wordFromFile = $reader->readWordFromFile('src/Syllabus/log/word.txt');
+            $word->setWordString($wordFromFile);
         }
         
         $timeStart = new DateTime();
         
-        if ($this->isWordInDatabase($wordController, $database, $word)) {
+        if ($this->isWordInDatabase($wordController, $word)) {
             $word = $wordController->get($word);
             $syllabifiedWord = $word->getSyllabifiedWord();
             $patternWordController = new PatternWordController($database);
@@ -140,16 +139,17 @@ class Application
     
     private function isWordInDatabase(
         WordController $wordController,
-        Database $database,
         Word $word
     ): bool {
-        $allWords = $wordController->index();
+        $allWords =  $wordController->index();
         
-        foreach ($allWords as $wordFromDb) {
-            if ($wordFromDb == $word) {
-                echo "This word was already syllabified!\n";
-                
-                return true;
+        if(!empty($allWords)){
+            foreach ($allWords as $wordFromDb) {
+                if ($wordFromDb == $word) {
+                    echo "This word was already syllabified!\n";
+            
+                    return true;
+                }
             }
         }
         

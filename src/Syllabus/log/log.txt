@@ -208,3 +208,30 @@ st4r
 [2021-07-15 15:01:30] Read patterns from database
 [2021-07-15 15:01:46] Read patterns from database
 [2021-07-15 15:02:30] Read patterns from database
+[2021-07-15 18:32:52] Read patterns from database
+[2021-07-15 18:38:22] Read patterns from database
+[2021-07-15 18:41:38] Read patterns from database
+[2021-07-15 18:41:42] Time taken to syllabify: 0.023263 microseconds
+[2021-07-15 18:41:49] Read patterns from database
+[2021-07-15 18:41:51] Time taken to syllabify: 0.019813 microseconds
+[2021-07-15 18:42:04] Read patterns from database
+[2021-07-15 18:42:26] Time taken to syllabify: 0.019858 microseconds
+[2021-07-15 18:43:27] Read patterns from file https://gist.githubusercontent.com/cosmologicon/1e7291714094d71a0e25678316141586/raw/006f7e9093dc7ad72b12ff9f1da649822e56d39d/tex-hyphenation-patterns.txt
+[2021-07-15 18:46:10] Read patterns from database
+[2021-07-15 18:46:13] Time taken to syllabify: 0.019662 microseconds
+[2021-07-15 18:52:51] Read patterns from database
+[2021-07-15 18:52:56] Time taken to syllabify: 0.006478 microseconds
+[2021-07-15 19:10:37] Read patterns from database
+[2021-07-15 19:13:06] Read patterns from database
+[2021-07-15 19:13:08] Time taken to syllabify: 0.023556 microseconds
+[2021-07-15 20:38:18] Read patterns from database
+[2021-07-15 20:38:21] Time taken to syllabify: 0.006226 microseconds
+[2021-07-15 20:38:25] Read patterns from database
+[2021-07-15 20:38:27] Time taken to syllabify: 0.006123 microseconds
+[2021-07-15 20:46:35] Read patterns from file https://gist.githubusercontent.com/cosmologicon/1e7291714094d71a0e25678316141586/raw/006f7e9093dc7ad72b12ff9f1da649822e56d39d/tex-hyphenation-patterns.txt
+[2021-07-15 20:47:33] Read patterns from file https://gist.githubusercontent.com/cosmologicon/1e7291714094d71a0e25678316141586/raw/006f7e9093dc7ad72b12ff9f1da649822e56d39d/tex-hyphenation-patterns.txt
+[2021-07-15 20:47:33] Time taken to syllabify: 0.003148 microseconds
+[2021-07-15 20:48:49] Read patterns from database
+[2021-07-15 20:48:49] Time taken to syllabify: 0.003311 microseconds
+[2021-07-15 20:49:21] Read patterns from file https://gist.githubusercontent.com/cosmologicon/1e7291714094d71a0e25678316141586/raw/006f7e9093dc7ad72b12ff9f1da649822e56d39d/tex-hyphenation-patterns.txt
+[2021-07-15 20:49:21] Time taken to syllabify: 0.001928 microseconds

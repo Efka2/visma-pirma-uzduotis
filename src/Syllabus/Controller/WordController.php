@@ -16,7 +16,7 @@ class WordController
         $this->database = $database;
     }
     
-    public function index(): array
+    public function index(): ?array
     {
         $pdo = $this->database->connect();
         $table = self::$table;

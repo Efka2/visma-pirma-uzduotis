@@ -53,8 +53,8 @@ class Reader implements FileReaderInterface
         return trim(readline());
     }
     
-    public function readSentence()
+    public function readWordFromFile(string $filename)
     {
-        return file_get_contents('src/Syllabus/log/sentence.txt');
+        return file_get_contents($filename);
     }
 }

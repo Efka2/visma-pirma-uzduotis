@@ -4,7 +4,6 @@ namespace Syllabus\Controller;
 
 use Syllabus\Core\PatternCollection;
 use Syllabus\Database\Database;
-use Syllabus\log\LoggerInterface;
 use Syllabus\Model\Pattern;
 
 class PatternController
