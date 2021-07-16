@@ -25,15 +25,13 @@ class Reader implements FileReaderInterface
             $data->add($pattern);
         }
         
-        $file = null;
+        $fileObject = null;
         
         return $data;
     }
     
-    //my abomination
     public function readSelection(string $message, array $options): string
     {
-        $i = 0;
         while (true) {
             echo "$message ";
             $line = trim(readline());

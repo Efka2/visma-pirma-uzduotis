@@ -45,7 +45,6 @@ class Application
             array(Reader::IMPORT_FROM_DATABASE, Reader::IMPORT_FROM_FILE)
         );
     
-    
         $wordImportSelection = $reader->readSelection(
             "Do you want to enter the word from CLI (3) or file (4): ",
             array(Reader::ENTER_WORD_FROM_CLI, Reader::ENTER_WORD_FROM_FILE)
