@@ -16,23 +16,7 @@ class WordController
         $this->database = $database;
     }
     
-    public function index(): ?array
-    {
-        $pdo = $this->database->connect();
-        $table = self::$table;
-        
-        $sql = "SELECT * FROM $table";
-        $stmt = $pdo->query($sql);
-        while ($row = $stmt->fetch()) {
-            $words[] = $row['wordString'];
-        }
-        
-        if(empty($words)){
-            return null;
-        }
-        
-        return $words;
-    }
+    
     
     public function get(Word $word): Word
     {
