@@ -3,9 +3,9 @@
 namespace Syllabus\Core;
 
 use DateTime;
-use Syllabus\Controller\PatternController;
-use Syllabus\Controller\PatternWordController;
-use Syllabus\Controller\WordController;
+use Syllabus\Handler\PatternHandler;
+use Syllabus\Handler\PatternWordHandler;
+use Syllabus\Handler\WordHandler;
 use Syllabus\Database\Database;
 use Syllabus\IO\FileReaderInterface;
 use Syllabus\IO\Output;
@@ -32,10 +32,10 @@ class Application
         $syllabus = new Syllabus();
         $foundPatters = new PatternCollection();
         $database = new Database();
-        $wordController = new WordController($database);
+        $wordController = new WordHandler($database);
         $word = new Word();
         $printPatterns = false;
-        $patternController = new PatternController($database);
+        $patternController = new PatternHandler($database);
     
     
         //todo numbers are hardcoded though :(
@@ -71,7 +71,7 @@ class Application
         if ($this->isWordInDatabase($wordController, $word)) {
             $word = $wordController->get($word);
             $syllabifiedWord = $word->getSyllabifiedWord();
-            $patternWordController = new PatternWordController($database);
+            $patternWordController = new PatternWordHandler($database);
             $foundPatters = $patternWordController->getPatterns($word);
         } else {
             $syllabifiedWord = $syllabus->syllabify($word, $allPatterns);
@@ -106,7 +106,7 @@ class Application
     //todo another abomination with if else
     private function getAllPatterns(string $selection, $database): PatternCollection {
         if ($selection == Reader::IMPORT_FROM_DATABASE) {
-            $patternController = new PatternController($database);
+            $patternController = new PatternHandler($database);
             if ($patternController->isTableEmpty()) {
                 $allPatterns = $this->readFromFile();
             } else {
@@ -121,7 +121,7 @@ class Application
     
     private function readFromDatabase(Database $database): PatternCollection
     {
-        $controller = new PatternController($database);
+        $controller = new PatternHandler($database);
         $allPatterns = $controller->index();
         $this->logger->info("Read patterns from database");
         
@@ -144,12 +144,12 @@ class Application
         Word $word,
         PatternCollection $foundPatters
     ): void {
-        $wordController = new PatternWordController($database);
+        $wordController = new PatternWordHandler($database);
         $wordController->insert($foundPatters, $word);
     }
     
     private function isWordInDatabase(
-        WordController $wordController,
+        WordHandler $wordController,
         Word $word
     ): bool {
         $allWords =  $wordController->index();

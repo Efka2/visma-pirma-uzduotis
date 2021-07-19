@@ -1,13 +1,13 @@
 <?php
 
-namespace Syllabus\Controller;
+namespace Syllabus\Handler;
 
 use Syllabus\Core\PatternCollection;
 use Syllabus\Database\Database;
 use Syllabus\Model\Pattern;
 use Syllabus\Model\Word;
 
-class PatternWordController
+class PatternWordHandler
 {
     private Database $database;
     private static string $table = "Pattern_Word";

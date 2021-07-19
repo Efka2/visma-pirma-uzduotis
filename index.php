@@ -6,17 +6,18 @@
     use Syllabus\Core\Logger;
     use Syllabus\Core\Router;
 
-    $router = new Router();
-    $router->get('/', function (){
-        echo "It's home page\n";
-    });
-    $router->get('/about', function (){
-        echo "It's about page";
-    });
-    $router->run();
+//    $router = new Router();
+//    $router->get('/', function (){
+//        echo "It's home page\n";
+//    });
+//    $router->get('/about', function (){
+//        echo "It's about page";
+//    });
+//    $router->run();
     
-    if(empty ($_SERVER)){
+    if(empty ($_SERVER['REQUEST_URI'])){
         $application = new Application(new Logger());
         $application->run();
     } else {
+        echo "Internet!";
     }

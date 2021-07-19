@@ -41,6 +41,17 @@ class Router
             }
         }
 
+        if(is_string($callback)){
+            $parts = explode("::", $callback);
+            if(is_array($parts)){
+                $className = array_shift($parts);
+                $handler = new $className;
+
+                $method = array_shift($parts);
+                $callback = [$handler, $method];
+            }
+        }
+
         if(!$callback){
             header("HTTP/1.0 404 Not Found");
             die();

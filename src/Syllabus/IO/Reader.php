@@ -3,7 +3,7 @@
 namespace Syllabus\IO;
 
 use SplFileObject;
-use Syllabus\Controller\PatternController;
+use Syllabus\Controller\PatternHandler;
 use Syllabus\Core\PatternCollection;
 use Syllabus\Database\Database;
 use Syllabus\Model\Pattern;

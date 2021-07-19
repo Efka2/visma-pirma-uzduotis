@@ -1,11 +1,11 @@
 <?php
 
-namespace Syllabus\Controller;
+namespace Syllabus\Handler;
 
 use Syllabus\Database\Database;
 use Syllabus\Model\Word;
 
-class WordController
+class WordHandler
 {
     private static string $table = "Word";
     

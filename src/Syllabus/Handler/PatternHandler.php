@@ -1,12 +1,12 @@
 <?php
 
-namespace Syllabus\Controller;
+namespace Syllabus\Handler;
 
 use Syllabus\Core\PatternCollection;
 use Syllabus\Database\Database;
 use Syllabus\Model\Pattern;
 
-class PatternController
+class PatternHandler
 {
     private Database $database;
     private string $table = "Pattern";
