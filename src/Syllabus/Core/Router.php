@@ -50,7 +50,6 @@ class Router
         if(is_string($callback)){
             $parts = explode("::", $callback);
             if(is_array($parts)){
-                print_r($parts);
                 $className = array_shift($parts);
                 $handler = new $className;
 

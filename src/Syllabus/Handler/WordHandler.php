@@ -40,22 +40,38 @@ class WordHandler
     public function get(Word $word): Word
     {
         $pdo = $this->database->connect();
-        $table = self::$table;
+        $table = self::TABLE_NAME;
 
         $sql = "SELECT * FROM $table WHERE wordString = '$word'";
         $stmt = $pdo->query($sql);
-        $a = $stmt->fetch();
+        $data = $stmt->fetch();
 
         $newWord = new Word();
-        $newWord->setSyllabifiedWord($a['syllabifiedWord']);
-        $newWord->setWordString($a['wordString']);
+        $newWord->setSyllabifiedWord($data['syllabifiedWord']);
+        $newWord->setWordString($data['wordString']);
 
         return $newWord;
     }
 
+    public function getWordId(string $word): ?int
+    {
+        $pdo = $this->database->connect();
+        $table = self::TABLE_NAME;
+
+        $sql = "SELECT id FROM $table WHERE wordString = '$word';";
+        $stmt = $pdo->query($sql);
+        $data = $stmt->fetch();
+
+        if(!$data[0]){
+            return null;
+        }
+
+        return $data[0];
+    }
+
     public function insert(Word $word): void
     {
-        $table = self::$table;
+        $table = self::TABLE_NAME;
         $pdo = $this->database->connect();
         $wordString = $word->getWordString();
         $syllabifiedWord = $word->getSyllabifiedWord();
@@ -65,21 +81,28 @@ class WordHandler
         $stmt->execute([$wordString, $syllabifiedWord]);
     }
 
-    public function delete($id)
+    public function delete(string $word): int
     {
         $pdo = $this->database->connect();
         try {
-            $sql = "start transaction;
+            $id = $this->getWordId($word);
+            if(!$id){
+                return -1;
+            }
 
+            $sql = "start transaction;
+                   
                 delete from Pattern_Word
                 Where wordID = $id;
                 
                 delete from Word
-                Where id = $id;
+                Where wordString = '$word';
                 
                 commit;";
             $stmt = $pdo->prepare($sql);
             $stmt->execute();
+
+            return 0;
 
         } catch (\PDOException $exception) {
             //todo replace die() with exception
