@@ -5,6 +5,7 @@ namespace Syllabus\Core;
 class Router
 {
     private const METHOD_POST = 'POST';
+    private const METHOD_DELETE = 'DELETE';
     private const METHOD_GET = 'GET';
     private array $handlers;
 
@@ -16,6 +17,11 @@ class Router
     public function post(string $path, $handler): void
     {
         $this->addHandler(self::METHOD_POST, $path, $handler);
+    }
+
+    public function delete(string $path, $handler): void
+    {
+        $this->addHandler(self::METHOD_DELETE, $path, $handler);
     }
 
     private function addHandler(string $method, string $path, $handler): void

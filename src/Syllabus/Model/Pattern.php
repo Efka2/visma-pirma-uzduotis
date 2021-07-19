@@ -14,6 +14,10 @@ class Pattern
     {
         $this->patternString = $patternString;
     }
+
+    public function getPatterString(){
+        return $this->patternString;
+    }
     
     //todo trait?
     public function getPatterStringWithoutDots(): string
@@ -23,7 +27,6 @@ class Pattern
     
     public function getPatternStringWithoutNumbers(): string
     {
-        //todo move number array to different place
         return str_replace(SyllabusHelper::NUMBERS, '', $this->patternString);
     }
     

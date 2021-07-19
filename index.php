@@ -1,23 +1,21 @@
 <?php
 
-    require_once('autoload.php');
-    require_once ('src/Syllabus/Core/Router.php');
-    use Syllabus\Core\Application;
-    use Syllabus\Core\Logger;
-    use Syllabus\Core\Router;
+require_once('autoload.php');
+require_once('src/Syllabus/Core/Router.php');
 
-//    $router = new Router();
-//    $router->get('/', function (){
-//        echo "It's home page\n";
-//    });
-//    $router->get('/about', function (){
-//        echo "It's about page";
-//    });
-//    $router->run();
-    
-    if(empty ($_SERVER['REQUEST_URI'])){
-        $application = new Application(new Logger());
-        $application->run();
-    } else {
-        echo "Internet!";
-    }
+use Syllabus\Controller\WordController;
+use Syllabus\Core\Application;
+use Syllabus\Core\Logger;
+use Syllabus\Core\Router;
+
+if (!$_SERVER['REMOTE_ADDR'] == '127.0.0.1') {
+    $application = new Application(new Logger());
+    $application->run();
+} else {
+
+    $router = new Router();
+    $router->get('/word', WordController::class . "::getAll");
+
+    $router->run();
+
+}

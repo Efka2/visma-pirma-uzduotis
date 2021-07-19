@@ -37,8 +37,6 @@ class Application
         $printPatterns = false;
         $patternController = new PatternHandler($database);
     
-    
-        //todo numbers are hardcoded though :(
         $sourceSelection = $reader->readSelection(
             "Do you want to use patterns from database (1) or file (2)?
             (Type in the number in brackets): ",
@@ -51,7 +49,7 @@ class Application
         );
     
         $allPatterns = $this->getAllPatterns($sourceSelection, $database);
-    
+
         if ($patternController->isTableEmpty()) {
             foreach ($allPatterns->getAll() as $pattern){
                 $patternController->insert($pattern);
@@ -152,7 +150,7 @@ class Application
         WordHandler $wordController,
         Word $word
     ): bool {
-        $allWords =  $wordController->index();
+        $allWords =  $wordController->getAll();
         
         if(!empty($allWords)){
             foreach ($allWords as $wordFromDb) {

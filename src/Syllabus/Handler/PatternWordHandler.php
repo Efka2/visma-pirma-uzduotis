@@ -17,18 +17,18 @@ class PatternWordHandler
         $this->database = $database;
     }
     
-    public function getPatterns(Word $word): PatternCollection
+    public function getPatterns($id): PatternCollection
     {
         $pdo = $this->database->connect();
         $table = self::$table;
         $patterns = new PatternCollection();
-        $wordId = $word->getId();
+
         
         $sql = "select patternString
                 from Pattern
                 inner join $table
                 on patternID = Pattern.id
-                where Pattern_Word.wordID = $wordId; ";
+                where Pattern_Word.wordID = $id; ";
         $stmt = $pdo->query($sql);
     
         while ($row = $stmt->fetch()) {
@@ -37,6 +37,41 @@ class PatternWordHandler
         }
         
         return $patterns;
+    }
+
+    public function getWordsAndPatters(): array
+    {
+        $pdo = $this->database->connect();
+        $table = self::$table;
+        $array = [];
+
+        $sql = "select distinct id, wordString, syllabifiedWord 
+                from Pattern_Word
+                inner join Word
+                on wordID = Word.id;";
+        $stmt = $pdo->prepare($sql);
+        $stmt->execute();
+
+        while ($row = $stmt->fetch()){
+            $wordId = $row['id'];
+            $wordString = $row['wordString'];
+            $syllabifiedString = $row['syllabifiedWord'];
+
+            $patternsCollection = $this->getPatterns($wordId);
+
+            foreach ($patternsCollection->getAll() as $pattern){
+                $patterns[] = $pattern->getPatterString();
+            }
+
+            $array[] = [
+              'wordId' => $wordId,
+              'wordString' => $wordString,
+              'syllabifiedString' => $syllabifiedString,
+                'patterns' => $patterns
+            ];
+        }
+
+        return $array;
     }
     
     public function insert(PatternCollection $patterns, Word $word)

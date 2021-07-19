@@ -45,7 +45,7 @@ class PatternHandler
         $pdo = $this->database->connect();
         $sql = "select * from $this->table limit 1;";
         $stmt = $pdo->query($sql);
-        
+
         if (empty($stmt->fetch())) {
             return true;
         }
