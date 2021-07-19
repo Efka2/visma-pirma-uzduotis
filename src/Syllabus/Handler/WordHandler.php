@@ -77,8 +77,7 @@ class WordHandler
                 delete from Word
                 Where id = $id;
                 
-                rollback;";
-
+                commit;";
             $stmt = $pdo->prepare($sql);
             $stmt->execute();
 

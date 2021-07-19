@@ -15,7 +15,12 @@ if (!$_SERVER['REMOTE_ADDR'] == '127.0.0.1') {
 
     $router = new Router();
     $router->get('/word', WordController::class . "::getAll");
-
+    $router->delete('/word', function ($id){
+        if($id['id']){
+            $wordController = new WordController(new Syllabus\Database\Database());
+            $wordController->delete($id['id']);
+        }
+    });
     $router->run();
 
 }

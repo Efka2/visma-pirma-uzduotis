@@ -39,7 +39,7 @@ class WordController
         $data = ['Word successfully deleted.'];
 
         header("Content-Type: application/json");
-        $json = json_encode();
+        $json = json_encode($data);
         echo $json;
     }
 }
