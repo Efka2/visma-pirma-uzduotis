@@ -1,6 +1,6 @@
 <?php
 
-namespace Syllabus\Core;
+namespace Syllabus\Http;
 
 class Router
 {

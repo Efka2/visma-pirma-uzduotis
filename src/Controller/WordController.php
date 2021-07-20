@@ -18,8 +18,8 @@ class WordController
         $patterns = $patternHandler->getWordsAndPatters();
 
         header("Content-Type: application/json");
-        $json =  json_encode($patterns);
-        echo ($json);
+        $json = json_encode($patterns);
+        echo($json);
     }
 
     public function post(Word $word)
@@ -43,13 +43,12 @@ class WordController
         $wordHandler = new WordHandler(new Database());
         $deleteStatus = $wordHandler->delete($word);
 
-        if($deleteStatus == 0){
+        if ($deleteStatus == 0) {
             $data = 'Word successfully deleted.';
         } else {
             $data = 'This word was not found';
             header("HTTP/1.0 404 Not Found");
         }
-
 
         header("Content-Type: application/json");
         $json = json_encode($data);
