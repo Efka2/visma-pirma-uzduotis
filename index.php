@@ -1,7 +1,6 @@
 <?php
 
-require_once('autoload.php');
-require_once('src/Syllabus/Core/Router.php');
+require_once('vendor/autoload.php');
 
 use Syllabus\Controller\WordController;
 use Syllabus\Core\Application;
