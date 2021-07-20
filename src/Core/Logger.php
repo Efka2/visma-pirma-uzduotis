@@ -8,7 +8,7 @@ use Syllabus\log\LoggerInterface;
 
 class Logger implements LoggerInterface
 {
-    public const LOGGER_TXT_FILE = 'src/Syllabus/log/log.txt';
+    public const LOGGER_TXT_FILE = 'src/log/log.txt';
     
     public function emergency($message, array $context = array())
     {
