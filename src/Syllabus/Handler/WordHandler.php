@@ -118,11 +118,11 @@ class WordHandler
     public function delete(string $word): int
     {
         $pdo = $this->database->connect();
+        $id = $this->getWordId($word);
+        if(!$id){
+            return -1;
+        }
         try {
-            $id = $this->getWordId($word);
-            if(!$id){
-                return -1;
-            }
 
             $sql = "start transaction;
                    

@@ -20,20 +20,23 @@ if (!$_SERVER['REMOTE_ADDR'] == '127.0.0.1') {
 } else {
 
     $router = new Router();
+
     $router->get('/word', WordController::class . "::getAll");
 
-    $router->delete('/word', function (array $params) {
-        if ($params['word']) {
+    $router->delete('/word', function () {
+            $entityBody = file_get_contents('php://input');
+            //todo add if
+            $data = json_decode($entityBody, true);
+
             $wordController = new WordController();
-            $wordController->delete($params['word']);
-        }
+            $wordController->delete($data['wordString']);
     });
 
     $router->post('/word', function () {
         $entityBody = file_get_contents('php://input');
         //todo add if
-
         $data = json_decode($entityBody, true);
+
 
         $word = new Word();
         $word->setWordString($data['wordString']);

@@ -43,7 +43,7 @@ class WordController
         $wordHandler = new WordHandler(new Database());
         $deleteStatus = $wordHandler->delete($word);
 
-        if($deleteStatus === 1){
+        if($deleteStatus == 0){
             $data = 'Word successfully deleted.';
         } else {
             $data = 'This word was not found';
