@@ -11,7 +11,6 @@ use Syllabus\IO\FileReaderInterface;
 use Syllabus\IO\Output;
 use Syllabus\IO\TerminalOutput;
 use Syllabus\IO\Reader;
-use Syllabus\log\LoggerInterface;
 use Syllabus\Model\Result;
 use SplFileObject;
 use Syllabus\Model\Word;

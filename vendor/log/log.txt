@@ -298,3 +298,7 @@ st4r
 [2021-07-20 10:45:00] Time taken to syllabify: 0.027573 microseconds
 [2021-07-20 12:11:13] Read patterns from database
 [2021-07-20 12:11:19] Time taken to syllabify: 0.024637 microseconds
+[2021-07-20 12:39:57] Read patterns from database
+[2021-07-20 12:40:05] Time taken to syllabify: 0.007149 microseconds
+[2021-07-20 12:40:19] Read patterns from file https://gist.githubusercontent.com/cosmologicon/1e7291714094d71a0e25678316141586/raw/006f7e9093dc7ad72b12ff9f1da649822e56d39d/tex-hyphenation-patterns.txt
+[2021-07-20 12:40:22] Time taken to syllabify: 0.008805 microseconds

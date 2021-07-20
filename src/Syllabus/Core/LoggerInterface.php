@@ -1,6 +1,6 @@
 <?php
 
-namespace Syllabus\log;
+namespace Syllabus\Core;
 
 /**
  * Describes a logger instance.
