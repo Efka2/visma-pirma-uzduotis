@@ -3,6 +3,7 @@
 namespace Syllabus\Core;
 
 use DateTime;
+use Psr\Log\LoggerInterface;
 use Syllabus\Handler\PatternHandler;
 use Syllabus\Handler\PatternWordHandler;
 use Syllabus\Handler\WordHandler;
@@ -31,10 +32,10 @@ class Application
         $syllabus = new Syllabus();
         $foundPatters = new PatternCollection();
         $database = new Database();
-        $wordController = new WordHandler($database);
+        $wordHandler = new WordHandler($database);
         $word = new Word();
         $printPatterns = false;
-        $patternController = new PatternHandler($database);
+        $patternHandler = new PatternHandler($database);
     
         $sourceSelection = $reader->readSelection(
             "Do you want to use patterns from database (1) or file (2)?
@@ -49,24 +50,24 @@ class Application
     
         $allPatterns = $this->getAllPatterns($sourceSelection, $database);
 
-        if ($patternController->isTableEmpty()) {
+        if ($patternHandler->isTableEmpty()) {
             foreach ($allPatterns->getAll() as $pattern){
-                $patternController->insert($pattern);
+                $patternHandler->insert($pattern);
             }
         }
         
         if ($wordImportSelection == Reader::ENTER_WORD_FROM_CLI) {
-            $wordFromCLI = $reader->readWordFromCLI();
+            $wordFromCLI = $reader->readFromCli();
             $word->setWordString($wordFromCLI);
         } else {
-            $wordFromFile = $reader->readWordFromFile('src/Syllabus/log/word.txt');
+            $wordFromFile = $reader->readWordFromFile('vendor/log/word.txt');
             $word->setWordString($wordFromFile);
         }
         
         $timeStart = new DateTime();
         
-        if ($wordController->isWordInDatabase($word)) {
-            $word = $wordController->get($word->getWordString());
+        if ($wordHandler->isWordInDatabase($word)) {
+            $word = $wordHandler->get($word->getWordString());
             $syllabifiedWord = $word->getSyllabifiedWord();
             $patternWordController = new PatternWordHandler($database);
             $foundPatters = $patternWordController->getPatterns($word->getId());
@@ -144,6 +145,4 @@ class Application
         $wordController = new PatternWordHandler($database);
         $wordController->insert($foundPatters, $word);
     }
-    
-
 }

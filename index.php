@@ -12,7 +12,5 @@ if (!$_SERVER['REMOTE_ADDR'] == '127.0.0.1') {
     $application = new Application(new Logger());
     $application->run();
 } else {
-
     include('src/Syllabus/Http/Routes.php');
-
 }

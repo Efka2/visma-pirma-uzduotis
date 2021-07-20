@@ -12,13 +12,7 @@ class Syllabus extends SyllabusHelper
     {
         $this->setWord($word);
         $this->findPatternsInWord($patternArray);
-        $syllabifiedWord = $this->addDashesBetweenSyllables();
-        return $syllabifiedWord;
-    }
-    
-    public function getWordSyllabusTime(): \DateInterval
-    {
-    
+        return $this->addDashesBetweenSyllables();
     }
     
     public function findPatternsInWord(PatternCollection $patterns
@@ -35,6 +29,7 @@ class Syllabus extends SyllabusHelper
             
             if ($position !== false) {
                 $foundPatterns->add($pattern);
+
                 $this->numberArray = $this->populateNumbersArray(
                     $this->numberArray,
                     $pattern,

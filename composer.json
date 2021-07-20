@@ -3,5 +3,8 @@
     "psr-4": {
       "Syllabus\\": "src/Syllabus"
     }
+  },
+  "require": {
+    "psr/log": "^1.1"
   }
 }

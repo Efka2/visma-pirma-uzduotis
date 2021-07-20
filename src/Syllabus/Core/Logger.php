@@ -3,8 +3,7 @@
 
 namespace Syllabus\Core;
 
-
-use Syllabus\Core\LoggerInterface;
+use Psr\Log\LoggerInterface;
 
 class Logger implements LoggerInterface
 {
