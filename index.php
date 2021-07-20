@@ -7,6 +7,8 @@ use Syllabus\Controller\WordController;
 use Syllabus\Core\Application;
 use Syllabus\Core\Logger;
 use Syllabus\Core\Router;
+use Syllabus\Database\Database;
+use Syllabus\Handler\WordHandler;
 use Syllabus\Model\Word;
 
 header("Access-Control-Allow-Methods: OPTIONS,GET,POST,PUT,DELETE");
@@ -20,14 +22,14 @@ if (!$_SERVER['REMOTE_ADDR'] == '127.0.0.1') {
     $router = new Router();
     $router->get('/word', WordController::class . "::getAll");
 
-    $router->delete('/word', function (array $params){
-        if($params['word']){
+    $router->delete('/word', function (array $params) {
+        if ($params['word']) {
             $wordController = new WordController();
             $wordController->delete($params['word']);
         }
     });
 
-    $router->post('/word', function(){
+    $router->post('/word', function () {
         $entityBody = file_get_contents('php://input');
         //todo add if
 
@@ -39,6 +41,20 @@ if (!$_SERVER['REMOTE_ADDR'] == '127.0.0.1') {
 
         $wordController = new WordController();
         $wordController->post($word);
+    });
+
+    $router->put('/word', function () {
+        $entityBody = file_get_contents('php://input');
+
+        $data = json_decode($entityBody, true);
+        $wordHandler = new WordHandler(new Database());
+        $wordController = new WordController();
+        $currentWord = $data['currentWordString'];
+
+
+        if ($wordHandler->isWordInDatabase($data['currentWordString'])) {
+            $wordController->put($currentWord, $data);
+        }
     });
 
 

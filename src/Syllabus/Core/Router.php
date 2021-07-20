@@ -7,11 +7,17 @@ class Router
     private const METHOD_POST = 'POST';
     private const METHOD_DELETE = 'DELETE';
     private const METHOD_GET = 'GET';
+    private const METHOD_PUT = 'PUT';
     private array $handlers;
 
     public function get(string $path, $handler): void
     {
         $this->addHandler(self::METHOD_GET, $path, $handler);
+    }
+
+    public function put(string $path, $handler): void
+    {
+        $this->addHandler(self::METHOD_PUT, $path, $handler);
     }
 
     public function post(string $path, $handler): void

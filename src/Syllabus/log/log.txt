@@ -267,3 +267,20 @@ st4r
 [2021-07-19 15:51:31] Time taken to syllabify: 0.025484 microseconds
 [2021-07-19 19:37:59] Read patterns from database
 [2021-07-19 19:38:02] Time taken to syllabify: 0.082414 microseconds
+[2021-07-19 20:43:47] Read patterns from database
+[2021-07-19 20:43:51] Time taken to syllabify: 0.033236 microseconds
+[2021-07-19 20:44:08] Read patterns from database
+[2021-07-19 20:44:09] Time taken to syllabify: 0.032816 microseconds
+[2021-07-19 20:46:40] Read patterns from database
+[2021-07-19 20:48:15] Read patterns from database
+[2021-07-19 20:48:17] Time taken to syllabify: 0.007071 microseconds
+[2021-07-19 20:48:46] Read patterns from database
+[2021-07-19 20:51:24] Read patterns from database
+[2021-07-19 20:52:15] Read patterns from database
+[2021-07-19 20:52:17] Time taken to syllabify: 0.071212 microseconds
+[2021-07-19 20:52:31] Read patterns from database
+[2021-07-19 20:52:33] Time taken to syllabify: 0.006948 microseconds
+[2021-07-20 08:28:42] Read patterns from database
+[2021-07-20 08:28:45] Time taken to syllabify: 0.050957 microseconds
+[2021-07-20 08:28:59] Read patterns from database
+[2021-07-20 08:29:01] Time taken to syllabify: 0.007133 microseconds

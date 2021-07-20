@@ -37,7 +37,7 @@ class WordHandler
         return $array;
     }
 
-    public function get(Word $word): Word
+    public function get(string $word): ?Word
     {
         $pdo = $this->database->connect();
         $table = self::TABLE_NAME;
@@ -45,6 +45,10 @@ class WordHandler
         $sql = "SELECT * FROM $table WHERE wordString = '$word'";
         $stmt = $pdo->query($sql);
         $data = $stmt->fetch();
+
+        if(!$data){
+            return null;
+        }
 
         $newWord = new Word();
         $newWord->setSyllabifiedWord($data['syllabifiedWord']);
@@ -69,6 +73,25 @@ class WordHandler
         return $data[0];
     }
 
+    public function update(Word $word, array $params): void
+    {
+        $table = self::TABLE_NAME;
+        $pdo = $this->database->connect();
+        $currentWordString = $word->getWordString();
+        $replaceWordString = $params['wordString'];
+        $replaceSyllabifiedWord = $params['syllabifiedWord'];
+
+        $sql = "UPDATE $table 
+                SET 
+                    wordString = '$replaceWordString',
+                    syllabifiedWord = '$replaceSyllabifiedWord'
+                WHERE
+                    wordString = '$currentWordString';";
+        $stmt = $pdo->prepare($sql);
+        $stmt->execute();
+
+    }
+
     public function insert(Word $word): void
     {
         $table = self::TABLE_NAME;
@@ -79,6 +102,17 @@ class WordHandler
         $sql = "INSERT INTO $table (wordString, syllabifiedWord) VALUES (?, ?);";
         $stmt = $pdo->prepare($sql);
         $stmt->execute([$wordString, $syllabifiedWord]);
+    }
+
+    public function isWordInDatabase(
+        string $word
+    ): bool {
+        $wordFromDb =  $this->get($word);
+        if($wordFromDb){
+            return true;
+        }
+
+        return false;
     }
 
     public function delete(string $word): int

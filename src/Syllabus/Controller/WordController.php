@@ -31,9 +31,11 @@ class WordController
         header("HTTP/1.0 201 Created");
     }
 
-    public function patch()
+    public function put(string $currentWord, array $params)
     {
-
+        $wordHandler = new WordHandler(new Database());
+        $word = $wordHandler->get($currentWord);
+        $wordHandler->update($word, $params);
     }
 
     public function delete(string $word)

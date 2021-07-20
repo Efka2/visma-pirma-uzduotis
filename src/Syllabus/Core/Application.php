@@ -66,11 +66,11 @@ class Application
         
         $timeStart = new DateTime();
         
-        if ($this->isWordInDatabase($wordController, $word)) {
-            $word = $wordController->get($word);
+        if ($wordController->isWordInDatabase($word)) {
+            $word = $wordController->get($word->getWordString());
             $syllabifiedWord = $word->getSyllabifiedWord();
             $patternWordController = new PatternWordHandler($database);
-            $foundPatters = $patternWordController->getPatterns($word);
+            $foundPatters = $patternWordController->getPatterns($word->getId());
         } else {
             $syllabifiedWord = $syllabus->syllabify($word, $allPatterns);
             $foundPatters = $syllabus->findPatternsInWord($allPatterns);
@@ -146,22 +146,5 @@ class Application
         $wordController->insert($foundPatters, $word);
     }
     
-    private function isWordInDatabase(
-        WordHandler $wordController,
-        Word $word
-    ): bool {
-        $allWords =  $wordController->getAll();
-        
-        if(!empty($allWords)){
-            foreach ($allWords as $wordFromDb) {
-                if ($wordFromDb == $word) {
-                    echo "This word was already syllabified!\n";
-            
-                    return true;
-                }
-            }
-        }
-        
-        return false;
-    }
+
 }
