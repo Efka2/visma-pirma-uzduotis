@@ -3,7 +3,8 @@
 namespace Syllabus\IO;
 
 use SplFileObject;
-use Syllabus\Core\PatternCollection;
+use Syllabus\Core\CollectionInterface;
+use Syllabus\Core\PatternCollectionProxy;
 use Syllabus\Model\Pattern;
 
 class Reader implements FileReaderInterface, ReaderInterface
@@ -14,8 +15,9 @@ class Reader implements FileReaderInterface, ReaderInterface
     public const ENTER_WORD_FROM_FILE = 4;
     
     public function readFromFileToCollection(SplFileObject $fileObject
-    ): PatternCollection {
-        $data = new PatternCollection();
+    ): CollectionInterface {
+        //todo cringe
+        $data = new PatternCollectionProxy();
         
         while (!$fileObject->eof()) {
             $pattern = new Pattern(trim($fileObject->fgets()));

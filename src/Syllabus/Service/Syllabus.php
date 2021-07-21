@@ -3,6 +3,7 @@
 namespace Syllabus\Service;
 
 use DateTime;
+use Syllabus\Core\CollectionInterface;
 use Syllabus\Core\PatternCollection;
 use Syllabus\Model\Word;
 
@@ -15,7 +16,7 @@ class Syllabus extends SyllabusHelper
         return $this->addDashesBetweenSyllables();
     }
     
-    public function findPatternsInWord(PatternCollection $patterns
+    public function findPatternsInWord(CollectionInterface $patterns
     ): PatternCollection {
         $foundPatterns = new PatternCollection();
         

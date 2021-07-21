@@ -2,6 +2,7 @@
 
 namespace Syllabus\Handler;
 
+use Syllabus\Core\CollectionInterface;
 use Syllabus\Core\PatternCollection;
 use Syllabus\Database\Database;
 use Syllabus\Model\Pattern;
@@ -17,7 +18,7 @@ class PatternWordHandler
         $this->database = $database;
     }
     
-    public function getPatterns($id): PatternCollection
+    public function getPatterns($id): CollectionInterface
     {
         $pdo = $this->database->connect();
         $table = self::$table;

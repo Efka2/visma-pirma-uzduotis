@@ -102,7 +102,7 @@ class Application
     
     //todo move these to reader class?
     //todo another abomination with if else
-    private function getAllPatterns(string $selection, $database): PatternCollection {
+    private function getAllPatterns(string $selection, $database): CollectionInterface {
         if ($selection == Reader::IMPORT_FROM_DATABASE) {
             $patternController = new PatternHandler($database);
             if ($patternController->isTableEmpty()) {
@@ -126,9 +126,10 @@ class Application
         return $allPatterns;
     }
     
-    private function readFromFile(): PatternCollection
+    private function readFromFile(): CollectionInterface
     {
         $reader = new Reader();
+
         $fileName = FileReaderInterface::DEFAULT_PATTERN_LINK;
         $fileReader = new SplFileObject($fileName);
         $allPatterns = $reader->readFromFileToCollection($fileReader);
