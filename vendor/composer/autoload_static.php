@@ -15,6 +15,7 @@ class ComposerStaticInit402cb2a4609d561f632bb34000ceca9c
         array (
             'Psr\\SimpleCache\\' => 16,
             'Psr\\Log\\' => 8,
+            'Psr\\Container\\' => 14,
         ),
     );
 
@@ -30,6 +31,10 @@ class ComposerStaticInit402cb2a4609d561f632bb34000ceca9c
         'Psr\\Log\\' => 
         array (
             0 => __DIR__ . '/..' . '/psr/log/Psr/Log',
+        ),
+        'Psr\\Container\\' => 
+        array (
+            0 => __DIR__ . '/..' . '/psr/container/src',
         ),
     );
 
