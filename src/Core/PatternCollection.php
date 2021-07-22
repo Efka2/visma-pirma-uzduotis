@@ -9,22 +9,22 @@ class PatternCollection extends Collection implements CollectionInterface
     /**
      * @Var Pattern[]
      */
-    protected $items = array();
-    
+    protected $items = [];
+
     public function get($key): ?Pattern
     {
         if (!isset($this->items[$key])) {
-            return null;
+            return NULL;
         }
-        
+
         return $this->items[$key];
     }
-    
+
     public function length(): int
     {
         return count($this->items);
     }
-    
+
     /**
      * @return Pattern[]
      */

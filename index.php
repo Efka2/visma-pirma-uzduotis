@@ -13,5 +13,5 @@ if (!$_SERVER['REMOTE_ADDR'] == '127.0.0.1') {
     $application = $container->get(Application::class);
     $application->run();
 } else {
-    include('src/Syllabus/Http/Routes.php');
+    include(__DIR__.'src/Http/Routes.php');
 }

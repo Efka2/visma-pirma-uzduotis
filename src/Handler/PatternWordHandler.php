@@ -11,7 +11,7 @@ use Syllabus\Model\Word;
 class PatternWordHandler
 {
     private Database $database;
-    private static string $table = "Pattern_Word";
+    private const TABLE_NAME = "Pattern_Word";
     
     public function __construct(Database $database)
     {
@@ -21,7 +21,7 @@ class PatternWordHandler
     public function getPatterns($id): CollectionInterface
     {
         $pdo = $this->database->connect();
-        $table = self::$table;
+        $table = self::TABLE_NAME;
         $patterns = new PatternCollection();
 
         
@@ -43,7 +43,7 @@ class PatternWordHandler
     public function getWordsAndPatters(): array
     {
         $pdo = $this->database->connect();
-        $table = self::$table;
+        $table = self::TABLE_NAME;
         $array = [];
 
         $sql = "select distinct id, wordString, syllabifiedWord 
@@ -78,7 +78,7 @@ class PatternWordHandler
     public function insert(PatternCollection $patterns, Word $word)
     {
         $pdo = $this->database->connect();
-        $table = self::$table;
+        $table = self::TABLE_NAME;
         $wordString = $word->getWordString();
         $syllabifiedWord = $word->getSyllabifiedWord();
     

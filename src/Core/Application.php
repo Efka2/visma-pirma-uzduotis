@@ -27,8 +27,15 @@ class Application
     private PatternWordHandler $patternWordHandler;
     private PatternHandler $patternHandler;
 
-    public function __construct(Logger $logger, Reader $reader, Syllabus $syllabus, Database $database, WordHandler $wordHandler, PatternWordHandler $patternWordHandler, PatternHandler $patternHandler)
-    {
+    public function __construct(
+        Logger $logger,
+        Reader $reader,
+        Syllabus $syllabus,
+        Database $database,
+        WordHandler $wordHandler,
+        PatternWordHandler $patternWordHandler,
+        PatternHandler $patternHandler
+    ) {
         $this->logger = $logger;
         $this->reader = $reader;
         $this->syllabus = $syllabus;
@@ -42,22 +49,25 @@ class Application
     {
         $foundPatters = new PatternCollection();
         $word = new Word();
-        $printPatterns = false;
+        $printPatterns = FALSE;
 
         $sourceSelection = $this->reader->readSelection(
             "Do you want to use patterns from database (1) or file (2)?
             (Type in the number in brackets): ",
-            array(Reader::IMPORT_FROM_DATABASE, Reader::IMPORT_FROM_FILE)
+            [Reader::IMPORT_FROM_DATABASE, Reader::IMPORT_FROM_FILE]
         );
 
         $wordImportSelection = $this->reader->readSelection(
             "Do you want to enter the word from CLI (3) or file (4): ",
-            array(Reader::ENTER_WORD_FROM_CLI, Reader::ENTER_WORD_FROM_FILE)
+            [Reader::ENTER_WORD_FROM_CLI, Reader::ENTER_WORD_FROM_FILE]
         );
 
         $allPatterns = $this->getAllPatterns($sourceSelection, $this->database);
 
+        if ($sourceSelection == Reader::IMPORT_FROM_DATABASE) {$printPatterns = TRUE;}
+
         if ($this->patternHandler->isTableEmpty()) {
+            //todo make a function insertPatterns in patternController?
             foreach ($allPatterns->getAll() as $pattern) {
                 $this->patternHandler->insert($pattern);
             }
@@ -85,16 +95,10 @@ class Application
                 && $sourceSelection == Reader::IMPORT_FROM_DATABASE
             ) {
                 $word->setSyllabifiedWord($syllabifiedWord);
-                $this->insertWordAndPatternsIntoDatabase(
-                    $word,
-                    $foundPatters
-                );
+                $this->insertWordAndPatternsIntoDatabase($word, $foundPatters);
             }
         }
 
-        if ($sourceSelection == Reader::IMPORT_FROM_DATABASE) {
-            $printPatterns = true;
-        }
 
         $diff = $timeStart->diff(new DateTime());
         $this->logger->info("Time taken to syllabify: $diff->f microseconds");
@@ -140,10 +144,7 @@ class Application
         return $allPatterns;
     }
 
-    private function insertWordAndPatternsIntoDatabase(
-        Word $word,
-        PatternCollection $foundPatters
-    ): void
+    private function insertWordAndPatternsIntoDatabase(Word $word, PatternCollection $foundPatters): void
     {
         $this->patternWordHandler->insert($foundPatters, $word);
     }

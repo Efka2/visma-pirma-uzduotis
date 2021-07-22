@@ -22,11 +22,8 @@ class PatternHandler
         $patterns = new PatternCollection();
         $pdo = $this->database->connect();
 
-        $sql = (new MySqlQueryBuilder())
-            ->select(["patternString"])
-            ->from(self::TABLE_NAME);
+        $sql = (new MySqlQueryBuilder())->select(["patternString"])->from(self::TABLE_NAME);
 
-//        $sql = "select patternString from $this->table;";
         $stmt = $pdo->query($sql);
 
         while ($row = $stmt->fetch()) {
@@ -52,13 +49,13 @@ class PatternHandler
         $pdo = $this->database->connect();
         $table = self::TABLE_NAME;
 
-        $sql = "select * from $table limit 1;";
+        $sql = (new MySqlQueryBuilder())->select(['*'])->from($table)->limit(1);
         $stmt = $pdo->query($sql);
 
         if (empty($stmt->fetch())) {
-            return true;
+            return TRUE;
         }
 
-        return false;
+        return FALSE;
     }
 }

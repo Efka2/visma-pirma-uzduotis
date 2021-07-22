@@ -3,12 +3,12 @@
 namespace Syllabus\Handler;
 
 use Syllabus\Database\Database;
+use Syllabus\Database\MySqlQueryBuilder;
 use Syllabus\Model\Word;
 
 class WordHandler
 {
-    private const  TABLE_NAME = "Word";
-
+    private const TABLE_NAME = "Word";
     private Database $database;
 
     public function __construct(Database $database)
@@ -22,7 +22,7 @@ class WordHandler
         $table = self::TABLE_NAME;
         $array = [];
 
-        $sql = "SELECT * FROM $table;";
+        $sql = (new MySqlQueryBuilder())->select(['*'])->from($table);
         $stmt = $pdo->prepare($sql);
         $stmt->execute();
         while ($row = $stmt->fetch()) {
@@ -32,7 +32,6 @@ class WordHandler
                 'syllabifiedWord' => $row['syllabifiedWord']
             ];
             array_push($array, $data);
-
         }
         return $array;
     }
@@ -46,8 +45,8 @@ class WordHandler
         $stmt = $pdo->query($sql);
         $data = $stmt->fetch();
 
-        if(!$data){
-            return null;
+        if (!$data) {
+            return NULL;
         }
 
         $newWord = new Word();
@@ -66,8 +65,8 @@ class WordHandler
         $stmt = $pdo->query($sql);
         $data = $stmt->fetch();
 
-        if(!$data[0]){
-            return null;
+        if (!$data[0]) {
+            return NULL;
         }
 
         return $data[0];
@@ -89,7 +88,6 @@ class WordHandler
                     wordString = '$currentWordString';";
         $stmt = $pdo->prepare($sql);
         $stmt->execute();
-
     }
 
     public function insert(Word $word): void
@@ -104,26 +102,24 @@ class WordHandler
         $stmt->execute([$wordString, $syllabifiedWord]);
     }
 
-    public function isWordInDatabase(
-        string $word
-    ): bool {
-        $wordFromDb =  $this->get($word);
-        if($wordFromDb){
-            return true;
+    public function isWordInDatabase(string $word): bool
+    {
+        $wordFromDb = $this->get($word);
+        if ($wordFromDb) {
+            return TRUE;
         }
 
-        return false;
+        return FALSE;
     }
 
     public function delete(string $word): int
     {
         $pdo = $this->database->connect();
         $id = $this->getWordId($word);
-        if(!$id){
+        if (!$id) {
             return -1;
         }
         try {
-
             $sql = "start transaction;
                    
                 delete from Pattern_Word
@@ -137,7 +133,6 @@ class WordHandler
             $stmt->execute();
 
             return 0;
-
         } catch (\PDOException $exception) {
             //todo replace die() with exception
             echo $exception->errorInfo;

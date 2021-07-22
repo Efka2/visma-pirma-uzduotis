@@ -3,6 +3,7 @@
 namespace Syllabus\Model;
 
 use Syllabus\Database\Database;
+use Syllabus\Service\Syllabus;
 use Syllabus\Service\SyllabusHelper;
 
 class Pattern
@@ -27,14 +28,15 @@ class Pattern
     
     public function getPatternStringWithoutNumbers(): string
     {
-        return str_replace(SyllabusHelper::NUMBERS, '', $this->patternString);
+        return str_replace(Syllabus::NUMBERS, '', $this->patternString);
     }
     
     public function __toString(): string
     {
         return $this->patternString;
     }
-    
+
+    //todo move
     public function getId()
     {
         $db = new Database();

@@ -6,7 +6,7 @@ namespace Syllabus\Service;
 
 use Syllabus\Core\PatternCollection;
 
-class RegexSyllabus extends SyllabusHelper
+class RegexSyllabus
 {
     
     public function syllabify(PatternCollection $allPatterns): string

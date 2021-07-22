@@ -28,3 +28,35 @@
 [2021-07-22 10:40:53] Time taken to syllabify: 0.014405 microseconds
 [2021-07-22 10:41:49] Read patterns from file https://gist.githubusercontent.com/cosmologicon/1e7291714094d71a0e25678316141586/raw/006f7e9093dc7ad72b12ff9f1da649822e56d39d/tex-hyphenation-patterns.txt
 [2021-07-22 10:41:49] Time taken to syllabify: 0.001744 microseconds
+[2021-07-22 12:43:52] Read patterns from database
+[2021-07-22 12:43:54] Time taken to syllabify: 0.006554 microseconds
+[2021-07-22 12:43:59] Read patterns from database
+[2021-07-22 12:43:59] Time taken to syllabify: 0.001332 microseconds
+[2021-07-22 12:44:05] Read patterns from file https://gist.githubusercontent.com/cosmologicon/1e7291714094d71a0e25678316141586/raw/006f7e9093dc7ad72b12ff9f1da649822e56d39d/tex-hyphenation-patterns.txt
+[2021-07-22 12:44:05] Time taken to syllabify: 0.006217 microseconds
+[2021-07-22 12:44:11] Read patterns from file https://gist.githubusercontent.com/cosmologicon/1e7291714094d71a0e25678316141586/raw/006f7e9093dc7ad72b12ff9f1da649822e56d39d/tex-hyphenation-patterns.txt
+[2021-07-22 12:44:13] Time taken to syllabify: 0.006178 microseconds
+[2021-07-22 13:13:39] Read patterns from database
+[2021-07-22 13:13:42] Time taken to syllabify: 0.0062 microseconds
+[2021-07-22 13:13:48] Read patterns from file https://gist.githubusercontent.com/cosmologicon/1e7291714094d71a0e25678316141586/raw/006f7e9093dc7ad72b12ff9f1da649822e56d39d/tex-hyphenation-patterns.txt
+[2021-07-22 13:13:51] Time taken to syllabify: 0.008412 microseconds
+[2021-07-22 13:14:05] Read patterns from database
+[2021-07-22 13:14:07] Time taken to syllabify: 0.025615 microseconds
+[2021-07-22 13:22:30] Read patterns from database
+[2021-07-22 13:22:32] Time taken to syllabify: 0.006725 microseconds
+[2021-07-22 13:26:19] Read patterns from database
+[2021-07-22 13:26:49] Read patterns from database
+[2021-07-22 13:27:52] Read patterns from database
+[2021-07-22 13:27:55] Time taken to syllabify: 0.033771 microseconds
+[2021-07-22 13:31:28] Read patterns from database
+[2021-07-22 13:31:30] Time taken to syllabify: 0.016705 microseconds
+[2021-07-22 13:31:49] Read patterns from database
+[2021-07-22 13:31:50] Time taken to syllabify: 0.006717 microseconds
+[2021-07-22 13:32:40] Read patterns from database
+[2021-07-22 13:32:41] Time taken to syllabify: 0.045966 microseconds
+[2021-07-22 13:33:48] Read patterns from database
+[2021-07-22 13:33:51] Time taken to syllabify: 0.024678 microseconds
+[2021-07-22 13:34:16] Read patterns from database
+[2021-07-22 13:34:18] Time taken to syllabify: 0.103079 microseconds
+[2021-07-22 13:35:28] Read patterns from database
+[2021-07-22 13:35:31] Time taken to syllabify: 0.019122 microseconds
