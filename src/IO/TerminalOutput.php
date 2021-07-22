@@ -4,7 +4,7 @@ namespace Syllabus\IO;
 
 use Syllabus\Model\Result;
 
-class TerminalOutput implements OutputInterface
+class TerminalOutput
 {
     private Result $result;
     private bool $printFoundPatters;

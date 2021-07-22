@@ -9,7 +9,7 @@ use Syllabus\Model\Word;
 class Syllabus
 {
     public const NUMBERS = [0, 1, 2, 3, 4, 5, 6, 7, 8, 9];
-    protected array $numberArray;
+    private array $numberArray;
     private string $word;
     private array $wordArray;
     private string $wordWithDots;
@@ -47,32 +47,17 @@ class Syllabus
         return $foundPatterns;
     }
 
-    public function getWordArray(): array
-    {
-        return $this->wordArray;
-    }
-
     public function getWordWithDots(): string
     {
         return $this->wordWithDots;
     }
 
-    public function getWord(): string
+    private function setWordArray(string $word): array
     {
-        return $this->word;
+        return $this->wordArray = str_split($word);
     }
 
-    public function getNumberArray(): array
-    {
-        return $this->numberArray;
-    }
-
-    protected function setWordArray(string $word): array
-    {
-        return $wordArray = str_split($word);
-    }
-
-    protected function addDashesBetweenSyllables(): string
+    private function addDashesBetweenSyllables(): string
     {
         $offset = -1;
         $word = $this->word;
@@ -86,7 +71,7 @@ class Syllabus
         return $word;
     }
 
-    protected function populateNumbersArray(array $numberArray, string $pattern, int $position): array
+    private function populateNumbersArray(array $numberArray, string $pattern, int $position): array
     {
         $patternChars = str_split($pattern);
 
@@ -104,7 +89,7 @@ class Syllabus
         return $numberArray;
     }
 
-    protected function setWord(Word $word)
+    private function setWord(Word $word)
     {
         $this->word = $word->getWordString();
         $this->wordArray = $this->setWordArray($word);

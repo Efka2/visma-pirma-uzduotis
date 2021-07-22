@@ -58,4 +58,13 @@ class PatternHandler
 
         return FALSE;
     }
+
+    public function getId(string $patternString)
+    {
+        $pdo = $this->database->connect();
+
+        $sql = "SELECT id FROM Pattern where patternString = '$patternString'";
+        $id = $pdo->query($sql)->fetch();
+        return ($id['id']);
+    }
 }

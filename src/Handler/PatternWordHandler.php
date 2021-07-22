@@ -10,12 +10,14 @@ use Syllabus\Model\Word;
 
 class PatternWordHandler
 {
-    private Database $database;
     private const TABLE_NAME = "Pattern_Word";
-    
-    public function __construct(Database $database)
+    private Database $database;
+    private PatternHandler $patternHandler;
+
+    public function __construct(Database $database, PatternHandler $patternHandler)
     {
         $this->database = $database;
+        $this->patternHandler = $patternHandler;
     }
     
     public function getPatterns($id): CollectionInterface
@@ -24,14 +26,13 @@ class PatternWordHandler
         $table = self::TABLE_NAME;
         $patterns = new PatternCollection();
 
-        
         $sql = "select patternString
                 from Pattern
                 inner join $table
                 on patternID = Pattern.id
                 where Pattern_Word.wordID = $id; ";
         $stmt = $pdo->query($sql);
-    
+
         while ($row = $stmt->fetch()) {
             $pattern = new Pattern($row['patternString']);
             $patterns->add($pattern);
@@ -99,7 +100,7 @@ class PatternWordHandler
             $wordId = $stmt2->fetch()[0];
     
             foreach ($patterns->getAll() as $pattern){
-                $patternId = $pattern->getId();
+                $patternId = $this->patternHandler->getId($pattern->getPatterString());
                 
                 $sqlInsertPatternWord = "INSERT INTO $table
                                 (patternID, wordID)

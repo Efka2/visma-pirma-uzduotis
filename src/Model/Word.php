@@ -2,25 +2,10 @@
 
 namespace Syllabus\Model;
 
-use Syllabus\Database\Database;
-
 class Word
 {
-    private int $id;
     private string $wordString;
     private string $syllabifiedWord;
-    
-    public function getId(): int
-    {
-        $db = new Database();
-        $pdo = $db->connect();
-        $patternString = $this->wordString;
-        
-        $sql = "SELECT id FROM Word where wordString = '$patternString';";
-        $id = $pdo->query($sql)->fetch();
-        
-        return ($id['id']);
-    }
     
     public function getSyllabifiedWord(): string
     {

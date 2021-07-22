@@ -16,14 +16,9 @@ class Pattern
         $this->patternString = $patternString;
     }
 
-    public function getPatterString(){
-        return $this->patternString;
-    }
-    
-    //todo trait?
-    public function getPatterStringWithoutDots(): string
+    public function getPatterString(): string
     {
-        return str_replace('.', '', $this->patternString);
+        return $this->patternString;
     }
     
     public function getPatternStringWithoutNumbers(): string

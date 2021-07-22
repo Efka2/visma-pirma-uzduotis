@@ -60,3 +60,21 @@
 [2021-07-22 13:34:18] Time taken to syllabify: 0.103079 microseconds
 [2021-07-22 13:35:28] Read patterns from database
 [2021-07-22 13:35:31] Time taken to syllabify: 0.019122 microseconds
+[2021-07-22 13:38:53] Read patterns from database
+[2021-07-22 13:38:55] Time taken to syllabify: 0.005466 microseconds
+[2021-07-22 13:59:11] Read patterns from database
+[2021-07-22 13:59:13] Time taken to syllabify: 0.006641 microseconds
+[2021-07-22 13:59:17] Read patterns from file https://gist.githubusercontent.com/cosmologicon/1e7291714094d71a0e25678316141586/raw/006f7e9093dc7ad72b12ff9f1da649822e56d39d/tex-hyphenation-patterns.txt
+[2021-07-22 13:59:19] Time taken to syllabify: 0.004634 microseconds
+[2021-07-22 15:47:22] Time taken to syllabify: 0.002304 microseconds
+[2021-07-22 15:48:01] Time taken to syllabify: 0.001754 microseconds
+[2021-07-22 15:48:21] Time taken to syllabify: 0.001572 microseconds
+[2021-07-22 15:48:39] Time taken to syllabify: 0.001699 microseconds
+[2021-07-22 15:49:22] Time taken to syllabify: 0.001888 microseconds
+[2021-07-22 15:51:59] Time taken to syllabify: 0.002183 microseconds
+[2021-07-22 15:52:49] Time taken to syllabify: 0.001557 microseconds
+[2021-07-22 15:53:14] Time taken to syllabify: 0.001792 microseconds
+[2021-07-22 15:53:51] Time taken to syllabify: 0.001811 microseconds
+[2021-07-22 16:00:54] Time taken to syllabify: 0.025895 microseconds
+[2021-07-22 16:01:21] Time taken to syllabify: 0.001515 microseconds
+[2021-07-22 16:01:45] Time taken to syllabify: 0.001848 microseconds

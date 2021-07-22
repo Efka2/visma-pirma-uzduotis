@@ -4,7 +4,7 @@ namespace Syllabus\IO;
 
 use Syllabus\Model\Result;
 
-class FileOutput implements OutputInterface
+class FileOutput
 {
     private Result $result;
     private string $file;

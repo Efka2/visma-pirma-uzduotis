@@ -1,9 +1,10 @@
 <?php
 
+namespace Syllabus\Http;
+
 use Syllabus\Controller\WordController;
 use Syllabus\Database\Database;
 use Syllabus\Handler\WordHandler;
-use Syllabus\Http\Router;
 use Syllabus\Model\Word;
 
 $router = new Router();

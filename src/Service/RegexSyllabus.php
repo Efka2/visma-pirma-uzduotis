@@ -8,7 +8,11 @@ use Syllabus\Core\PatternCollection;
 
 class RegexSyllabus
 {
-    
+    protected array $numberArray;
+    private string $word;
+    private array $wordArray;
+    private string $wordWithDots;
+
     public function syllabify(PatternCollection $allPatterns): string
     {
         $patterns = $this->findPatternsInWord($allPatterns);
@@ -30,12 +34,7 @@ class RegexSyllabus
                     $patternWithoutNumbers
                 );
             }
-            preg_match(
-                "/$patternWithoutNumbers/",
-                $this->getWordWithDots(),
-                $matches,
-                PREG_OFFSET_CAPTURE
-            );
+            preg_match("/$patternWithoutNumbers/", $this->getWordWithDots(), $matches, PREG_OFFSET_CAPTURE);
             if (!empty($matches[0])) {
                 $patterns->add($pattern);
                 $this->numberArray = $this->populateNumbersArray(
@@ -47,6 +46,20 @@ class RegexSyllabus
         }
         
         return $patterns;
+    }
+
+    protected function addDashesBetweenSyllables(): string
+    {
+        $offset = -1;
+        $word = $this->word;
+        foreach ($this->numberArray as $key => $value) {
+            if ($value % 2 !== 0 && $key != 1) {
+                $word = substr_replace($word, '-', $key + $offset, 0);
+                $offset++;
+            }
+        }
+
+        return $word;
     }
     
     private function isPatternEnding(string $patternWithoutNumbers): bool
