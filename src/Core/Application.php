@@ -67,7 +67,7 @@ class Application
             $wordFromCLI = $this->reader->readFromCli();
             $word->setWordString($wordFromCLI);
         } else {
-            $wordFromFile = $this->reader->readWordFromFile('vendor/log/word.txt');
+            $wordFromFile = $this->reader->readWordFromFile('src/log/word.txt');
             $word->setWordString($wordFromFile);
         }
 

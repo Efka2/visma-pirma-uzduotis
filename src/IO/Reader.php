@@ -13,28 +13,32 @@ class Reader implements FileReaderInterface, ReaderInterface
     public const IMPORT_FROM_FILE = 2;
     public const ENTER_WORD_FROM_CLI = 3;
     public const ENTER_WORD_FROM_FILE = 4;
-    
+
+    private PatternCollectionProxy $proxy;
+
+    public function __construct(PatternCollectionProxy $proxy)
+    {
+        $this->proxy = $proxy;
+    }
+
     public function readFromFileToCollection(SplFileObject $fileObject
     ): CollectionInterface {
-        //todo cringe
-        $data = new PatternCollectionProxy();
-        
         while (!$fileObject->eof()) {
             $pattern = new Pattern(trim($fileObject->fgets()));
-            $data->add($pattern);
+            $this->proxy->add($pattern);
         }
-        
-        $fileObject = null;
-        
-        return $data;
+
+        $fileObject = NULL;
+
+        return $this->proxy;
     }
-    
+
     public function readSelection(string $message, array $options): string
     {
-        while (true) {
+        while (TRUE) {
             echo "$message ";
             $line = trim(readline());
-            
+
             foreach ($options as $option) {
                 if ($line == $option) {
                     return $line;
@@ -42,14 +46,14 @@ class Reader implements FileReaderInterface, ReaderInterface
             }
         }
     }
-    
+
     public function readFromCli(): string
     {
         echo "Enter word you want to syllabify: \n";
-        
+
         return trim(readline());
     }
-    
+
     public function readWordFromFile(string $filename)
     {
         return file_get_contents($filename);

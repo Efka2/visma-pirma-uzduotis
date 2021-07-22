@@ -16,3 +16,15 @@
 [2021-07-21 16:56:44] Read patterns from database
 [2021-07-21 16:57:20] Read patterns from database
 [2021-07-21 16:57:20] Time taken to syllabify: 0.020163 microseconds
+[2021-07-22 08:39:52] Read patterns from database
+[2021-07-22 08:39:53] Time taken to syllabify: 0.006478 microseconds
+[2021-07-22 10:38:21] Read patterns from database
+[2021-07-22 10:38:23] Time taken to syllabify: 0.006916 microseconds
+[2021-07-22 10:38:31] Read patterns from file https://gist.githubusercontent.com/cosmologicon/1e7291714094d71a0e25678316141586/raw/006f7e9093dc7ad72b12ff9f1da649822e56d39d/tex-hyphenation-patterns.txt
+[2021-07-22 10:38:31] Time taken to syllabify: 0.002773 microseconds
+[2021-07-22 10:40:21] Read patterns from database
+[2021-07-22 10:40:24] Time taken to syllabify: 0.006207 microseconds
+[2021-07-22 10:40:53] Read patterns from file https://gist.githubusercontent.com/cosmologicon/1e7291714094d71a0e25678316141586/raw/006f7e9093dc7ad72b12ff9f1da649822e56d39d/tex-hyphenation-patterns.txt
+[2021-07-22 10:40:53] Time taken to syllabify: 0.014405 microseconds
+[2021-07-22 10:41:49] Read patterns from file https://gist.githubusercontent.com/cosmologicon/1e7291714094d71a0e25678316141586/raw/006f7e9093dc7ad72b12ff9f1da649822e56d39d/tex-hyphenation-patterns.txt
+[2021-07-22 10:41:49] Time taken to syllabify: 0.001744 microseconds

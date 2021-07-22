@@ -22,7 +22,7 @@ class ComposerStaticInit402cb2a4609d561f632bb34000ceca9c
     public static $prefixDirsPsr4 = array (
         'Syllabus\\' => 
         array (
-            0 => __DIR__ . '/../..' . '/src/Syllabus',
+            0 => __DIR__ . '/../..' . '/src',
         ),
         'Psr\\SimpleCache\\' => 
         array (
@@ -40,6 +40,52 @@ class ComposerStaticInit402cb2a4609d561f632bb34000ceca9c
 
     public static $classMap = array (
         'Composer\\InstalledVersions' => __DIR__ . '/..' . '/composer/InstalledVersions.php',
+        'Psr\\Container\\ContainerExceptionInterface' => __DIR__ . '/..' . '/psr/container/src/ContainerExceptionInterface.php',
+        'Psr\\Container\\ContainerInterface' => __DIR__ . '/..' . '/psr/container/src/ContainerInterface.php',
+        'Psr\\Container\\NotFoundExceptionInterface' => __DIR__ . '/..' . '/psr/container/src/NotFoundExceptionInterface.php',
+        'Psr\\Log\\AbstractLogger' => __DIR__ . '/..' . '/psr/log/Psr/Log/AbstractLogger.php',
+        'Psr\\Log\\InvalidArgumentException' => __DIR__ . '/..' . '/psr/log/Psr/Log/InvalidArgumentException.php',
+        'Psr\\Log\\LogLevel' => __DIR__ . '/..' . '/psr/log/Psr/Log/LogLevel.php',
+        'Psr\\Log\\LoggerAwareInterface' => __DIR__ . '/..' . '/psr/log/Psr/Log/LoggerAwareInterface.php',
+        'Psr\\Log\\LoggerAwareTrait' => __DIR__ . '/..' . '/psr/log/Psr/Log/LoggerAwareTrait.php',
+        'Psr\\Log\\LoggerInterface' => __DIR__ . '/..' . '/psr/log/Psr/Log/LoggerInterface.php',
+        'Psr\\Log\\LoggerTrait' => __DIR__ . '/..' . '/psr/log/Psr/Log/LoggerTrait.php',
+        'Psr\\Log\\NullLogger' => __DIR__ . '/..' . '/psr/log/Psr/Log/NullLogger.php',
+        'Psr\\Log\\Test\\DummyTest' => __DIR__ . '/..' . '/psr/log/Psr/Log/Test/DummyTest.php',
+        'Psr\\Log\\Test\\LoggerInterfaceTest' => __DIR__ . '/..' . '/psr/log/Psr/Log/Test/LoggerInterfaceTest.php',
+        'Psr\\Log\\Test\\TestLogger' => __DIR__ . '/..' . '/psr/log/Psr/Log/Test/TestLogger.php',
+        'Psr\\SimpleCache\\CacheException' => __DIR__ . '/..' . '/psr/simple-cache/src/CacheException.php',
+        'Psr\\SimpleCache\\CacheInterface' => __DIR__ . '/..' . '/psr/simple-cache/src/CacheInterface.php',
+        'Psr\\SimpleCache\\InvalidArgumentException' => __DIR__ . '/..' . '/psr/simple-cache/src/InvalidArgumentException.php',
+        'Syllabus\\Container\\Container' => __DIR__ . '/../..' . '/src/Container/Container.php',
+        'Syllabus\\Controller\\WordController' => __DIR__ . '/../..' . '/src/Controller/WordController.php',
+        'Syllabus\\Core\\Application' => __DIR__ . '/../..' . '/src/Core/Application.php',
+        'Syllabus\\Core\\Cache' => __DIR__ . '/../..' . '/src/Core/Cache.php',
+        'Syllabus\\Core\\Collection' => __DIR__ . '/../..' . '/src/Core/Collection.php',
+        'Syllabus\\Core\\CollectionInterface' => __DIR__ . '/../..' . '/src/Core/CollectionInterface.php',
+        'Syllabus\\Core\\Logger' => __DIR__ . '/../..' . '/src/Core/Logger.php',
+        'Syllabus\\Core\\PatternCollection' => __DIR__ . '/../..' . '/src/Core/PatternCollection.php',
+        'Syllabus\\Core\\PatternCollectionProxy' => __DIR__ . '/../..' . '/src/Core/PatternCollectionProxy.php',
+        'Syllabus\\Database\\Database' => __DIR__ . '/../..' . '/src/Database/Database.php',
+        'Syllabus\\Database\\MySqlQueryBuilder' => __DIR__ . '/../..' . '/src/Database/MySqlQueryBuilder.php',
+        'Syllabus\\Handler\\PatternHandler' => __DIR__ . '/../..' . '/src/Handler/PatternHandler.php',
+        'Syllabus\\Handler\\PatternWordHandler' => __DIR__ . '/../..' . '/src/Handler/PatternWordHandler.php',
+        'Syllabus\\Handler\\WordHandler' => __DIR__ . '/../..' . '/src/Handler/WordHandler.php',
+        'Syllabus\\Http\\Router' => __DIR__ . '/../..' . '/src/Http/Router.php',
+        'Syllabus\\IO\\FileOutput' => __DIR__ . '/../..' . '/src/IO/FileOutput.php',
+        'Syllabus\\IO\\FileReaderInterface' => __DIR__ . '/../..' . '/src/IO/FileReaderInterface.php',
+        'Syllabus\\IO\\Output' => __DIR__ . '/../..' . '/src/IO/Output.php',
+        'Syllabus\\IO\\OutputInterface' => __DIR__ . '/../..' . '/src/IO/OutputInterface.php',
+        'Syllabus\\IO\\Reader' => __DIR__ . '/../..' . '/src/IO/Reader.php',
+        'Syllabus\\IO\\ReaderInterface' => __DIR__ . '/../..' . '/src/IO/ReaderInterface.php',
+        'Syllabus\\IO\\TerminalOutput' => __DIR__ . '/../..' . '/src/IO/TerminalOutput.php',
+        'Syllabus\\Model\\Pattern' => __DIR__ . '/../..' . '/src/Model/Pattern.php',
+        'Syllabus\\Model\\Result' => __DIR__ . '/../..' . '/src/Model/Result.php',
+        'Syllabus\\Model\\Word' => __DIR__ . '/../..' . '/src/Model/Word.php',
+        'Syllabus\\Service\\RegexSyllabus' => __DIR__ . '/../..' . '/src/Service/RegexSyllabus.php',
+        'Syllabus\\Service\\Syllabus' => __DIR__ . '/../..' . '/src/Service/Syllabus.php',
+        'Syllabus\\Service\\SyllabusHelper' => __DIR__ . '/../..' . '/src/Service/SyllabusHelper.php',
+        'Syllabus\\Service\\SyllabusInterface' => __DIR__ . '/../..' . '/src/Service/SyllabusInterface.php',
     );
 
     public static function getInitializer(ClassLoader $loader)

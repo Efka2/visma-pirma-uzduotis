@@ -8,6 +8,7 @@ class MySqlQueryBuilder
 {
     private array $fields = [];
     private array $from = [];
+    private array $innerJoin = [];
     private array $where = [];
 
     public function select(array $fields): MySqlQueryBuilder
@@ -22,7 +23,7 @@ class MySqlQueryBuilder
         return $this;
     }
 
-    public function where(string $where): MySqlQueryBuilder
+    public function where(string $where): self
     {
         $this->where[] = $where;
         return $this;
@@ -30,13 +31,15 @@ class MySqlQueryBuilder
 
     public function __toString(): string
     {
-        $selectString = sprintf('SELECT %s FROM %s',
+        $selectString = sprintf(
+            'SELECT %s FROM %s',
             join(', ', $this->fields),
             join(', ', $this->from),
         );
 
         if (!empty($this->where)) {
-            $whereString = sprintf(' WHERE %s',
+            $whereString = sprintf(
+                ' WHERE %s',
                 join(' AND', $this->where)
             );
             $selectString .= $whereString;
