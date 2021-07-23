@@ -80,7 +80,7 @@ class Application
             $foundPatters = $this->patternWordHandler->getPatterns($wordId);
         } else {
             $syllabifiedWord = $this->syllabus->syllabify($word, $allPatterns);
-            $foundPatters = $this->syllabus->findPatternsInWord($allPatterns);
+            $foundPatters = $this->syllabus->findPatternsInWord($allPatterns, $word);
 
             if (
                 $wordImportSelection == Reader::ENTER_WORD_FROM_CLI

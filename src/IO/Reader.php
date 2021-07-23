@@ -14,30 +14,29 @@ class Reader implements FileReaderInterface, ReaderInterface
     public const ENTER_WORD_FROM_CLI = 3;
     public const ENTER_WORD_FROM_FILE = 4;
 
-
     private PatternCollectionProxy $proxy;
 
-    public function __construct(PatternCollectionProxy $proxy)
+    public function __construct(PatternCollectionProxy $proxy = null)
     {
         $this->proxy = $proxy;
     }
 
-    public function readFromFileToCollection(string $fileName): CollectionInterface
+    public function readFromFileToCollection(string $filename): CollectionInterface
     {
-        $fileObject = new SplFileObject($fileName);
+        $fileObject = new SplFileObject($filename);
         while (!$fileObject->eof()) {
             $pattern = new Pattern(trim($fileObject->fgets()));
             $this->proxy->add($pattern);
         }
 
-        $fileObject = null;
+        $fileObject = NULL;
 
         return $this->proxy;
     }
 
     public function readSelection(string $message, array $options): string
     {
-        while (true) {
+        while (TRUE) {
             echo "$message ";
             $line = trim(readline());
 

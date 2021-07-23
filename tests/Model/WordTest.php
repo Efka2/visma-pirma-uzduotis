@@ -1,6 +1,6 @@
 <?php
 
-namespace Syllabus\Test\Unit;
+namespace Syllabus\Tests\Model;
 
 use PHPUnit\Framework\TestCase;
 use Syllabus\Model\Word;

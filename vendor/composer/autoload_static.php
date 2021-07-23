@@ -32,6 +32,7 @@ class ComposerStaticInit402cb2a4609d561f632bb34000ceca9c
             'Symfony\\Component\\Filesystem\\' => 29,
             'Symfony\\Component\\DependencyInjection\\' => 38,
             'Symfony\\Component\\Config\\' => 25,
+            'Syllabus\\Tests\\' => 15,
             'Syllabus\\' => 9,
         ),
         'P' => 
@@ -88,6 +89,10 @@ class ComposerStaticInit402cb2a4609d561f632bb34000ceca9c
         'Symfony\\Component\\Config\\' => 
         array (
             0 => __DIR__ . '/..' . '/symfony/config',
+        ),
+        'Syllabus\\Tests\\' => 
+        array (
+            0 => __DIR__ . '/../..' . '/tests',
         ),
         'Syllabus\\' => 
         array (

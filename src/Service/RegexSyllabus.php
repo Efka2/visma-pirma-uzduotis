@@ -22,7 +22,7 @@ class RegexSyllabus
         $patterns = new PatternCollection();
 
         foreach ($allPatterns->getAll() as $pattern) {
-            $patternWithoutNumbers = $pattern->getPatternStringWithoutNumbers();
+            $patternWithoutNumbers = $pattern->getPatternWithoutNumbers();
             if ($this->isPatternBeginning($patternWithoutNumbers)) {
                 $patternWithoutNumbers = $this->addStartRegexChar(
                     $patternWithoutNumbers

@@ -18,7 +18,7 @@ class Pattern
         return $this->patternString;
     }
 
-    public function getPatternStringWithoutNumbers(): string
+    public function getPatternWithoutNumbers(): string
     {
         return str_replace(Syllabus::NUMBERS, '', $this->patternString);
     }

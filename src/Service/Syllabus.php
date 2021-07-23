@@ -9,25 +9,25 @@ use Syllabus\Model\Word;
 class Syllabus
 {
     public const NUMBERS = [0, 1, 2, 3, 4, 5, 6, 7, 8, 9];
+    private Word $word;
     private array $numberArray;
-    private string $word;
     private array $wordArray;
-    private string $wordWithDots;
 
     public function syllabify(Word $word, $patternArray): string
     {
         $this->setWord($word);
-        $this->findPatternsInWord($patternArray);
+        $this->findPatternsInWord($patternArray, $word);
         return $this->addDashesBetweenSyllables();
     }
 
-    public function findPatternsInWord(CollectionInterface $patterns): PatternCollection
+    public function findPatternsInWord(CollectionInterface $patterns, Word $word): PatternCollection
     {
         $foundPatterns = new PatternCollection();
 
         foreach ($patterns->getAll() as $pattern) {
             $patternWithoutNumbers = $pattern->getPatternStringWithoutNumbers();
-            $position = strpos($this->getWordWithDots(), $patternWithoutNumbers);
+            $wordWithoutDots = $this->getWordWithDots($word);
+            $position = strpos($wordWithoutDots, $patternWithoutNumbers);
 
             if ($position !== false) {
                 $foundPatterns->add($pattern);
@@ -43,12 +43,12 @@ class Syllabus
         return $foundPatterns;
     }
 
-    public function getWordWithDots(): string
+    private function getWordWithDots(Word $word): string
     {
-        return $this->wordWithDots;
+        return ".$word.";
     }
 
-    private function setWordArray(string $word): array
+    private function setWordArray(Word $word): array
     {
         return $this->wordArray = str_split($word);
     }
@@ -87,10 +87,9 @@ class Syllabus
 
     private function setWord(Word $word)
     {
-        $this->word = $word->getWordString();
+        $this->word = $word;
         $this->wordArray = $this->setWordArray($word);
         $this->numberArray = $this->setNumberArray($this->wordArray);
-        $this->wordWithDots = '.' . $word . '.';
     }
 
     private function setNumberArray(array $wordArray): array
