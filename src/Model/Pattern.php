@@ -2,7 +2,6 @@
 
 namespace Syllabus\Model;
 
-use Syllabus\Database\Database;
 use Syllabus\Service\Syllabus;
 
 class Pattern

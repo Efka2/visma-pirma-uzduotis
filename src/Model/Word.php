@@ -5,7 +5,7 @@ namespace Syllabus\Model;
 class Word
 {
     private string $wordString;
-    private string $syllabifiedWord;
+    private string $syllabifiedWord = '';
 
     public function __construct(string $wordString)
     {
