@@ -6,7 +6,12 @@ class Word
 {
     private string $wordString;
     private string $syllabifiedWord;
-    
+
+    public function __construct(string $wordString)
+    {
+        $this->wordString = $wordString;
+    }
+
     public function getSyllabifiedWord(): string
     {
         return $this->syllabifiedWord;

@@ -49,9 +49,8 @@ class WordHandler
             return NULL;
         }
 
-        $newWord = new Word();
+        $newWord = new Word($data['wordString']);
         $newWord->setSyllabifiedWord($data['syllabifiedWord']);
-        $newWord->setWordString($data['wordString']);
 
         return $newWord;
     }

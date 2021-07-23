@@ -14,6 +14,7 @@ class Reader implements FileReaderInterface, ReaderInterface
     public const ENTER_WORD_FROM_CLI = 3;
     public const ENTER_WORD_FROM_FILE = 4;
 
+
     private PatternCollectionProxy $proxy;
 
     public function __construct(PatternCollectionProxy $proxy)
@@ -21,8 +22,9 @@ class Reader implements FileReaderInterface, ReaderInterface
         $this->proxy = $proxy;
     }
 
-    public function readFromFileToCollection(SplFileObject $fileObject
-    ): CollectionInterface {
+    public function readFromFileToCollection(string $fileName): CollectionInterface
+    {
+        $fileObject = new SplFileObject($fileName);
         while (!$fileObject->eof()) {
             $pattern = new Pattern(trim($fileObject->fgets()));
             $this->proxy->add($pattern);

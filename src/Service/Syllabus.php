@@ -21,17 +21,13 @@ class Syllabus
         return $this->addDashesBetweenSyllables();
     }
 
-    public function findPatternsInWord(CollectionInterface $patterns
-    ): PatternCollection {
+    public function findPatternsInWord(CollectionInterface $patterns): PatternCollection
+    {
         $foundPatterns = new PatternCollection();
 
         foreach ($patterns->getAll() as $pattern) {
             $patternWithoutNumbers = $pattern->getPatternStringWithoutNumbers();
-
-            $position = strpos(
-                $this->getWordWithDots(),
-                $patternWithoutNumbers
-            );
+            $position = strpos($this->getWordWithDots(), $patternWithoutNumbers);
 
             if ($position !== FALSE) {
                 $foundPatterns->add($pattern);

@@ -11,7 +11,6 @@ use Syllabus\IO\FileReaderInterface;
 use Syllabus\IO\TerminalOutput;
 use Syllabus\IO\Reader;
 use Syllabus\Model\Result;
-use SplFileObject;
 use Syllabus\Model\Word;
 use Syllabus\Service\Syllabus;
 
@@ -42,8 +41,6 @@ class Application
 
     public function run(): void
     {
-        $foundPatters = new PatternCollection();
-        $word = new Word();
         $printPatterns = FALSE;
 
         $sourceSelection = $this->reader->readSelection(
@@ -57,33 +54,28 @@ class Application
             [Reader::ENTER_WORD_FROM_CLI, Reader::ENTER_WORD_FROM_FILE]
         );
 
-        $allPatterns = $this->getAllPatterns($sourceSelection);
+        $allPatterns = $this->getAllPatterns();
 
         if ($sourceSelection == Reader::IMPORT_FROM_DATABASE) {
             $printPatterns = TRUE;
         }
 
-        if ($this->patternHandler->isTableEmpty()) {
-            foreach ($allPatterns->getAll() as $pattern) {
-                $this->patternHandler->insert($pattern);
-            }
-        }
-
         if ($wordImportSelection == Reader::ENTER_WORD_FROM_CLI) {
             $wordFromCLI = $this->reader->readFromCli();
-            $word->setWordString($wordFromCLI);
+            $word = new Word($wordFromCLI);
         } else {
             $wordFromFile = $this->reader->readWordFromFile('src/log/word.txt');
-            $word->setWordString($wordFromFile);
+            $word = new Word($wordFromFile);
         }
 
         $timeStart = new DateTime();
 
         //todo change this somehow
+        //change it to result maybe
         if ($this->wordHandler->isWordInDatabase($word)) {
             $word = $this->wordHandler->get($word->getWordString());
-            $syllabifiedWord = $word->getSyllabifiedWord();
             $wordId = $this->wordHandler->getWordId($word);
+            $syllabifiedWord = $word->getSyllabifiedWord();
             $foundPatters = $this->patternWordHandler->getPatterns($wordId);
         } else {
             $syllabifiedWord = $this->syllabus->syllabify($word, $allPatterns);
@@ -108,27 +100,17 @@ class Application
 
     //todo move these to reader class?
     //todo another abomination with if else
-    private function getAllPatterns(string $selection): CollectionInterface
+    private function getAllPatterns(): CollectionInterface
     {
-        if ($selection == Reader::IMPORT_FROM_DATABASE) {
-            if ($this->patternHandler->isTableEmpty()) {
-                $allPatterns = $this->readFromFile();
-            } else {
-                $allPatterns = $this->patternHandler->index();
+        $isTableEmpty = $this->patternHandler->isTableEmpty();
+
+        if($isTableEmpty){
+            $allPatterns = $this->reader->readFromFileToCollection(FileReaderInterface::DEFAULT_PATTERN_LINK);
+            foreach ($allPatterns->getAll() as $pattern) {
+                $this->patternHandler->insert($pattern);
             }
-        } else {
-            $allPatterns = $this->readFromFile();
+            return $allPatterns;
         }
-        return $allPatterns;
-    }
-
-    private function readFromFile(): CollectionInterface
-    {
-        $fileName = FileReaderInterface::DEFAULT_PATTERN_LINK;
-        $fileReader = new SplFileObject($fileName);
-        $allPatterns = $this->reader->readFromFileToCollection($fileReader);
-        $this->logger->info("Read patterns from file $fileName");
-
-        return $allPatterns;
+        return $allPatterns = $this->patternHandler->index();
     }
 }
