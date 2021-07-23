@@ -25,7 +25,7 @@ class Syllabus
         $foundPatterns = new PatternCollection();
 
         foreach ($patterns->getAll() as $pattern) {
-            $patternWithoutNumbers = $pattern->getPatternStringWithoutNumbers();
+            $patternWithoutNumbers = $pattern->getPatternWithoutNumbers();
             $wordWithoutDots = $this->getWordWithDots($word);
             $position = strpos($wordWithoutDots, $patternWithoutNumbers);
 

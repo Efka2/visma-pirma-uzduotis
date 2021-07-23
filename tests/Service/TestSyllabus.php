@@ -5,38 +5,66 @@ namespace Syllabus\Tests\Service;
 use PHPUnit\Framework\TestCase;
 use Syllabus\Core\CollectionInterface;
 use Syllabus\Core\PatternCollectionProxy;
+use Syllabus\IO\FileReaderInterface;
+use Syllabus\IO\Reader;
 use Syllabus\Model\Pattern;
+use Syllabus\Model\Word;
 use Syllabus\Service\Syllabus;
 
 class TestSyllabus extends TestCase
 {
 
-    public function testPatternArray(): array
+    public function testDependPatternArray(): array
     {
-        $patternArray = [
-            '.sy2',
-            's4y',
-            'ys1t',
-            '.mis1',
-            'a2n',
-            'm2is',
-            '2n1s2',
-            'n2sl',
-            's1l2',
-            's3lat',
-            'st4r',
-            '4te.',
-            '1tra'
-        ];
+        $reader = new Reader();
+        $patternCollection = $reader->readFromFileToCollection(FileReaderInterface::DEFAULT_PATTERN_LINK);
+        $this->assertInstanceOf(PatternCollectionProxy::class, $patternCollection);
+        return $patternCollection->getAll();
+    }
 
-        $this->assertIsArray($patternArray);
-        return $patternArray;
+    public function provideWords(): array
+    {
+        return [
+            [
+                'vigorous',
+                'vig-or-ous'
+            ],
+            [
+                'changed',
+                'changed'
+            ],
+            [
+                'pitch',
+                'pitch'
+            ],
+            [
+                'uncopyrightable',
+                'un-copy-rightable'
+            ],
+            [
+                'system',
+                'sys-tem'
+            ],
+            [
+                'disastrous',
+                'dis-as-trous'
+            ],
+            [
+                'frightening',
+                'fright-en-ing'
+            ],
+            [
+                'encouraging',
+                'en-cour-ag-ing'
+            ]
+        ];
     }
 
     /**
-     * @depends  testPatternArray
+     * @depends  testDependPatternArray
+     * @dataProvider provideWords
      */
-    public function testSomething(array $patterns)
+    public function testWordIsSyllabifiedCorrectly(string $word, string $expected, array $patterns)
     {
         $patternCollection = new PatternCollectionProxy();
         $count = count($patterns);
@@ -48,10 +76,9 @@ class TestSyllabus extends TestCase
         $this->assertIsArray($patternCollection->getAll());
 
         $syllabus = new Syllabus();
-
-        $foundPatterns = $syllabus->syllabify('mistranslate', $patternCollection);
-        print_r($foundPatterns);
-
-        $this->assertTrue(TRUE);
+        $wordModel = new Word($word);
+        $syllabifiedWord = $syllabus->syllabify($wordModel, $patternCollection);
+        $this->assertEquals($expected,$syllabifiedWord);
     }
+
 }
