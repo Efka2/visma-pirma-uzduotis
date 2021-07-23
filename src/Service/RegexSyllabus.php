@@ -19,8 +19,8 @@ class RegexSyllabus
         return $this->addDashesBetweenSyllables();
     }
     
-    public function findPatternsInWord(PatternCollection $allPatterns
-    ): PatternCollection {
+    public function findPatternsInWord(PatternCollection $allPatterns): PatternCollection
+    {
         $patterns = new PatternCollection();
         
         foreach ($allPatterns->getAll() as $pattern) {
@@ -80,5 +80,10 @@ class RegexSyllabus
     private function addStartRegexChar(string $patternWithoutNumbers)
     {
         return preg_filter('#\.#', "^.", $patternWithoutNumbers);
+    }
+
+    public function getWordWithDots(): string
+    {
+        return $this->wordWithDots;
     }
 }
