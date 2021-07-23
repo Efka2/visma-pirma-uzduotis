@@ -6,11 +6,11 @@ use Syllabus\Model\Pattern;
 
 class PatternCollectionProxy implements CollectionInterface
 {
-    private ?PatternCollection $patternCollection = NULL;
+    private ?PatternCollection $patternCollection = null;
 
     public function add($item): void
     {
-        if ($this->patternCollection == NULL) {
+        if ($this->patternCollection == null) {
             $this->makePatternCollection();
         }
         $this->patternCollection->add($item);
@@ -18,7 +18,7 @@ class PatternCollectionProxy implements CollectionInterface
 
     public function get($key): ?Pattern
     {
-        if ($this->patternCollection == NULL) {
+        if ($this->patternCollection == null) {
             $this->makePatternCollection();
         }
         return $this->patternCollection->get($key);
@@ -26,7 +26,7 @@ class PatternCollectionProxy implements CollectionInterface
 
     public function remove($key): void
     {
-        if ($this->patternCollection == NULL) {
+        if ($this->patternCollection == null) {
             $this->makePatternCollection();
         }
         $this->patternCollection->remove($key);
@@ -34,7 +34,7 @@ class PatternCollectionProxy implements CollectionInterface
 
     public function length(): int
     {
-        if ($this->patternCollection == NULL) {
+        if ($this->patternCollection == null) {
             $this->makePatternCollection();
         }
         return $this->patternCollection->length();
@@ -45,7 +45,7 @@ class PatternCollectionProxy implements CollectionInterface
      */
     public function getAll(): array
     {
-        if ($this->patternCollection == NULL) {
+        if ($this->patternCollection == null) {
             $this->makePatternCollection();
         }
         return $this->patternCollection->getAll();

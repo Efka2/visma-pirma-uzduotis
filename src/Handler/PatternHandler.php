@@ -53,10 +53,10 @@ class PatternHandler
         $stmt = $pdo->query($sql);
 
         if (empty($stmt->fetch())) {
-            return TRUE;
+            return true;
         }
 
-        return FALSE;
+        return false;
     }
 
     public function getId(string $patternString)

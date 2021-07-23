@@ -1,8 +1,6 @@
 <?php
 
-
 namespace Syllabus\Service;
-
 
 use Syllabus\Core\PatternCollection;
 
@@ -18,11 +16,11 @@ class RegexSyllabus
         $patterns = $this->findPatternsInWord($allPatterns);
         return $this->addDashesBetweenSyllables();
     }
-    
+
     public function findPatternsInWord(PatternCollection $allPatterns): PatternCollection
     {
         $patterns = new PatternCollection();
-        
+
         foreach ($allPatterns->getAll() as $pattern) {
             $patternWithoutNumbers = $pattern->getPatternStringWithoutNumbers();
             if ($this->isPatternBeginning($patternWithoutNumbers)) {
@@ -44,7 +42,7 @@ class RegexSyllabus
                 );
             }
         }
-        
+
         return $patterns;
     }
 
@@ -61,22 +59,22 @@ class RegexSyllabus
 
         return $word;
     }
-    
+
     private function isPatternEnding(string $patternWithoutNumbers): bool
     {
         return preg_match("/\.$/", $patternWithoutNumbers);
     }
-    
+
     private function isPatternBeginning(string $patternWithoutNumbers): bool
     {
         return preg_match("/^\./", $patternWithoutNumbers);
     }
-    
+
     private function addEndingRegexChar(string $patternWithoutNumbers)
     {
-        return preg_filter("#\.#",".$",$patternWithoutNumbers);
+        return preg_filter("#\.#", ".$", $patternWithoutNumbers);
     }
-    
+
     private function addStartRegexChar(string $patternWithoutNumbers)
     {
         return preg_filter('#\.#', "^.", $patternWithoutNumbers);

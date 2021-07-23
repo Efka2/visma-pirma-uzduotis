@@ -19,7 +19,7 @@ class PatternWordHandler
         $this->database = $database;
         $this->patternHandler = $patternHandler;
     }
-    
+
     public function getPatterns($id): CollectionInterface
     {
         $pdo = $this->database->connect();
@@ -37,7 +37,7 @@ class PatternWordHandler
             $pattern = new Pattern($row['patternString']);
             $patterns->add($pattern);
         }
-        
+
         return $patterns;
     }
 
@@ -54,14 +54,14 @@ class PatternWordHandler
         $stmt = $pdo->prepare($sql);
         $stmt->execute();
 
-        while ($row = $stmt->fetch()){
+        while ($row = $stmt->fetch()) {
             $wordId = $row['id'];
             $wordString = $row['wordString'];
             $syllabifiedString = $row['syllabifiedWord'];
 
             $patternsCollection = $this->getPatterns($wordId);
 
-            foreach ($patternsCollection->getAll() as $pattern){
+            foreach ($patternsCollection->getAll() as $pattern) {
                 $patterns[] = $pattern->getPatterString();
             }
 
@@ -75,44 +75,43 @@ class PatternWordHandler
 
         return $array;
     }
-    
+
     public function insert(PatternCollection $patterns, Word $word)
     {
         $pdo = $this->database->connect();
         $table = self::TABLE_NAME;
         $wordString = $word->getWordString();
         $syllabifiedWord = $word->getSyllabifiedWord();
-    
+
         try {
             $pdo->beginTransaction();
-            
+
             $sqlInsertWord = "INSERT INTO Word
                             (wordString, syllabifiedWord)
                              VALUES (?, ?);";
-            
+
             $stmt = $pdo->prepare($sqlInsertWord);
             $stmt->execute([$wordString, $syllabifiedWord]);
-            
+
             $stmt->closeCursor();
-            
+
             $sqlSelectWordId = "SELECT id FROM Word WHERE wordString = '$word';";
             $stmt2 = $pdo->query($sqlSelectWordId);
             $wordId = $stmt2->fetch()[0];
-    
-            foreach ($patterns->getAll() as $pattern){
+
+            foreach ($patterns->getAll() as $pattern) {
                 $patternId = $this->patternHandler->getId($pattern->getPatterString());
-                
+
                 $sqlInsertPatternWord = "INSERT INTO $table
                                 (patternID, wordID)
                                 VALUES (?, ?);";
-    
+
                 $stmt = $pdo->prepare($sqlInsertPatternWord);
                 $stmt->execute([$patternId, $wordId]);
                 $stmt->closeCursor();
             }
-    
+
             $pdo->commit();
-    
         } catch (\PDOException $exception) {
             $pdo->rollBack();
             die($exception->getMessage());

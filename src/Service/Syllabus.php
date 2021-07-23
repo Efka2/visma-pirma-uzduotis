@@ -29,7 +29,7 @@ class Syllabus
             $patternWithoutNumbers = $pattern->getPatternStringWithoutNumbers();
             $position = strpos($this->getWordWithDots(), $patternWithoutNumbers);
 
-            if ($position !== FALSE) {
+            if ($position !== false) {
                 $foundPatterns->add($pattern);
 
                 $this->numberArray = $this->populateNumbersArray(
@@ -93,9 +93,10 @@ class Syllabus
         $this->wordWithDots = '.' . $word . '.';
     }
 
-    private function setNumberArray(array $wordArray)
+    private function setNumberArray(array $wordArray): array
     {
-        for ($i = 0; $i < count($wordArray); $i++) {
+        $size = count($wordArray);
+        for ($i = 0; $i < $size; $i++) {
             $numberArray[$i] = 0;
         }
 

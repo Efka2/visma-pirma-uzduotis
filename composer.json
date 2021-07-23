@@ -11,6 +11,7 @@
     "psr/container": "^2.0",
     "ext-json": "*",
     "ext-http": "*",
-    "phpmd/phpmd": "^2.10"
+    "phpmd/phpmd": "^2.10",
+    "squizlabs/php_codesniffer": "^3.6"
   }
 }

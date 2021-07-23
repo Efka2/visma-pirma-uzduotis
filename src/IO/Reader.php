@@ -30,14 +30,14 @@ class Reader implements FileReaderInterface, ReaderInterface
             $this->proxy->add($pattern);
         }
 
-        $fileObject = NULL;
+        $fileObject = null;
 
         return $this->proxy;
     }
 
     public function readSelection(string $message, array $options): string
     {
-        while (TRUE) {
+        while (true) {
             echo "$message ";
             $line = trim(readline());
 

@@ -46,7 +46,7 @@ class WordHandler
         $data = $stmt->fetch();
 
         if (!$data) {
-            return NULL;
+            return null;
         }
 
         $newWord = new Word($data['wordString']);
@@ -65,7 +65,7 @@ class WordHandler
         $data = $stmt->fetch();
 
         if (!$data[0]) {
-            return NULL;
+            return null;
         }
 
         return $data[0];
@@ -105,10 +105,10 @@ class WordHandler
     {
         $wordFromDb = $this->get($word);
         if ($wordFromDb) {
-            return TRUE;
+            return true;
         }
 
-        return FALSE;
+        return false;
     }
 
     public function delete(string $word): int

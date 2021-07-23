@@ -1,8 +1,6 @@
 <?php
 
-
 namespace Syllabus\Database;
-
 
 class MySqlQueryBuilder
 {
@@ -61,8 +59,8 @@ class MySqlQueryBuilder
             $selectString .= $whereString;
         }
 
-        if(!empty($this->limit)){
-            $selectString .= sprintf(' LIMIT %d' , $this->limit);
+        if (!empty($this->limit)) {
+            $selectString .= sprintf(' LIMIT %d', $this->limit);
         }
 
         return $selectString;

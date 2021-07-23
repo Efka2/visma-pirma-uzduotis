@@ -1,6 +1,5 @@
 <?php
 
-
 namespace Syllabus\Core;
 
 use Psr\Log\LoggerInterface;
@@ -72,5 +71,4 @@ class Logger implements LoggerInterface
         }
         return $format;
     }
-
 }

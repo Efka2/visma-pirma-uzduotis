@@ -4,7 +4,7 @@ namespace Syllabus\Core;
 
 class Collection implements CollectionInterface
 {
-    protected $items;
+    protected array $items;
 
     public function add($item): void
     {
@@ -24,7 +24,7 @@ class Collection implements CollectionInterface
     public function get($key): ?object
     {
         if (!isset($this->items[$key])) {
-            return NULL;
+            return null;
         }
 
         return $this->items[$key];

@@ -1,8 +1,6 @@
 <?php
 
-
 namespace Syllabus\Core;
-
 
 use Psr\SimpleCache\CacheInterface;
 

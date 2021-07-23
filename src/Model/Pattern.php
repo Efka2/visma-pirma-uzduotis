@@ -8,7 +8,7 @@ use Syllabus\Service\Syllabus;
 class Pattern
 {
     private string $patternString;
-    
+
     public function __construct(string $patternString)
     {
         $this->patternString = $patternString;
@@ -18,12 +18,12 @@ class Pattern
     {
         return $this->patternString;
     }
-    
+
     public function getPatternStringWithoutNumbers(): string
     {
         return str_replace(Syllabus::NUMBERS, '', $this->patternString);
     }
-    
+
     public function __toString(): string
     {
         return $this->patternString;

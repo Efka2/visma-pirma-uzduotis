@@ -1,10 +1,7 @@
 <?php
 
-
 namespace Syllabus\Controller;
 
-
-use Syllabus\Database\Database;
 use Syllabus\Handler\PatternWordHandler;
 use Syllabus\Handler\WordHandler;
 use Syllabus\Model\Word;

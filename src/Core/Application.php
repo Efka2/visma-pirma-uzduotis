@@ -41,7 +41,7 @@ class Application
 
     public function run(): void
     {
-        $printPatterns = FALSE;
+        $printPatterns = false;
 
         $sourceSelection = $this->reader->readSelection(
             "Do you want to use patterns from database (1) or file (2)?
@@ -57,13 +57,14 @@ class Application
         $allPatterns = $this->getAllPatterns();
 
         if ($sourceSelection == Reader::IMPORT_FROM_DATABASE) {
-            $printPatterns = TRUE;
+            $printPatterns = true;
         }
 
         if ($wordImportSelection == Reader::ENTER_WORD_FROM_CLI) {
             $wordFromCLI = $this->reader->readFromCli();
             $word = new Word($wordFromCLI);
-        } else {
+        }
+        if ($wordImportSelection == Reader::ENTER_WORD_FROM_FILE) {
             $wordFromFile = $this->reader->readWordFromFile('src/log/word.txt');
             $word = new Word($wordFromFile);
         }
@@ -81,7 +82,8 @@ class Application
             $syllabifiedWord = $this->syllabus->syllabify($word, $allPatterns);
             $foundPatters = $this->syllabus->findPatternsInWord($allPatterns);
 
-            if ($wordImportSelection == Reader::ENTER_WORD_FROM_CLI
+            if (
+                $wordImportSelection == Reader::ENTER_WORD_FROM_CLI
                 && $sourceSelection == Reader::IMPORT_FROM_DATABASE
             ) {
                 $word->setSyllabifiedWord($syllabifiedWord);
@@ -104,7 +106,7 @@ class Application
     {
         $isTableEmpty = $this->patternHandler->isTableEmpty();
 
-        if($isTableEmpty){
+        if ($isTableEmpty) {
             $allPatterns = $this->reader->readFromFileToCollection(FileReaderInterface::DEFAULT_PATTERN_LINK);
             foreach ($allPatterns->getAll() as $pattern) {
                 $this->patternHandler->insert($pattern);

@@ -5,7 +5,7 @@
         'type' => 'library',
         'install_path' => __DIR__ . '/../../',
         'aliases' => array(),
-        'reference' => '0cab67bb30cefe9a371f43468713bcddb8af9d1e',
+        'reference' => 'f410bc051995dec91afbfae623ab58acba20b6b9',
         'name' => '__root__',
         'dev' => true,
     ),
@@ -16,7 +16,7 @@
             'type' => 'library',
             'install_path' => __DIR__ . '/../../',
             'aliases' => array(),
-            'reference' => '0cab67bb30cefe9a371f43468713bcddb8af9d1e',
+            'reference' => 'f410bc051995dec91afbfae623ab58acba20b6b9',
             'dev_requirement' => false,
         ),
         'composer/xdebug-handler' => array(
@@ -71,6 +71,15 @@
             'install_path' => __DIR__ . '/../psr/simple-cache',
             'aliases' => array(),
             'reference' => '408d5eafb83c57f6365a3ca330ff23aa4a5fa39b',
+            'dev_requirement' => false,
+        ),
+        'squizlabs/php_codesniffer' => array(
+            'pretty_version' => '3.6.0',
+            'version' => '3.6.0.0',
+            'type' => 'library',
+            'install_path' => __DIR__ . '/../squizlabs/php_codesniffer',
+            'aliases' => array(),
+            'reference' => 'ffced0d2c8fa8e6cdc4d695a743271fab6c38625',
             'dev_requirement' => false,
         ),
         'symfony/config' => array(
