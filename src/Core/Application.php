@@ -80,7 +80,7 @@ class Application
             $foundPatters = $this->patternWordHandler->getPatterns($wordId);
         } else {
             $syllabifiedWord = $this->syllabus->syllabify($word, $allPatterns);
-            $foundPatters = $this->syllabus->findPatternsInWord($allPatterns, $word);
+            $foundPatters = $this->syllabus->findPatternsInWord($word, $allPatterns);
 
             if (
                 $wordImportSelection == Reader::ENTER_WORD_FROM_CLI
@@ -90,7 +90,8 @@ class Application
                 $this->patternWordHandler->insert($foundPatters, $word);
             }
         }
-
+        print_r($foundPatters->getAll());
+        die();
         $diff = $timeStart->diff(new DateTime());
         $this->logger->info("Time taken to syllabify: $diff->f microseconds");
 

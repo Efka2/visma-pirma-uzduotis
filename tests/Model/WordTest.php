@@ -57,5 +57,4 @@ class WordTest extends TestCase
         $this->expectErrorMessage("Too few arguments");
         $word = new Word();
     }
-
 }

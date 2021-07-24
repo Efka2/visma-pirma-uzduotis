@@ -13,21 +13,21 @@ class Syllabus
     private array $numberArray;
     private array $wordArray;
 
-    public function syllabify(Word $word, $patternArray): string
+    public function syllabify(Word $word, CollectionInterface $patternArray): string
     {
         $this->setWord($word);
-        $this->findPatternsInWord($patternArray, $word);
+        $this->findPatternsInWord($word, $patternArray);
         return $this->addDashesBetweenSyllables();
     }
 
-    public function findPatternsInWord(CollectionInterface $patterns, Word $word): PatternCollection
+    public function findPatternsInWord(Word $word, CollectionInterface $patterns): PatternCollection
     {
         $foundPatterns = new PatternCollection();
+        $this->setWord($word);
 
         foreach ($patterns->getAll() as $pattern) {
             $patternWithoutNumbers = $pattern->getPatternWithoutNumbers();
-            $wordWithoutDots = $this->getWordWithDots($word);
-            $position = strpos($wordWithoutDots, $patternWithoutNumbers);
+            $position = strpos(".$word.", $patternWithoutNumbers);
 
             if ($position !== false) {
                 $foundPatterns->add($pattern);
@@ -41,11 +41,6 @@ class Syllabus
         }
 
         return $foundPatterns;
-    }
-
-    private function getWordWithDots(Word $word): string
-    {
-        return ".$word.";
     }
 
     private function setWordArray(Word $word): array
