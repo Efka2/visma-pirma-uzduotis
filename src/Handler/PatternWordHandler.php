@@ -95,9 +95,10 @@ class PatternWordHandler
 
             $stmt->closeCursor();
 
-            $sqlSelectWordId = "SELECT id FROM Word WHERE wordString = '$word';";
-            $stmt2 = $pdo->query($sqlSelectWordId);
-            $wordId = $stmt2->fetch()[0];
+            $sqlSelectWordId = "SELECT id FROM Word WHERE wordString = ?;";
+            $stmt = $pdo->prepare($sqlSelectWordId);
+            $stmt->execute([$wordString]);
+            $wordId = $stmt->fetch()[0];
 
             foreach ($patterns->getAll() as $pattern) {
                 $patternId = $this->patternHandler->getId($pattern->getPatterString());

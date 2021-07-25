@@ -25,6 +25,7 @@ class WordHandler
         $sql = (new MySqlQueryBuilder())->select(['*'])->from($table);
         $stmt = $pdo->prepare($sql);
         $stmt->execute();
+
         while ($row = $stmt->fetch()) {
             $data = [
                 'id' => $row['id'],
@@ -41,12 +42,18 @@ class WordHandler
         $pdo = $this->database->connect();
         $table = self::TABLE_NAME;
 
-        $sql = "SELECT * FROM $table WHERE wordString = '$word'";
-        $stmt = $pdo->query($sql);
+        $sql = "SELECT * FROM $table WHERE wordString = :wordString";
+        $wordString = filter_var($word, FILTER_SANITIZE_STRING);
+        $stmt = $pdo->prepare($sql);
+        $stmt->execute(
+            [
+                ':wordString' => $wordString
+            ]
+        );
         $data = $stmt->fetch();
 
         if (!$data) {
-            return null;
+            return NULL;
         }
 
         $newWord = new Word($data['wordString']);
@@ -60,12 +67,18 @@ class WordHandler
         $pdo = $this->database->connect();
         $table = self::TABLE_NAME;
 
-        $sql = "SELECT id FROM $table WHERE wordString = '$word';";
-        $stmt = $pdo->query($sql);
+        $sql = "SELECT id FROM $table WHERE wordString = :wordString;";
+        $wordString = filter_var($word, FILTER_SANITIZE_STRING);
+        $stmt = $pdo->prepare($sql);
+        $stmt->execute(
+            [
+                ':wordString' => $wordString
+            ]
+        );
         $data = $stmt->fetch();
 
         if (!$data[0]) {
-            return null;
+            return NULL;
         }
 
         return $data[0];
@@ -75,18 +88,31 @@ class WordHandler
     {
         $table = self::TABLE_NAME;
         $pdo = $this->database->connect();
-        $currentWordString = $word->getWordString();
-        $replaceWordString = $params['wordString'];
-        $replaceSyllabifiedWord = $params['syllabifiedWord'];
 
         $sql = "UPDATE $table 
-                SET 
-                    wordString = '$replaceWordString',
-                    syllabifiedWord = '$replaceSyllabifiedWord'
-                WHERE
-                    wordString = '$currentWordString';";
+                    SET 
+                    wordString = :wordString,
+                    syllabifiedWord = :syllabifiedWord
+                    WHERE
+                    wordString = :currentWordString ;";
+
+        $varriables = filter_var_array(
+            [
+                'wordString' => $params['wordString'],
+                'syllabifiedWord' => $params['syllabifiedWord'],
+                'currentWordString' => $word->getWordString()
+            ],
+            FILTER_SANITIZE_STRING
+        );
+
         $stmt = $pdo->prepare($sql);
-        $stmt->execute();
+        $stmt->execute(
+            [
+                ':wordString' => $varriables['wordString'],
+                ':syllabifiedWord' => $varriables['syllabifiedWord'],
+                ':currentWordString' => $varriables['currentWordString'],
+            ]
+        );
     }
 
     public function insert(Word $word): void
@@ -96,19 +122,26 @@ class WordHandler
         $wordString = $word->getWordString();
         $syllabifiedWord = $word->getSyllabifiedWord();
 
-        $sql = "INSERT INTO $table (wordString, syllabifiedWord) VALUES (?, ?);";
+        $sql = "INSERT INTO $table (wordString, syllabifiedWord) VALUES (:wordString, :syllabifiedWord);";
         $stmt = $pdo->prepare($sql);
-        $stmt->execute([$wordString, $syllabifiedWord]);
+        $wordString = filter_var($wordString, FILTER_SANITIZE_STRING);
+        $syllabifiedWord = filter_var($syllabifiedWord, FILTER_SANITIZE_STRING);
+        $stmt->execute(
+            [
+                ':wordString' => $wordString,
+                ':syllabifiedWord' => $syllabifiedWord
+            ]
+        );
     }
 
     public function isWordInDatabase(string $word): bool
     {
         $wordFromDb = $this->get($word);
         if ($wordFromDb) {
-            return true;
+            return TRUE;
         }
 
-        return false;
+        return FALSE;
     }
 
     public function delete(string $word): int
@@ -122,14 +155,22 @@ class WordHandler
             $sql = "start transaction;
                    
                 delete from Pattern_Word
-                Where wordID = $id;
+                Where wordID = :id;
                 
                 delete from Word
-                Where wordString = '$word';
+                Where wordString = :wordString;
                 
                 commit;";
+
             $stmt = $pdo->prepare($sql);
-            $stmt->execute();
+            $id = filter_var($id, FILTER_VALIDATE_INT);
+            $wordString = filter_var($word, FILTER_SANITIZE_STRING);
+            $stmt->execute(
+                [
+                    ':id' => $id,
+                    ':wordString' => $wordString
+                ]
+            );
 
             return 0;
         } catch (\PDOException $exception) {

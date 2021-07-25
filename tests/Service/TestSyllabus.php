@@ -76,42 +76,42 @@ class TestSyllabus extends TestCase
     public function wordProvider(): array
     {
         return [
-            [
+            'vigorous hyphenated to vig-or-ous' => [
                 'vigorous',
                 'vig-or-ous'
             ],
-            [
+            'changed hyphenated to changed' => [
                 'changed',
                 'changed'
             ],
-            [
+            'pitch hyphenated to pitch' => [
                 'pitch',
                 'pitch'
             ],
-            [
+            'uncopyrightable hyphenated to un-copy-rightable' => [
                 'uncopyrightable',
                 'un-copy-rightable'
             ],
-            [
+            'system hyphenated to sys-tem' => [
                 'system',
                 'sys-tem'
             ],
-            [
+            'disastrous hyphenated to dis-as-trous' => [
                 'disastrous',
                 'dis-as-trous'
             ],
-            [
+            'frightening hyphenated to fright-en-ing' => [
                 'frightening',
                 'fright-en-ing'
             ],
-            [
+            'encouraging hyphenated to en-cour-ag-ing' => [
                 'encouraging',
                 'en-cour-ag-ing'
             ]
         ];
     }
 
-    public function expectedWordPatternsProvider(): array
+    public function expectedPatternsProvider(): array
     {
         return [
             [
@@ -203,6 +203,12 @@ class TestSyllabus extends TestCase
         ];
     }
 
+    public function testCanCreateSyllabusObject()
+    {
+        $syllabus = new Syllabus();
+        $this->assertInstanceOf(Syllabus::class, $syllabus);
+    }
+
     /**
      * @dataProvider wordProvider
      */
@@ -215,7 +221,7 @@ class TestSyllabus extends TestCase
     }
 
     /**
-     * @dataProvider expectedWordPatternsProvider
+     * @dataProvider expectedPatternsProvider
      */
     public function testSyllabusFindsPatternsCorrectly(string $word, array $expectedPatterns)
     {

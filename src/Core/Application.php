@@ -90,8 +90,7 @@ class Application
                 $this->patternWordHandler->insert($foundPatters, $word);
             }
         }
-        print_r($foundPatters->getAll());
-        die();
+
         $diff = $timeStart->diff(new DateTime());
         $this->logger->info("Time taken to syllabify: $diff->f microseconds");
 
