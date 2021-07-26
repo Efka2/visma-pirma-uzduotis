@@ -1,7 +1,7 @@
 <?php
 
 
-namespace Syllabus\Tests\Service;
+namespace Syllabus\Tests\Unit\Service;
 
 
 class SyllabusDataProvider

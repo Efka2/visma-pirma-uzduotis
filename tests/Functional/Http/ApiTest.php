@@ -1,7 +1,7 @@
 <?php
 
 
-namespace Syllabus\Tests\Http;
+namespace Syllabus\Tests\Functional\Http;
 
 
 use PHPUnit\Framework\TestCase;

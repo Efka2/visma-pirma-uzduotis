@@ -13,7 +13,7 @@ class Syllabus
     private array $numberArray;
     private array $wordArray;
 
-    public function syllabify(Word $word, CollectionInterface $patternArray): string
+    public function hyphenate(Word $word, CollectionInterface $patternArray): string
     {
         $this->setWord($word);
         $this->findPatternsInWord($word, $patternArray);

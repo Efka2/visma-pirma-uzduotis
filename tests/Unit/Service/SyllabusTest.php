@@ -1,6 +1,6 @@
 <?php
 
-namespace Syllabus\Tests\Service;
+namespace Syllabus\Tests\Unit\Service;
 
 use PHPUnit\Framework\TestCase;
 use Syllabus\Core\PatternCollectionProxy;
@@ -80,19 +80,19 @@ class SyllabusTest extends TestCase
     }
 
     /**
-     * @dataProvider \Syllabus\Tests\Service\SyllabusDataProvider::wordDataProvider()
+     * @dataProvider \Syllabus\Tests\Unit\Service\SyllabusDataProvider::wordDataProvider()
      */
     public function testWordIsSyllabifiedCorrectly(string $word, string $expected)
     {
         $syllabus = new Syllabus();
 
         $wordModel = new Word($word);
-        $syllabifiedWord = $syllabus->syllabify($wordModel, $this->patternCollection);
+        $syllabifiedWord = $syllabus->hyphenate($wordModel, $this->patternCollection);
         $this->assertEquals($expected, $syllabifiedWord);
     }
 
     /**
-     * @dataProvider \Syllabus\Tests\Service\SyllabusDataProvider::expectedPatternsProvider()
+     * @dataProvider \Syllabus\Tests\Unit\Service\SyllabusDataProvider::expectedPatternsProvider()
      */
     public function testSyllabusFindsPatternsCorrectly(string $word, array $expectedPatterns)
     {

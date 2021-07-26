@@ -1,6 +1,6 @@
 <?php
 
-namespace  Syllabus\Tests\Model;
+namespace  Syllabus\Tests\Unit\Model;
 
 use PHPUnit\Framework\TestCase;
 use Syllabus\Model\Pattern;

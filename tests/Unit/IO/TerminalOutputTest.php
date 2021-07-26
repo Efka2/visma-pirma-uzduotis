@@ -1,7 +1,7 @@
 <?php
 
 
-namespace Syllabus\Tests\IO;
+namespace Syllabus\Tests\Unit\IO;
 
 
 use PHPUnit\Framework\TestCase;

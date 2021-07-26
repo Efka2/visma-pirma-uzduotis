@@ -60,18 +60,13 @@ class Application
             $printPatterns = true;
         }
 
-        if ($wordImportSelection == Reader::ENTER_WORD_FROM_CLI) {
-            $wordFromCLI = $this->reader->readFromCli();
-            $word = new Word($wordFromCLI);
-        }
-        if ($wordImportSelection == Reader::ENTER_WORD_FROM_FILE) {
-            $wordFromFile = $this->reader->readWordFromFile('src/log/word.txt');
-            $word = new Word($wordFromFile);
-        }
+        $readWord = $this->readWord($wordImportSelection);
+
+        $word = new Word($readWord);
 
         $timeStart = new DateTime();
 
-        //todo change this somehow
+        //todo change this abomination somehow
         //change it to result maybe
         if ($this->wordHandler->isWordInDatabase($word)) {
             $word = $this->wordHandler->get($word->getWordString());
@@ -79,20 +74,16 @@ class Application
             $syllabifiedWord = $word->getSyllabifiedWord();
             $foundPatters = $this->patternWordHandler->getPatterns($wordId);
         } else {
-            $syllabifiedWord = $this->syllabus->syllabify($word, $allPatterns);
+            $syllabifiedWord = $this->syllabus->hyphenate($word, $allPatterns);
             $foundPatters = $this->syllabus->findPatternsInWord($word, $allPatterns);
 
-            if (
-                $wordImportSelection == Reader::ENTER_WORD_FROM_CLI
-                && $sourceSelection == Reader::IMPORT_FROM_DATABASE
-            ) {
+            if ($wordImportSelection == Reader::ENTER_WORD_FROM_CLI && $sourceSelection == Reader::IMPORT_FROM_DATABASE) {
                 $word->setSyllabifiedWord($syllabifiedWord);
                 $this->patternWordHandler->insert($foundPatters, $word);
             }
         }
 
         $diff = $timeStart->diff(new DateTime());
-        $this->logger->info("Time taken to syllabify: $diff->f microseconds");
 
         $result = new Result($word, $syllabifiedWord, $foundPatters, $diff);
 
@@ -114,5 +105,16 @@ class Application
             return $allPatterns;
         }
         return $allPatterns = $this->patternHandler->index();
+    }
+
+    private function readWord(string $wordImportSelection): string
+    {
+        if ($wordImportSelection == Reader::ENTER_WORD_FROM_CLI) {
+            $readWord = $this->reader->readFromCli();
+        }
+        if ($wordImportSelection == Reader::ENTER_WORD_FROM_FILE) {
+            $readWord = $this->reader->readWordFromFile('src/log/word.txt');
+        }
+        return $readWord;
     }
 }
