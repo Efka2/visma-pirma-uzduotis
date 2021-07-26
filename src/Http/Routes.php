@@ -9,7 +9,7 @@ use Syllabus\Model\Word;
 
 $router = new Router();
 
-$router->get("/word", function (){
+$router->get("/word", function () {
     echo "hi";
 });
 

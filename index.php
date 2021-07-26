@@ -21,9 +21,19 @@ if (!$_SERVER['REMOTE_ADDR'] == '127.0.0.1') {
     $router = new Router();
     $wordController = $container->get(WordController::class);
 
-    $router->get("/word", function ()use ($wordController){
-        $wordController->getAll();
-    });
+    $router->get(
+        '/',
+        function () {
+            echo "hi";
+        }
+    );
+
+    $router->get(
+        "/word",
+        function () use ($wordController) {
+            $wordController->getAll();
+        }
+    );
 
 //    $router->delete('/word', function () {
 //        $entityBody = file_get_contents('php://input');

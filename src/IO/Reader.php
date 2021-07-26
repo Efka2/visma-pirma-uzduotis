@@ -24,14 +24,14 @@ class Reader implements FileReaderInterface, ReaderInterface
             $patternCollection->add($pattern);
         }
 
-        $fileObject = NULL;
+        $fileObject = null;
 
         return $patternCollection;
     }
 
     public function readSelection(string $message, array $options): string
     {
-        while (TRUE) {
+        while (true) {
             echo "$message ";
             $line = trim(readline());
 

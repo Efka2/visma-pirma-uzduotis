@@ -1,8 +1,6 @@
 <?php
 
-
 namespace Syllabus\Tests\Unit\IO;
-
 
 use PHPUnit\Framework\TestCase;
 use Syllabus\IO\TerminalOutput;
@@ -38,7 +36,7 @@ class TerminalOutputTest extends TestCase
             ]
         );
 
-        $terminalOutput = new TerminalOutput($this->result, TRUE);
+        $terminalOutput = new TerminalOutput($this->result, true);
         $terminalOutput->output();
         $this->expectOutputString(
             <<<EOD
@@ -60,7 +58,7 @@ EOD
     {
         $this->result->method('getFoundPatterns')->willReturn([]);
 
-        $terminalOutput = new TerminalOutput($this->result, TRUE);
+        $terminalOutput = new TerminalOutput($this->result, true);
         $terminalOutput->output();
 
         $this->expectOutputString(
@@ -84,7 +82,7 @@ EOD
             ]
         );
 
-        $terminalOutput = new TerminalOutput($this->result, FALSE);
+        $terminalOutput = new TerminalOutput($this->result, false);
         $terminalOutput->output();
 
         $this->expectOutputString(

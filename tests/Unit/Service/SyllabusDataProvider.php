@@ -1,8 +1,6 @@
 <?php
 
-
 namespace Syllabus\Tests\Unit\Service;
-
 
 class SyllabusDataProvider
 {
@@ -136,5 +134,4 @@ class SyllabusDataProvider
             ]
         ];
     }
-
 }
