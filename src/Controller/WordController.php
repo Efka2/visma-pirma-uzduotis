@@ -20,10 +20,11 @@ class WordController
     public function getAll()
     {
         $patterns = $this->patternWordHandler->getWordsAndPatters();
-
         header("Content-Type: application/json");
         $json = json_encode($patterns);
+
         echo($json);
+        return $json;
     }
 
     public function post(Word $word)

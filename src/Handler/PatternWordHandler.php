@@ -37,7 +37,6 @@ class PatternWordHandler
             $pattern = new Pattern($row['patternString']);
             $patterns->add($pattern);
         }
-
         return $patterns;
     }
 
@@ -61,6 +60,7 @@ class PatternWordHandler
 
             $patternsCollection = $this->getPatterns($wordId);
 
+            $patterns = [];
             foreach ($patternsCollection->getAll() as $pattern) {
                 $patterns[] = $pattern->getPatterString();
             }
@@ -72,7 +72,6 @@ class PatternWordHandler
                 'patterns' => $patterns
             ];
         }
-
         return $array;
     }
 

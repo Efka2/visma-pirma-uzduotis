@@ -28,9 +28,9 @@ class Result
         return $this->word;
     }
 
-    public function getFoundPatterns(): PatternCollection
+    public function getFoundPatterns(): array
     {
-        return $this->foundPatterns;
+        return $this->foundPatterns->getAll();
     }
 
     public function getSyllabifiedWord(): string

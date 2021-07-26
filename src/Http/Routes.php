@@ -9,7 +9,9 @@ use Syllabus\Model\Word;
 
 $router = new Router();
 
-$router->get('/word', WordController::class . "::getAll");
+$router->get("/word", function (){
+    echo "hi";
+});
 
 $router->delete('/word', function () {
     $entityBody = file_get_contents('php://input');

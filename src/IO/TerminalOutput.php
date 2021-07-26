@@ -18,15 +18,14 @@ class TerminalOutput
     public function output(): void
     {
         $word = $this->result->getWord();
-        $patterns = $this->result->getFoundPatterns();
         $syllabifiedWord = $this->result->getSyllabifiedWord();
+        $patterns = $this->result->getFoundPatterns();
         $time = $this->result->getTime();
-
         echo "\nWord - $word\n";
 
         if ($this->printFoundPatters && $patterns != null) {
             echo "\nFound patterns:\n";
-            foreach ($patterns->getAll() as $pattern) {
+            foreach ($patterns as $pattern) {
                 echo "$pattern\n";
             }
         }
