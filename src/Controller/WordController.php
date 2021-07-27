@@ -25,11 +25,7 @@ class WordController
     public function getAll()
     {
         $patterns = $this->patternWordHandler->getWordsAndPatters();
-        header("Content-Type: application/json");
-        $json = json_encode($patterns);
-
-        echo($json);
-        return $json;
+        return json_encode($patterns);
     }
 
     public function post(Word $word, CollectionInterface $patternCollection)

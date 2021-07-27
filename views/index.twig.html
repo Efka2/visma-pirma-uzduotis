@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html>
+<body>
+    <nav>
+        <div>
+            <ul>
+                <li>
+                    Home
+                </li>
+                <li>
+                    Words
+                </li>
+            </ul>
+        </div>
+    </nav>
+    <h1>Hello {{ name }} </h1>
+        <div>
+            {% for word in data %}
+                <span>Word ID : {{ word.wordId }} </span> <br>
+                <span>Word : {{ word.wordString }}</span> <br>
+                <span>Hyphenated Word : {{ word.syllabifiedString }}</span>
+                Patterns:
+                {% for pattern in word.patterns %}
+                    <br>{{ pattern }}
+                {% endfor %}
+                <br>
+            {% endfor %}
+        </div>
+    </body>
+</html>

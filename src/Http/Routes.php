@@ -7,48 +7,66 @@ use Syllabus\Database\Database;
 use Syllabus\Handler\WordHandler;
 use Syllabus\Model\Word;
 
-$router = new Router();
+class Routes
+{
 
-$router->get("/word", function () {
-    echo "hi";
-});
+    
+    public static function route(Router $router)
+    {
+        $router->get('/');
 
-$router->delete('/word', function () {
-    $entityBody = file_get_contents('php://input');
-    //todo add if
-    $data = json_decode($entityBody, true);
+        $router->get(
+            "/word",
+            function () use ($wordController, $twig) {
+                $wordController->getAll();
+            }
+        );
 
-    $wordController = new WordController();
-    $wordController->delete($data['wordString']);
-});
+        $router->delete(
+            '/word',
+            function () use ($wordHandler, $wordController) {
+                $entityBody = file_get_contents('php://input');
+                $data = json_decode($entityBody, true);
+                $word = $data['wordString'];
 
-$router->post('/word', function () {
-    $entityBody = file_get_contents('php://input');
-    //todo add if
-    $data = json_decode($entityBody, true);
+                header("Content-type:application/json");
+                if (!$wordHandler->isWordInDatabase($word)) {
+                    echo json_encode(
+                        [
+                            'message' => "word $word doesn't exist"
+                        ]
+                    );
+                    header("HTTP/1.0 404 Not Found");
+                    return;
+                }
 
+                $wordController->delete($word);
+            }
+        );
 
-    $word = new Word();
-    $word->setWordString($data['wordString']);
-    $word->setSyllabifiedWord($data['syllabifiedWord']);
+        $router->post(
+            '/word',
+            function () use ($wordController, $wordHandler, $syllabus, $reader) {
+                $entityBody = file_get_contents('php://input');
+                $data = json_decode($entityBody, true);
 
-    $wordController = new WordController();
-    $wordController->post($word);
-});
+                $word = new Word($data['wordString']);
 
-$router->put('/word', function () {
-    $entityBody = file_get_contents('php://input');
+                if ($wordHandler->isWordInDatabase($word)) {
+                    echo json_encode(
+                        [
+                            'message' => "word is already in database"
+                        ]
+                    );
+                    return;
+                }
+                $patterns = $reader->readFromFileToCollection(FileReaderInterface::DEFAULT_PATTERN_LINK);
+                $syllabifiedWord = $syllabus->hyphenate($word, $patterns);
+                $foundPatters = $syllabus->findPatternsInWord($word, $patterns);
+                $word->setSyllabifiedWord($syllabifiedWord);
 
-    $data = json_decode($entityBody, true);
-    $wordHandler = new WordHandler(new Database());
-    $wordController = new WordController();
-    $currentWord = $data['currentWordString'];
-
-
-    if ($wordHandler->isWordInDatabase($data['currentWordString'])) {
-        $wordController->put($currentWord, $data);
+                $wordController->post($word, $foundPatters);
+            }
+        );
     }
-});
-
-
-$router->run();
+}

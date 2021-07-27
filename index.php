@@ -12,6 +12,8 @@ use Syllabus\IO\FileReaderInterface;
 use Syllabus\IO\Reader;
 use Syllabus\Model\Word;
 use Syllabus\Service\Syllabus;
+use Twig\Environment;
+use Twig\Loader\FilesystemLoader;
 
 header("Access-Control-Allow-Methods: OPTIONS,GET,POST,PUT,DELETE");
 
@@ -21,23 +23,31 @@ if (!$_SERVER['REMOTE_ADDR'] == '127.0.0.1') {
     $application = $container->get(Application::class);
     $application->run();
 } else {
+    $loader = new FilesystemLoader('views');
+    $twig = new Environment($loader);
+
     $router = $container->get(Router::class);
     $wordController = $container->get(WordController::class);
     $syllabus = $container->get(Syllabus::class);
     $reader = $container->get(Reader::class);
     $wordHandler = $container->get(WordHandler::class);
 
-    $router->get(
-        '/',
-        function () {
-            echo "hi";
-        }
-    );
+    $router->get('/', function(){
 
-    $router->get("/word", function () use ($wordController) {
-            $uri = parse_url($_SERVER['REQUEST_URI'], PHP_URL_PATH);
-            print_r($uri);
-            $wordController->getAll();
+    });
+
+    $router->get("/word", function () use ($wordController, $twig) {
+            $jsonResponse = $wordController->getAll();
+
+            $data = json_decode($jsonResponse, true);
+            $template = $twig->load('index.twig.html');
+
+            echo $template->render(
+                [
+                    'name' => 'Evaldas',
+                    'data' => $data
+                ]
+            );
         }
     );
 
