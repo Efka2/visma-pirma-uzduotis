@@ -34,9 +34,9 @@ if (!$_SERVER['REMOTE_ADDR'] == '127.0.0.1') {
         }
     );
 
-    $router->get(
-        "/word",
-        function () use ($wordController) {
+    $router->get("/word", function () use ($wordController) {
+            $uri = parse_url($_SERVER['REQUEST_URI'], PHP_URL_PATH);
+            print_r($uri);
             $wordController->getAll();
         }
     );
