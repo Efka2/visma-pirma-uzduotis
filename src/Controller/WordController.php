@@ -46,10 +46,15 @@ class WordController
     public function edit(int $id)
     {
         $template = $this->twig->load('/word/edit.twig.html');
+        $word = $this->wordHandler->getById($id);
 
-        echo $template->render([
-            'id' => $id
-                               ]);
+
+        echo $template->render(
+            [
+                'id' => $id,
+                'word' => $word
+            ]
+        );
     }
 
     public function post(Word $word, CollectionInterface $patternCollection)
@@ -71,13 +76,13 @@ class WordController
 
     public function put(string $currentWord, array $params)
     {
-        $word = $this->wordHandler->get($currentWord);
+        $word = $this->wordHandler->getByString($currentWord);
         $this->wordHandler->update($word, $params);
     }
 
     public function delete(string $word)
     {
-        $wordModel = $this->wordHandler->get($word);
+        $wordModel = $this->wordHandler->getByString($word);
         $deleteStatus = $this->wordHandler->delete($word);
 
         if ($deleteStatus == 0) {

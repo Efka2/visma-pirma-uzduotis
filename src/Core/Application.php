@@ -65,7 +65,7 @@ class Application
         //todo change this abomination somehow
         //change it to result maybe
         if ($this->wordHandler->isWordInDatabase($word)) {
-            $word = $this->wordHandler->get($word->getWordString());
+            $word = $this->wordHandler->getByString($word->getWordString());
             $wordId = $this->wordHandler->getWordId($word);
             $syllabifiedWord = $word->getSyllabifiedWord();
             $foundPatters = $this->patternWordHandler->getPatterns($wordId);

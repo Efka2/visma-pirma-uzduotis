@@ -37,7 +37,32 @@ class WordHandler
         return $array;
     }
 
-    public function get(string $word): ?Word
+    public function getById(int $id): ?Word
+    {
+        $pdo = $this->database->connect();
+        $table = self::TABLE_NAME;
+
+        $sql = "SELECT * FROM $table WHERE id = :id";
+        $id = filter_var($id, FILTER_VALIDATE_INT);
+        $stmt = $pdo->prepare($sql);
+        $stmt->execute(
+            [
+                ':id' => $id
+            ]
+        );
+        $data = $stmt->fetch();
+
+        if (!$data) {
+            return null;
+        }
+
+        $newWord = new Word($data['wordString']);
+        $newWord->setSyllabifiedWord($data['syllabifiedWord']);
+
+        return $newWord;
+    }
+
+    public function getByString(string $word): ?Word
     {
         $pdo = $this->database->connect();
         $table = self::TABLE_NAME;
@@ -136,7 +161,7 @@ class WordHandler
 
     public function isWordInDatabase(string $word): bool
     {
-        $wordFromDb = $this->get($word);
+        $wordFromDb = $this->getByString($word);
         if ($wordFromDb) {
             return true;
         }

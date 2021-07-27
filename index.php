@@ -43,6 +43,7 @@ if (!$_SERVER['REMOTE_ADDR'] == '127.0.0.1') {
     });
 
     $router->get('/word/edit/id', function() use($wordController) {
+
         $uri = parse_url($_SERVER['REQUEST_URI'], PHP_URL_PATH);
         $uri = explode('/', $uri);
         $body = json_decode(file_get_contents('php://input'), true);
