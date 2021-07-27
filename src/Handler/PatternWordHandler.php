@@ -75,24 +75,24 @@ class PatternWordHandler
         return $array;
     }
 
-    public function insert(PatternCollection $patterns, Word $word)
+    public function insert(Word $word, CollectionInterface $patterns)
     {
         $pdo = $this->database->connect();
         $table = self::TABLE_NAME;
         $wordString = $word->getWordString();
-        $syllabifiedWord = $word->getSyllabifiedWord();
+//        $syllabifiedWord = $word->getSyllabifiedWord();
 
         try {
             $pdo->beginTransaction();
 
-            $sqlInsertWord = "INSERT INTO Word
-                            (wordString, syllabifiedWord)
-                             VALUES (?, ?);";
-
-            $stmt = $pdo->prepare($sqlInsertWord);
-            $stmt->execute([$wordString, $syllabifiedWord]);
-
-            $stmt->closeCursor();
+//            $sqlInsertWord = "INSERT INTO Word
+//                            (wordString, syllabifiedWord)
+//                             VALUES (?, ?);";
+//
+//            $stmt = $pdo->prepare($sqlInsertWord);
+//            $stmt->execute([$wordString, $syllabifiedWord]);
+//
+//            $stmt->closeCursor();
 
             $sqlSelectWordId = "SELECT id FROM Word WHERE wordString = ?;";
             $stmt = $pdo->prepare($sqlSelectWordId);

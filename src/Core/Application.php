@@ -3,7 +3,6 @@
 namespace Syllabus\Core;
 
 use DateTime;
-use Psr\Log\LoggerInterface;
 use Syllabus\Handler\PatternHandler;
 use Syllabus\Handler\PatternWordHandler;
 use Syllabus\Handler\WordHandler;
@@ -16,7 +15,6 @@ use Syllabus\Service\Syllabus;
 
 class Application
 {
-    private LoggerInterface $logger;
     private Reader $reader;
     private Syllabus $syllabus;
     private WordHandler $wordHandler;
@@ -24,14 +22,12 @@ class Application
     private PatternHandler $patternHandler;
 
     public function __construct(
-        Logger $logger,
         Reader $reader,
         Syllabus $syllabus,
         WordHandler $wordHandler,
         PatternWordHandler $patternWordHandler,
         PatternHandler $patternHandler
     ) {
-        $this->logger = $logger;
         $this->reader = $reader;
         $this->syllabus = $syllabus;
         $this->wordHandler = $wordHandler;
@@ -79,7 +75,8 @@ class Application
 
             if ($wordImportSelection == Reader::ENTER_WORD_FROM_CLI && $sourceSelection == Reader::IMPORT_FROM_DATABASE) {
                 $word->setSyllabifiedWord($syllabifiedWord);
-                $this->patternWordHandler->insert($foundPatters, $word);
+                $this->wordHandler->insert($word);
+                $this->patternWordHandler->insert($word, $foundPatters);
             }
         }
 
