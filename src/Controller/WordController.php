@@ -8,24 +8,48 @@ use Syllabus\Handler\PatternWordHandler;
 use Syllabus\Handler\WordHandler;
 use Syllabus\Model\Word;
 use Syllabus\Service\Syllabus;
+use Twig\Environment;
 
 class WordController
 {
     private PatternWordHandler $patternWordHandler;
     private WordHandler $wordHandler;
     private Syllabus $syllabus;
+    private Environment $twig;
 
-    public function __construct(Syllabus $syllabus, PatternWordHandler $patternWordHandler, WordHandler $wordHandler)
-    {
+    public function __construct(
+        Syllabus $syllabus,
+        PatternWordHandler $patternWordHandler,
+        WordHandler $wordHandler,
+        Environment $twig
+    ) {
         $this->patternWordHandler = $patternWordHandler;
         $this->wordHandler = $wordHandler;
         $this->syllabus = $syllabus;
+        $this->twig = $twig;
     }
 
     public function getAll()
     {
-        $patterns = $this->patternWordHandler->getWordsAndPatters();
-        return json_encode($patterns);
+        $data = $this->patternWordHandler->getWordsAndPatters();
+
+        $template = $this->twig->load('word/index.twig.html');
+
+        echo $template->render(
+            [
+                'name' => 'Evaldas',
+                'data' => $data
+            ]
+        );
+    }
+
+    public function edit(int $id)
+    {
+        $template = $this->twig->load('/word/edit.twig.html');
+
+        echo $template->render([
+            'id' => $id
+                               ]);
     }
 
     public function post(Word $word, CollectionInterface $patternCollection)

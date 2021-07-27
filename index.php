@@ -6,6 +6,7 @@ use Syllabus\Container\Container;
 use Syllabus\Controller\WordController;
 use Syllabus\Core\Application;
 use Syllabus\Database\Database;
+use Syllabus\Handler\PatternWordHandler;
 use Syllabus\Handler\WordHandler;
 use Syllabus\Http\Router;
 use Syllabus\IO\FileReaderInterface;
@@ -27,29 +28,36 @@ if (!$_SERVER['REMOTE_ADDR'] == '127.0.0.1') {
     $twig = new Environment($loader);
 
     $router = $container->get(Router::class);
-    $wordController = $container->get(WordController::class);
     $syllabus = $container->get(Syllabus::class);
-    $reader = $container->get(Reader::class);
     $wordHandler = $container->get(WordHandler::class);
+    $patternWordHandler = $container->get(PatternWordHandler::class);
+    $wordController = new WordController($syllabus, $patternWordHandler, $wordHandler, $twig);
+    $reader = $container->get(Reader::class);
 
     $router->get('/', function(){
 
     });
 
-    $router->get("/word", function () use ($wordController, $twig) {
-            $jsonResponse = $wordController->getAll();
+    $router->get('/word', function() use ($wordController) {
+        $wordController->getAll();
+    });
 
-            $data = json_decode($jsonResponse, true);
-            $template = $twig->load('index.twig.html');
+    $router->get('/word/edit/id', function() use($wordController) {
+        $uri = parse_url($_SERVER['REQUEST_URI'], PHP_URL_PATH);
+        $uri = explode('/', $uri);
+        $body = json_decode(file_get_contents('php://input'), true);
+        $id = $uri[3];
 
-            echo $template->render(
-                [
-                    'name' => 'Evaldas',
-                    'data' => $data
-                ]
-            );
-        }
-    );
+        $wordController->edit($id);
+//        if ($uri[2] !== 'words') {
+//            header("HTTP/1.1 404 Not Found");
+//            exit();
+//        }
+//        $givenWord = null;
+//        if (isset($uri[3])) {
+//            $givenWord = $uri[3];
+//        }
+    });
 
     $router->delete('/word', function () use ($wordHandler, $wordController) {
         $entityBody = file_get_contents('php://input');

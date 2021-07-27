@@ -2,6 +2,8 @@
 
 namespace Syllabus\Http;
 
+use Syllabus\Container\Container;
+
 class Router
 {
     private const METHOD_POST = 'POST';
@@ -9,6 +11,12 @@ class Router
     private const METHOD_GET = 'GET';
     private const METHOD_PUT = 'PUT';
     private array $handlers;
+    private Container $container;
+
+    public function __construct(Container $container)
+    {
+        $this->container = $container;
+    }
 
     public function get(string $path, $handler): void
     {
@@ -43,12 +51,20 @@ class Router
     public function run()
     {
         $requestUri = parse_url($_SERVER['REQUEST_URI']);
+        $parts = explode("/", $requestUri['path']);
+        $slug = $parts[3];
+//        print_r($parts);
         $requestPath = $requestUri['path'];
+//        echo $slug;
         $method = $_SERVER['REQUEST_METHOD'];
+
+        if(!empty($slug)){
+            $requestPath = str_replace("$slug", "id", $requestPath);
+        }
 
         $callback = null;
         foreach ($this->handlers as $handler) {
-            if ($handler['path'] === $requestPath && $method === $handler['method']) {
+            if ($handler['path'] === $requestPath && $handler['method'] === $method) {
                 $callback = $handler['handler'];
             }
         }
@@ -57,7 +73,8 @@ class Router
             $parts = explode("::", $callback);
             if (is_array($parts)) {
                 $className = array_shift($parts);
-                $handler = new $className();
+
+                $handler = $this->container->get($className);
 
                 $method = array_shift($parts);
                 $callback = [$handler, $method];
@@ -66,7 +83,6 @@ class Router
 
         if (!$callback) {
             header("HTTP/1.0 404 Not Found");
-            die();
         }
 
         call_user_func_array($callback, [
