@@ -1,0 +1,15 @@
+{% extends "base.twig.html" %}
+
+{% block content %}
+        <div>
+            <span>Word : {{ word.wordString }}</span> <br>
+            <span>Hyphenated Word : {{ word.syllabifiedWord }}</span> <br>
+            Patterns: <br>
+            {% for pattern in patterns %}
+                <br>{{ pattern }}
+            {% endfor %}
+            <br>
+        <a href="/word/edit/{{ id}} "><span> Edit </span></a>
+        <a href="/word/delete/{{ id }} "><span> Delete </span></a> <br><br>
+        </div>
+{% endblock %}

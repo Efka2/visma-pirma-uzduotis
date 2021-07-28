@@ -31,7 +31,7 @@ class WordController
         $this->twig = $twig;
     }
 
-    public function getAll()
+    public function index()
     {
         $data = $this->patternWordHandler->getWordsAndPatters();
 
@@ -45,31 +45,12 @@ class WordController
         );
     }
 
-    public function edit(int $id)
-    {
-        $template = $this->twig->load('/word/edit.twig.html');
-        $word = $this->wordHandler->getById($id);
-
-        if (empty($word)) {
-            header("HTTP/1.1 404 Not Found");
-            echo "Word not found";
-            die();
-        }
-
-        echo $template->render(
-            [
-                'id' => $id,
-                'word' => $word
-            ]
-        );
-    }
-
     public function create()
     {
         $template = $this->twig->load('/word/create.twig.html');
         echo $template->render();
     }
-    
+
     public function store(string $wordString, CollectionInterface $patternCollection)
     {
         $word = new Word($wordString);
@@ -92,7 +73,41 @@ class WordController
 //        );
     }
 
-    public function update(string $currentWord, string $replaceWord , CollectionInterface $patternCollection)
+    public function edit(int $id)
+    {
+        $template = $this->twig->load('/word/edit.twig.html');
+        $word = $this->wordHandler->getById($id);
+
+        if (empty($word)) {
+            header("HTTP/1.1 404 Not Found");
+            echo "Word not found";
+            die();
+        }
+
+        echo $template->render(
+            [
+                'id' => $id,
+                'word' => $word
+            ]
+        );
+    }
+
+    public function show(int $id)
+    {
+        $word = $this->wordHandler->getById($id);
+        $template = $this->twig->load('word/show.twig.html');
+        $patterns = $this->patternWordHandler->getPatterns($id);
+
+        echo $template->render(
+            [
+                'id' => $id,
+                'word' => $word,
+                'patterns' => $patterns->getAll()
+            ]
+        );
+    }
+
+    public function update(string $currentWord, string $replaceWord, CollectionInterface $patternCollection)
     {
         $currentWordObject = $this->wordHandler->getByString($currentWord);
         $replaceWordObject = new Word($replaceWord);
@@ -104,29 +119,30 @@ class WordController
         //todo add update method to patternWordHandler
         $this->patternWordHandler->insert($replaceWordObject, $foundPatters);
 
-        $this->getAll();
+        $this->index();
     }
 
-    public function delete(string $word)
+    public function delete(int $id)
     {
-        $wordModel = $this->wordHandler->getByString($word);
-        $deleteStatus = $this->wordHandler->delete($word);
+        $wordModel = $this->wordHandler->getById($id);
+        $deleteStatus = $this->wordHandler->deleteById($id);
 
-        if ($deleteStatus == 0) {
-            $data = [
-                'message' => "word successfully deleted",
-                'wordString' => $word,
-                'syllabifiedWord' => $wordModel->getSyllabifiedWord()
-            ];
-        } else {
-            $data = [
-                'message' => "word $word was not found"
-            ];
-            header("HTTP/1.0 404 Not Found");
-        }
-
-        header("Content-Type: application/json");
-        $json = json_encode($data);
-        echo $json;
+        echo "successfully deleted";
+//        if ($deleteStatus == 0) {
+//            $data = [
+//                'message' => "word successfully deleted",
+//                'wordString' => $word,
+//                'syllabifiedWord' => $wordModel->getSyllabifiedWord()
+//            ];
+//        } else {
+//            $data = [
+//                'message' => "word $word was not found"
+//            ];
+//            header("HTTP/1.0 404 Not Found");
+//        }
+//
+//        header("Content-Type: application/json");
+//        $json = json_encode($data);
+//        echo $json;
     }
 }

@@ -10,7 +10,8 @@
                     <br>{{ pattern }}
                 {% endfor %}
                 <br>
-            <a href="/word/edit/{{ word.wordId }} "><span> Edit </span></a> <br><br>
+            <a href="/word/edit/{{ word.wordId }} "><span> Edit </span></a>
+            <a href="/word/delete/{{ word.wordId }} "><span> Delete </span></a> <br><br>
             {% endfor %}
         </div>
 {% endblock %}

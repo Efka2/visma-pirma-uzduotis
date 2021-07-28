@@ -41,14 +41,21 @@ if (!$_SERVER['REMOTE_ADDR'] == '127.0.0.1') {
     });
 
     $router->get('/word', function() use ($wordController) {
-        $wordController->getAll();
+        $wordController->index();
+    });
+
+    $router->get('/word/show/id', function () use ($wordController){
+        $uri = parse_url($_SERVER['REQUEST_URI'], PHP_URL_PATH);
+        $uri = explode('/', $uri);
+        $id = $uri[3];
+
+        $wordController->show($id);
     });
 
     $router->get('/word/edit/id', function() use($wordController) {
 
         $uri = parse_url($_SERVER['REQUEST_URI'], PHP_URL_PATH);
         $uri = explode('/', $uri);
-        $body = json_decode(file_get_contents('php://input'), true);
         $id = $uri[3];
 
         $wordController->edit($id);
@@ -73,6 +80,25 @@ if (!$_SERVER['REMOTE_ADDR'] == '127.0.0.1') {
         $wordController->store($wordString, $patterns);
     });
 
+    $router->get('/word/delete/id', function () use ($wordHandler, $wordController) {
+        $uri = parse_url($_SERVER['REQUEST_URI'], PHP_URL_PATH);
+        $uri = explode('/', $uri);
+        $id = $uri[3];
+
+//        header("Content-type:application/json");
+//        if (!$wordHandler->isWordInDatabase($word)) {
+//            echo json_encode(
+//                [
+//                    'message' => "word $word doesn't exist"
+//                ]
+//            );
+//            header("HTTP/1.0 404 Not Found");
+//            return;
+//        }
+
+        $wordController->delete($id);
+    });
+
     //deprecated
 //    $router->post('/word', function () use ($wordController, $wordHandler, $syllabus, $reader) {
 //        $entityBody = file_get_contents('php://input');
@@ -95,25 +121,6 @@ if (!$_SERVER['REMOTE_ADDR'] == '127.0.0.1') {
 //
 //        $wordController->store($word, $foundPatters);
 //    });
-
-    $router->delete('/word', function () use ($wordHandler, $wordController) {
-        $entityBody = file_get_contents('php://input');
-        $data = json_decode($entityBody, true);
-        $word = $data['wordString'];
-
-        header("Content-type:application/json");
-        if (!$wordHandler->isWordInDatabase($word)) {
-            echo json_encode(
-                [
-                    'message' => "word $word doesn't exist"
-                ]
-            );
-            header("HTTP/1.0 404 Not Found");
-            return;
-        }
-
-        $wordController->delete($word);
-    });
 //    $router->put('/word', function () use ($wordController, $wordHandler, $syllabus){
 //        $entityBody = file_get_contents('php://input');
 //

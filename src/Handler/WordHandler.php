@@ -168,7 +168,37 @@ class WordHandler
         return false;
     }
 
-    public function delete(string $word): int
+    public function deleteById(int $id)
+    {
+        $pdo = $this->database->connect();
+        try {
+            $sql = "start transaction;
+                   
+                delete from Pattern_Word
+                Where wordID = :id;
+                
+                delete from Word
+                Where id = :id;
+                
+                commit;";
+
+            $stmt = $pdo->prepare($sql);
+            $id = filter_var($id, FILTER_VALIDATE_INT);
+            $stmt->execute(
+                [
+                    ':id' => $id,
+                ]
+            );
+
+            return 0;
+        } catch (\PDOException $exception) {
+            //todo replace die() with exception
+            echo $exception->errorInfo;
+            die();
+        }
+    }
+
+    public function deleteByString(string $word): int
     {
         $pdo = $this->database->connect();
         $id = $this->getWordId($word);
