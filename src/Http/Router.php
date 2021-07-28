@@ -53,9 +53,7 @@ class Router
         $requestUri = parse_url($_SERVER['REQUEST_URI']);
         $parts = explode("/", $requestUri['path']);
         $slug = $parts[3];
-//        print_r($parts);
         $requestPath = $requestUri['path'];
-//        echo $slug;
         $method = $_SERVER['REQUEST_METHOD'];
 
         if(!empty($slug)){

@@ -80,21 +80,10 @@ if (!$_SERVER['REMOTE_ADDR'] == '127.0.0.1') {
         $wordController->store($wordString, $patterns);
     });
 
-    $router->get('/word/delete/id', function () use ($wordHandler, $wordController) {
+    $router->delete('/word/delete/id', function () use ($wordHandler, $wordController) {
         $uri = parse_url($_SERVER['REQUEST_URI'], PHP_URL_PATH);
         $uri = explode('/', $uri);
         $id = $uri[3];
-
-//        header("Content-type:application/json");
-//        if (!$wordHandler->isWordInDatabase($word)) {
-//            echo json_encode(
-//                [
-//                    'message' => "word $word doesn't exist"
-//                ]
-//            );
-//            header("HTTP/1.0 404 Not Found");
-//            return;
-//        }
 
         $wordController->delete($id);
     });
