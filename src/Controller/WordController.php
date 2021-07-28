@@ -10,6 +10,8 @@ use Syllabus\Model\Word;
 use Syllabus\Service\Syllabus;
 use Twig\Environment;
 
+use function PHPUnit\Framework\throwException;
+
 class WordController
 {
     private PatternWordHandler $patternWordHandler;
@@ -48,6 +50,11 @@ class WordController
         $template = $this->twig->load('/word/edit.twig.html');
         $word = $this->wordHandler->getById($id);
 
+        if (empty($word)) {
+            header("HTTP/1.1 404 Not Found");
+            echo "Word not found";
+            die();
+        }
 
         echo $template->render(
             [
@@ -57,27 +64,47 @@ class WordController
         );
     }
 
-    public function post(Word $word, CollectionInterface $patternCollection)
+    public function create()
     {
+        $template = $this->twig->load('/word/create.twig.html');
+        echo $template->render();
+    }
+    
+    public function store(string $wordString, CollectionInterface $patternCollection)
+    {
+        $word = new Word($wordString);
+        $syllabifiedWord = $this->syllabus->hyphenate($word, $patternCollection);
+        $word->setSyllabifiedWord($syllabifiedWord);
+        $foundPatterns = $this->syllabus->findPatternsInWord($word, $patternCollection);
+
         $this->wordHandler->insert($word);
-        $this->patternWordHandler->insert($word, $patternCollection);
+        $this->patternWordHandler->insert($word, $foundPatterns);
 
         header("Content-Type: application/json");
         header("HTTP/1.0 201 Created");
 
-        echo json_encode(
-            [
-                'message' => 'word successfully created',
-                'word' => $word->getWordString(),
-                'syllabifiedWord' => $word->getSyllabifiedWord()
-            ]
-        );
+//        echo json_encode(
+//            [
+//                'message' => 'word successfully created',
+//                'word' => $word->getWordString(),
+//                'syllabifiedWord' => $word->getSyllabifiedWord()
+//            ]
+//        );
     }
 
-    public function put(string $currentWord, array $params)
+    public function update(string $currentWord, string $replaceWord , CollectionInterface $patternCollection)
     {
-        $word = $this->wordHandler->getByString($currentWord);
-        $this->wordHandler->update($word, $params);
+        $currentWordObject = $this->wordHandler->getByString($currentWord);
+        $replaceWordObject = new Word($replaceWord);
+        $syllabifiedWord = $this->syllabus->hyphenate($replaceWordObject, $patternCollection);
+        $replaceWordObject->setSyllabifiedWord($syllabifiedWord);
+        $foundPatters = $this->syllabus->findPatternsInWord($currentWordObject, $patternCollection);
+
+        $this->wordHandler->update($currentWordObject, $replaceWordObject);
+        //todo add update method to patternWordHandler
+        $this->patternWordHandler->insert($replaceWordObject, $foundPatters);
+
+        $this->getAll();
     }
 
     public function delete(string $word)

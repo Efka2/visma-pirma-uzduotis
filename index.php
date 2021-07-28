@@ -28,14 +28,16 @@ if (!$_SERVER['REMOTE_ADDR'] == '127.0.0.1') {
     $twig = new Environment($loader);
 
     $router = $container->get(Router::class);
+    $reader = $container->get(Reader::class);
     $syllabus = $container->get(Syllabus::class);
     $wordHandler = $container->get(WordHandler::class);
     $patternWordHandler = $container->get(PatternWordHandler::class);
     $wordController = new WordController($syllabus, $patternWordHandler, $wordHandler, $twig);
-    $reader = $container->get(Reader::class);
 
-    $router->get('/', function(){
+    $router->get('/', function() use ($twig) {
+        $template = $twig->load('home.twig.html');
 
+        echo $template->render();
     });
 
     $router->get('/word', function() use ($wordController) {
@@ -50,15 +52,49 @@ if (!$_SERVER['REMOTE_ADDR'] == '127.0.0.1') {
         $id = $uri[3];
 
         $wordController->edit($id);
-//        if ($uri[2] !== 'words') {
-//            header("HTTP/1.1 404 Not Found");
-//            exit();
-//        }
-//        $givenWord = null;
-//        if (isset($uri[3])) {
-//            $givenWord = $uri[3];
-//        }
     });
+
+    $router->post('/word/edit/id', function() use ($wordController, $reader){
+        $currentWord = trim($_POST['current_word']);
+        $replaceWord = trim($_POST['word_string']);
+        $patterns = $reader->readFromFileToCollection(FileReaderInterface::DEFAULT_PATTERN_LINK);
+
+        $wordController->update($currentWord, $replaceWord, $patterns);
+    });
+
+    $router->get('/word/create', function () use ($wordController){
+        $wordController->create();
+    });
+
+    $router->post('/word/create', function() use ($wordController, $reader){
+        $wordString = trim($_POST['word_string']);
+        $patterns = $reader->readFromFileToCollection(FileReaderInterface::DEFAULT_PATTERN_LINK);
+
+        $wordController->store($wordString, $patterns);
+    });
+
+    //deprecated
+//    $router->post('/word', function () use ($wordController, $wordHandler, $syllabus, $reader) {
+//        $entityBody = file_get_contents('php://input');
+//        $data = json_decode($entityBody, true);
+//
+//        $word = new Word($data['wordString']);
+//
+//        if ($wordHandler->isWordInDatabase($word)) {
+//            echo json_encode(
+//              [
+//                  'message' => "word is already in database"
+//              ]
+//            );
+//            return;
+//        }
+//        $patterns = $reader->readFromFileToCollection(FileReaderInterface::DEFAULT_PATTERN_LINK);
+//        $syllabifiedWord = $syllabus->hyphenate($word, $patterns);
+//        $foundPatters = $syllabus->findPatternsInWord($word, $patterns);
+//        $word->setSyllabifiedWord($syllabifiedWord);
+//
+//        $wordController->store($word, $foundPatters);
+//    });
 
     $router->delete('/word', function () use ($wordHandler, $wordController) {
         $entityBody = file_get_contents('php://input');
@@ -78,29 +114,6 @@ if (!$_SERVER['REMOTE_ADDR'] == '127.0.0.1') {
 
         $wordController->delete($word);
     });
-
-    $router->post('/word', function () use ($wordController, $wordHandler, $syllabus, $reader) {
-        $entityBody = file_get_contents('php://input');
-        $data = json_decode($entityBody, true);
-
-        $word = new Word($data['wordString']);
-
-        if ($wordHandler->isWordInDatabase($word)) {
-            echo json_encode(
-              [
-                  'message' => "word is already in database"
-              ]
-            );
-            return;
-        }
-        $patterns = $reader->readFromFileToCollection(FileReaderInterface::DEFAULT_PATTERN_LINK);
-        $syllabifiedWord = $syllabus->hyphenate($word, $patterns);
-        $foundPatters = $syllabus->findPatternsInWord($word, $patterns);
-        $word->setSyllabifiedWord($syllabifiedWord);
-
-        $wordController->post($word, $foundPatters);
-    });
-
 //    $router->put('/word', function () use ($wordController, $wordHandler, $syllabus){
 //        $entityBody = file_get_contents('php://input');
 //

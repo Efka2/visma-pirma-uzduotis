@@ -1,22 +1,12 @@
-<!DOCTYPE html>
-<html>
-<body>
-    <nav>
-        <div>
-            <ul>
-                <li>
-                    Home
-                </li>
-                <li>
-                    Words
-                </li>
-            </ul>
-        </div>
-    </nav>
-    <h1>Hello {{ id }} </h1>
-        <div>
-            {{ word.wordString }}
-            {{ word.syllabifiedWord }}
-        </div>
-    </body>
-</html>
+{% extends "base.twig.html" %}
+
+{% block content %}
+<form method="POST">
+    Word: <input type = "text" name = "word_string" value="{{ word }}"/>
+    <br>
+    Syllabified word: {{ word.syllabifiedWord }}
+    <br>
+    <input type="hidden" name="current_word" value=" {{ word }} ">
+    <input type="submit" name="submit" value="Update">
+</form>
+{% endblock %}

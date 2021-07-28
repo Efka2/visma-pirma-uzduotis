@@ -76,7 +76,6 @@ class WordHandler
             ]
         );
         $data = $stmt->fetch();
-
         if (!$data) {
             return null;
         }
@@ -109,7 +108,7 @@ class WordHandler
         return $data[0];
     }
 
-    public function update(Word $word, array $params): void
+    public function update(Word $currentWord, Word $replaceWord): void
     {
         $table = self::TABLE_NAME;
         $pdo = $this->database->connect();
@@ -123,9 +122,9 @@ class WordHandler
 
         $varriables = filter_var_array(
             [
-                'wordString' => $params['wordString'],
-                'syllabifiedWord' => $params['syllabifiedWord'],
-                'currentWordString' => $word->getWordString()
+                'wordString' => $replaceWord->getWordString(),
+                'syllabifiedWord' => $replaceWord->getSyllabifiedWord(),
+                'currentWordString' => $currentWord->getWordString()
             ],
             FILTER_SANITIZE_STRING
         );

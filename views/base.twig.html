@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html>
+<body>
+<nav>
+    <div>
+        <ul>
+            <a href="/">
+                <li>
+                    Home
+                </li>
+            </a>
+            <a href="/word">
+                <li>
+                    Words
+                </li>
+            </a>
+        </ul>
+    </div>
+</nav>
+<h1>Hello {{ name }} </h1>
+<div>
+    {% block content %} {% endblock %}
+</div>
+</body>
+</html>

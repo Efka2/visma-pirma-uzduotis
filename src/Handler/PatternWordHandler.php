@@ -75,6 +75,12 @@ class PatternWordHandler
         return $array;
     }
 
+    //todo
+//    public function update(int $wordId, )
+//    {
+//
+//    }
+
     public function insert(Word $word, CollectionInterface $patterns)
     {
         $pdo = $this->database->connect();
