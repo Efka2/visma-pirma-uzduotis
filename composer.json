@@ -16,7 +16,8 @@
         "psr/container": "^2.0",
         "ext-json": "*",
         "ext-http": "*",
-        "twig/twig": "^3.3"
+        "twig/twig": "^3.3",
+      "ext-pdo": "*"
     },
     "require-dev": {
         "phpmd/phpmd": "^2.10",

@@ -10,7 +10,7 @@ use Syllabus\Model\Word;
 class Routes
 {
 
-    
+
     public static function route(Router $router)
     {
         $router->get('/');

@@ -56,7 +56,7 @@ class Router
         $requestPath = $requestUri['path'];
         $method = $_SERVER['REQUEST_METHOD'];
 
-        if(!empty($slug)){
+        if (!empty($slug)) {
             $requestPath = str_replace("$slug", "id", $requestPath);
         }
 

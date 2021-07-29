@@ -2,6 +2,7 @@
 
 namespace Syllabus\Handler;
 
+use PDOException;
 use Syllabus\Core\CollectionInterface;
 use Syllabus\Core\PatternCollection;
 use Syllabus\Database\Database;
@@ -11,6 +12,9 @@ use Syllabus\Model\Word;
 class PatternWordHandler
 {
     private const TABLE_NAME = "Pattern_Word";
+    private const FIELD_WORD_ID = "wordID";
+    private const FIELD_PATTERN_ID = "patternID";
+
     private Database $database;
     private PatternHandler $patternHandler;
 
@@ -75,30 +79,30 @@ class PatternWordHandler
         return $array;
     }
 
-    //todo
-//    public function update(int $wordId, )
-//    {
-//
-//    }
+    public function delete(int $currentWordId)
+    {
+        $pdo = $this->database->connect();
+        try {
+            $sql = sprintf("DELETE FROM %s WHERE %s = :wordId", self::TABLE_NAME, self::FIELD_WORD_ID);
+            $stmt = $pdo->prepare($sql);
+            $stmt->execute(
+                [
+                    ':wordId' => $currentWordId
+                ]
+            );
+        } catch (PDOException $exception) {
+            die($exception->errorInfo);
+        }
+    }
 
     public function insert(Word $word, CollectionInterface $patterns)
     {
         $pdo = $this->database->connect();
         $table = self::TABLE_NAME;
         $wordString = $word->getWordString();
-//        $syllabifiedWord = $word->getSyllabifiedWord();
 
         try {
             $pdo->beginTransaction();
-
-//            $sqlInsertWord = "INSERT INTO Word
-//                            (wordString, syllabifiedWord)
-//                             VALUES (?, ?);";
-//
-//            $stmt = $pdo->prepare($sqlInsertWord);
-//            $stmt->execute([$wordString, $syllabifiedWord]);
-//
-//            $stmt->closeCursor();
 
             $sqlSelectWordId = "SELECT id FROM Word WHERE wordString = ?;";
             $stmt = $pdo->prepare($sqlSelectWordId);
@@ -118,7 +122,7 @@ class PatternWordHandler
             }
 
             $pdo->commit();
-        } catch (\PDOException $exception) {
+        } catch (PDOException $exception) {
             $pdo->rollBack();
             die($exception->getMessage());
         }

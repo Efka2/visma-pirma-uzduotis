@@ -3,14 +3,11 @@
 namespace Syllabus\Controller;
 
 use Syllabus\Core\CollectionInterface;
-use Syllabus\Core\PatternCollection;
 use Syllabus\Handler\PatternWordHandler;
 use Syllabus\Handler\WordHandler;
 use Syllabus\Model\Word;
 use Syllabus\Service\Syllabus;
 use Twig\Environment;
-
-use function PHPUnit\Framework\throwException;
 
 class WordController
 {
@@ -107,19 +104,17 @@ class WordController
         );
     }
 
-    public function update(string $currentWord, string $replaceWord, CollectionInterface $patternCollection)
+    public function update(int $id, string $replaceWord, CollectionInterface $patternCollection)
     {
-        $currentWordObject = $this->wordHandler->getByString($currentWord);
+        $currentWordObject = $this->wordHandler->getById($id);
         $replaceWordObject = new Word($replaceWord);
         $syllabifiedWord = $this->syllabus->hyphenate($replaceWordObject, $patternCollection);
         $replaceWordObject->setSyllabifiedWord($syllabifiedWord);
-        $foundPatters = $this->syllabus->findPatternsInWord($currentWordObject, $patternCollection);
+        $foundPatters = $this->syllabus->findPatternsInWord($replaceWordObject, $patternCollection);
 
         $this->wordHandler->update($currentWordObject, $replaceWordObject);
-        //todo add update method to patternWordHandler
+        $this->patternWordHandler->delete($id);
         $this->patternWordHandler->insert($replaceWordObject, $foundPatters);
-
-        $this->index();
     }
 
     public function delete(int $id)
@@ -128,21 +123,5 @@ class WordController
         $deleteStatus = $this->wordHandler->deleteById($id);
 
         echo "successfully deleted";
-//        if ($deleteStatus == 0) {
-//            $data = [
-//                'message' => "word successfully deleted",
-//                'wordString' => $word,
-//                'syllabifiedWord' => $wordModel->getSyllabifiedWord()
-//            ];
-//        } else {
-//            $data = [
-//                'message' => "word $word was not found"
-//            ];
-//            header("HTTP/1.0 404 Not Found");
-//        }
-//
-//        header("Content-Type: application/json");
-//        $json = json_encode($data);
-//        echo $json;
     }
 }

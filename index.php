@@ -5,13 +5,11 @@ require_once __DIR__ . ('/vendor/autoload.php');
 use Syllabus\Container\Container;
 use Syllabus\Controller\WordController;
 use Syllabus\Core\Application;
-use Syllabus\Database\Database;
 use Syllabus\Handler\PatternWordHandler;
 use Syllabus\Handler\WordHandler;
 use Syllabus\Http\Router;
 use Syllabus\IO\FileReaderInterface;
 use Syllabus\IO\Reader;
-use Syllabus\Model\Word;
 use Syllabus\Service\Syllabus;
 use Twig\Environment;
 use Twig\Loader\FilesystemLoader;
@@ -62,11 +60,13 @@ if (!$_SERVER['REMOTE_ADDR'] == '127.0.0.1') {
     });
 
     $router->post('/word/edit/id', function() use ($wordController, $reader){
-        $currentWord = trim($_POST['current_word']);
+        $uri = parse_url($_SERVER['REQUEST_URI'], PHP_URL_PATH);
+        $uri = explode('/', $uri);
         $replaceWord = trim($_POST['word_string']);
+        $id = $uri[3];
         $patterns = $reader->readFromFileToCollection(FileReaderInterface::DEFAULT_PATTERN_LINK);
 
-        $wordController->update($currentWord, $replaceWord, $patterns);
+        $wordController->update($id, $replaceWord, $patterns);
     });
 
     $router->get('/word/create', function () use ($wordController){
@@ -87,51 +87,6 @@ if (!$_SERVER['REMOTE_ADDR'] == '127.0.0.1') {
 
         $wordController->delete($id);
     });
-
-    //deprecated
-//    $router->post('/word', function () use ($wordController, $wordHandler, $syllabus, $reader) {
-//        $entityBody = file_get_contents('php://input');
-//        $data = json_decode($entityBody, true);
-//
-//        $word = new Word($data['wordString']);
-//
-//        if ($wordHandler->isWordInDatabase($word)) {
-//            echo json_encode(
-//              [
-//                  'message' => "word is already in database"
-//              ]
-//            );
-//            return;
-//        }
-//        $patterns = $reader->readFromFileToCollection(FileReaderInterface::DEFAULT_PATTERN_LINK);
-//        $syllabifiedWord = $syllabus->hyphenate($word, $patterns);
-//        $foundPatters = $syllabus->findPatternsInWord($word, $patterns);
-//        $word->setSyllabifiedWord($syllabifiedWord);
-//
-//        $wordController->store($word, $foundPatters);
-//    });
-//    $router->put('/word', function () use ($wordController, $wordHandler, $syllabus){
-//        $entityBody = file_get_contents('php://input');
-//
-//        $data = json_decode($entityBody, true);
-//        $currentWord = $data['currentWordString'];
-//
-//        if (!$wordHandler->isWordInDatabase($data['currentWordString'])) {
-//            header("Content-type:application/json");
-//            if (!$wordHandler->isWordInDatabase($currentWord)) {
-//                echo json_encode(
-//                    [
-//                        'message' => "word $currentWord doesn't exist"
-//                    ]
-//                );
-//                header("HTTP/1.0 404 Not Found");
-//                return;
-//            }
-//        } else {
-//            $syllabus->hyphenate();
-//        }
-//    });
-
 
     $router->run();
 }

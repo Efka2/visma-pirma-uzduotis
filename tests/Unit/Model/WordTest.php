@@ -51,10 +51,4 @@ class WordTest extends TestCase
     {
         $this->assertEquals('system', $this->word);
     }
-
-    public function testCantCreateWordWithoutConstructorParameter()
-    {
-        $this->expectErrorMessage("Too few arguments");
-        $word = new Word();
-    }
 }

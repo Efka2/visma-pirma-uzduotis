@@ -12,18 +12,6 @@
                 <br>
             <a href="/word/edit/{{ word.wordId }} "><span> Edit </span></a>
             <a href="/word/show/{{ word.wordId }} "> Show </a>
-            <script>
-                function deleteWord(id){
-
-                    console.log(id);
-
-                    fetch('/word/delete/' + id, {
-                        method: 'DELETE',
-                    })
-                        .then( res => res.text())
-                        .then( res => console.log(res))
-                }
-            </script>
             <button onclick="
             let id = '{{ word.wordId }}'
             deleteWord(id)">
@@ -32,4 +20,14 @@
             <br>
             {% endfor %}
         </div>
+<script>
+    function deleteWord(id){
+
+        console.log(id);
+
+        fetch('/word/delete/' + id, {
+            method: 'DELETE',
+        })
+    }
+</script>
 {% endblock %}
